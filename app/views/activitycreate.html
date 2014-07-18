@@ -20,7 +20,7 @@
   <form role="form">
     <div class="form-group">
       <label for="exampleInputEmail1">活动名称：</label>
-      <input type="text" class="form-control" ng-model="inputActvName" ng-change="check_if_empty()" placeholder="如：活动一">
+      <input type="text" class="form-control" ng-model="inputActvName" placeholder="如：活动一">
     </div>
 
 <!--     <div class="form-group">
@@ -34,11 +34,11 @@
       </label>
     </div>
  -->    
-  <button type="submit" class="btn btn-block btn-primary disabled" ng-show="if_empty">创建</button>
-  <button type="submit" class="btn btn-block btn-primary" ng-show="ifnot_empty">创建</button>
+  <button class="btn btn-block btn-primary disabled" ng-show="ifEmpty">创建</button>
+  <button class="btn btn-block btn-primary" ng-show="ifNotEmpty">创建</button>
   </form>
   <p></p>
-  <label>{{warn_info}}</label>
+  <label>{{warnInfo}}</label>
 </div>
 
 <!-- <div class="row marketing">
