@@ -16,6 +16,13 @@ angular.module('partyBidApp')
       'Trotyl'
     ];
 
+    $scope.actvCreated = function() {
+      //window.alert('hihi');
+      localStorage.setItem('actvNew', 'true');
+      localStorage.setItem('actvName', $scope.inputActvName);
+      $location.path('/');
+    };
+
     function checkIfEmpty(newValue, oldValue, scope) {
       //window.alert($scope.inputActvName);
       
@@ -29,6 +36,6 @@ angular.module('partyBidApp')
         $scope.ifNotEmpty = 'false';
         $scope.warnInfo = ' ';
       }
-    };
+    }
     $scope.$watch('inputActvName', checkIfEmpty, true);
   });
