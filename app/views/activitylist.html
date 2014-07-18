@@ -1,0 +1,50 @@
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li class=""><a class="btn btn-primary pull-right" ng-href="#/create">创建活动</a></li>
+<!--     <li><a ng-href="#/about">About</a></li>
+    <li><a ng-href="#">Contact</a></li> -->
+  </ul>
+  <h3 class="text-muted">活动列表</h3>
+</div>
+
+<!-- <div class="jumbotron">
+  <h1>'Allo, 'Allo!</h1>
+  <p class="lead">
+    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
+    Always a pleasure scaffolding your apps.
+  </p>
+  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+</div>
+ -->
+<div class="container">
+<!--   <ul class="row marketing">
+     <li ng-repeat="activity in activities | orderBy:'-created_at'">
+       <p ng-click="">{{activity.name}}</p>
+     </li>
+  </ul>
+ -->
+  <p></p>
+  <p></p>
+  <div class="list-group">
+    <a href="#" class="list-group-item" ng-repeat="activity in activities | orderBy:'-created_at'"><span class="badge">{{activity.created_at}}</span>{{activity.name}}</a>
+  </div>
+</div>
+
+<!-- <div class="row marketing">
+  <h4>HTML5 Boilerplate</h4>
+  <p>
+    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
+  </p>
+
+  <h4>Angular</h4>
+  <p>
+    AngularJS is a toolset for building the framework most suited to your application development.
+  </p>
+
+  <h4>Karma</h4>
+  <p>Spectacular Test Runner for JavaScript.</p>
+
+  <h4>Trotyl</h4>
+  <p>One Two Three Four Five Six Seven Eight Night Ten Eleven Twelve.</p>
+</div>
+ -->
