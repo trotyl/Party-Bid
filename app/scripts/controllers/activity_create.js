@@ -22,14 +22,17 @@ angular.module('partyBidApp')
     	{name:'Activity 3', created_at:'201407171525', status:0},
     	{name:'Activity 4', created_at:'201407171520', status:0}
     ];
-
-    $scope.ActvCreateClick = function() {
-      // temp = document.getElementById('actv_name').value;
-      // if(temp == '') {
-      //   alert("hehe");
-      // }
-      // else {
-        $location.path('/register');
-      //}
-    };
+    $scope.if_empty = "true";
+    $scope.ifnot_empty = "false";
+    $scope.check_if_empty = function() {
+      value = $scope.inputActvName;
+      if(value){
+        $scope.if_empty = "false";
+        $scope.ifnot_empty = "true";
+      }
+      else{
+        $scope.if_empty = "true";
+        $scope.ifnot_empty = "false";
+      }
+    }
   });
