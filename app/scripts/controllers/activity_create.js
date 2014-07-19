@@ -25,7 +25,7 @@ angular.module('partyBidApp')
       Activity.add_new_item($scope.input_actv_name);
       // localStorage.setItem('actvNew', 'true');
       // localStorage.setItem('actvName', $scope.inputActvName);
-      $location.path('/');
+      $location.path('/register');
     };
 
     function check_if_empty(newValue, oldValue, scope) {

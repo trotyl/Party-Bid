@@ -15,6 +15,10 @@ angular.module('partyBidApp')
       'Karma',
       'Trotyl'
     ];
+    
+    $scope.back_to_home = function() {
+      $location.path('/');
+    }
 
 
   });
