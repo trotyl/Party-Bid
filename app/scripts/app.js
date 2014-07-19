@@ -1,13 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc overview
- * @name partyBidApp
- * @description
- * # partyBidApp
- *
- * Main module of the application.
- */
 angular
   .module('partyBidApp', [
     'ngAnimate',
@@ -20,20 +12,16 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/activitylist.html',
-        controller: 'MainCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+        templateUrl: 'views/activity_list.html',
+        controller: 'ActivityListController'
       })
       .when('/create', {
-        templateUrl: 'views/activitycreate.html',
-        controller: 'ActvCreateCtrl'
+        templateUrl: 'views/create_activity.html',
+        controller: 'CreateActivityController'
       })
-      .when('/register', {
-        templateUrl: 'views/activityregister.html',
-        controller: 'ActvRegrCtrl'
+      .when('/detail', {
+        templateUrl: 'views/activity_detail.html',
+        controller: 'ActivityDetailController'
       })
       .otherwise({
         redirectTo: '/'

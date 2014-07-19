@@ -1,6 +1,6 @@
 <div class="header">
   <ul class="nav nav-pills pull-right">
-    <li class=""><a class="btn btn-primary pull-right" ng-click="actv_create()">创建活动</a></li>
+    <li class=""><a class="btn btn-primary pull-right" ng-click="activity_create()">创建活动</a></li>
 <!--     <li><a ng-href="#/about">About</a></li>
     <li><a ng-href="#">Contact</a></li> -->
   </ul>
@@ -12,7 +12,7 @@
   <p></p>
   <p></p>
   <div class="list-group">
-    <a ng-click="actv_show()" class="list-group-item" ng-repeat="activity in activities | orderBy:'-createdAt'">
+    <a ng-click="show_activity_detail()" class="list-group-item" ng-repeat="activity in activities | orderBy:'-createdAt'">
 <!--     <span class="badge">{{activity.createdAt}}</span> -->
     {{activity.name}}</a>
   </div>

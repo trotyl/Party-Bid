@@ -11,10 +11,10 @@
   <form role="form">
     <div class="form-group">
       <label for="exampleInputEmail1">活动名称：</label>
-      <input type="text" class="form-control" ng-model="input_actv_name" placeholder="如：活动一">
+      <input type="text" class="form-control" ng-model="input_activity_name" placeholder="如：活动一">
     </div>
 
-  <button class="btn btn-block btn-primary" ng-show="true" ng-disabled='btn_disb' ng-click="actv_succ()">创建</button>
+  <button class="btn btn-block btn-primary" ng-disabled='name_is_empty' ng-click="activity_create()">创建</button>
   </form>
   <p></p>
   <label class="pull-center">{{warn_info}}</label>
