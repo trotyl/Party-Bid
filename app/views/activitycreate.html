@@ -1,6 +1,6 @@
 <div class="header">
   <ul class="nav nav-pills pull-left">
-    <li class=""><a class="btn btn-warning" ng-click="back_to_home()">返回</a></li>
+    <li class=""><a class="btn btn-warning" ng-show="back_show" ng-click="back_to_home()">返回</a></li>
 <!--     <li><a ng-href="#/about">About</a></li>
     <li><a ng-href="#">Contact</a></li> -->
   </ul>
@@ -39,7 +39,7 @@
   <button class="btn btn-block btn-primary" ng-show="true" ng-disabled='btn_disb' ng-click="actv_succ()">创建</button>
   </form>
   <p></p>
-  <label>{{warnInfo}}</label>
+  <label class="pull-center">{{warn_info}}</label>
 </div>
 
 <!-- <div class="row marketing">

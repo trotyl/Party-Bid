@@ -9,6 +9,7 @@ Activity.get_all_items = function () {
 Activity.save_all_items = function (whole_actv_list) {
     //window.alert("3");
     localStorage.setItem("actv_list", JSON.stringify(whole_actv_list));
+    localStorage.setItem("actv_num", whole_actv_list.length);
     //window.alert("4");
 };
 
@@ -35,8 +36,21 @@ Activity.get_item_name = function () {
 
 Activity.check_if_null = function () {
     var actv_num = localStorage.getItem("actv_num") || 0;
-    return actv_num;
+    //window.alert("5" + actv_num);
+    return actv_num != 0;
 };
+
+Activity.check_if_repeat = function (name_to_check) {
+    var repeat = false;
+    var whole_actv_list = JSON.parse(localStorage.getItem('actv_list')) || [];
+    for (var i = whole_actv_list.length - 1; i >= 0; i--) {
+        if(whole_actv_list[i].name == name_to_check) {
+            repeat = true;
+            break;
+        }
+    };
+    return repeat;
+}
 
 Activity.add_new_item = function(new_item_name) {
     localStorage.setItem('actv_new', 'true');
