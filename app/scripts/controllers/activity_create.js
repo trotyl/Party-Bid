@@ -9,12 +9,6 @@
  */
 angular.module('partyBidApp')
   .controller('ActvCreateCtrl', function ($scope, $location) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma',
-      'Trotyl'
-    ];
 
     $scope.back_to_home = function() {
       $location.path('/');
@@ -28,8 +22,6 @@ angular.module('partyBidApp')
       else {
         //window.alert('hihi');
         Activity.add_new_item($scope.input_actv_name);
-        // localStorage.setItem('actvNew', 'true');
-        // localStorage.setItem('actvName', $scope.inputActvName);
         $location.path('/register');
       }
     };

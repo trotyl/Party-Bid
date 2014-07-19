@@ -1,20 +1,11 @@
 <div class="header">
   <ul class="nav nav-pills pull-left">
     <li class=""><a class="btn btn-warning" ng-show="back_show" ng-click="back_to_home()">返回</a></li>
-<!--     <li><a ng-href="#/about">About</a></li>
-    <li><a ng-href="#">Contact</a></li> -->
   </ul>
   <h3 class="text-muted" align="right">创建活动</h3>
 </div>
 
-<!-- <div class="container" align="center">
-  <h4>请输入活动名称</h4>
 
-  <input type='text' class="" name='actv_name' id='actv_name'/> 
-
-  <p></p>
-  <p><a class="btn btn-lg btn-success" ng-click="ActvCreateClick()">点我创建<span class="glyphicon glyphicon-ok"></span></a></p>
-</div> -->
 <p></p>
 <div class="container">
   <form role="form">
@@ -23,40 +14,9 @@
       <input type="text" class="form-control" ng-model="input_actv_name" placeholder="如：活动一">
     </div>
 
-<!--     <div class="form-group">
-      <label for="exampleInputFile">File input</label>
-      <input type="file" id="exampleInputFile">
-      <p class="help-block">Example block-level help text here.</p>
-    </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox"> Check me out
-      </label>
-    </div>
- -->    
-<!--   <button class="btn btn-block btn-primary disabled" ng-disabled='btn_disb' ng-show="true">创建</button>
- -->
   <button class="btn btn-block btn-primary" ng-show="true" ng-disabled='btn_disb' ng-click="actv_succ()">创建</button>
   </form>
   <p></p>
   <label class="pull-center">{{warn_info}}</label>
 </div>
 
-<!-- <div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
-
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
-
-  <h4>Trotyl</h4>
-  <p>One Two Three Four Five Six Seven Eight Night Ten Eleven Twelve.</p>
-</div>
- -->
