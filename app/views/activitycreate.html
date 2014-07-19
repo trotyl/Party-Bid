@@ -34,7 +34,7 @@
       </label>
     </div>
  -->    
-  <button class="btn btn-block btn-primary disabled" ng-show="ifEmpty">创建</button>
+  <button class="btn btn-block btn-primary disabled" ng-disabled='noContent' ng-show="ifEmpty">创建</button>
   <button class="btn btn-block btn-primary" ng-show="ifNotEmpty" ng-click="actvCreated()">创建</button>
   </form>
   <p></p>
