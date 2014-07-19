@@ -39,6 +39,23 @@ angular.module('partyBidApp')
 
     $scope.init_data();
 
+    $scope.check_when_load = function() {
+    	if($scope.is_new){
+    		//window.alert("-1");
+    	 	var nowDate = new Date();
+    	 	//window.alert("0");
+    	 	$scope.activities.splice(0,0,{name:$scope.actv_name, createdAt:nowDate.toString()});
+    	 	//window.alert("1");
+    	 	Activity.save_all_items($scope.activities);
+    	 	//window.alert("2");
+    	 }
+    	if($scope.activities.length == 0){
+    		$location.path('/create');
+    	}	
+    }
+
+    $scope.check_when_load();
+
    //  function checkIfNull(newValue, oldValue, scope) {
    //    //window.alert('huhu');
    //    if($scope.actvNew === 'true'){

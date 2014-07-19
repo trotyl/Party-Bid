@@ -1,6 +1,6 @@
 <div class="header">
   <ul class="nav nav-pills pull-left">
-    <li class=""><a class="btn btn-warning" ng-href="#">返回</a></li>
+    <li class=""><a class="btn btn-warning" ng-click="back_to_home()">返回</a></li>
 <!--     <li><a ng-href="#/about">About</a></li>
     <li><a ng-href="#">Contact</a></li> -->
   </ul>
@@ -20,7 +20,7 @@
   <form role="form">
     <div class="form-group">
       <label for="exampleInputEmail1">活动名称：</label>
-      <input type="text" class="form-control" ng-model="inputActvName" placeholder="如：活动一">
+      <input type="text" class="form-control" ng-model="input_actv_name" placeholder="如：活动一">
     </div>
 
 <!--     <div class="form-group">
@@ -34,8 +34,9 @@
       </label>
     </div>
  -->    
-  <button class="btn btn-block btn-primary disabled" ng-disabled='noContent' ng-show="ifEmpty">创建</button>
-  <button class="btn btn-block btn-primary" ng-show="ifNotEmpty" ng-click="actvCreated()">创建</button>
+<!--   <button class="btn btn-block btn-primary disabled" ng-disabled='btn_disb' ng-show="true">创建</button>
+ -->
+  <button class="btn btn-block btn-primary" ng-show="true" ng-disabled='btn_disb' ng-click="actv_succ()">创建</button>
   </form>
   <p></p>
   <label>{{warnInfo}}</label>

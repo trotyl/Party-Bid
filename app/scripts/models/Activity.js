@@ -3,18 +3,25 @@ function Activity() {
 }
 
 Activity.get_all_items = function () {
-    return JSON.parse(localStorage.getItem("actv_list")) || [];
-}
+    return JSON.parse(localStorage.getItem('actv_list')) || [];
+};
+
+Activity.save_all_items = function (whole_actv_list) {
+    //window.alert("3");
+    localStorage.setItem("actv_list", JSON.stringify(whole_actv_list));
+    //window.alert("4");
+};
 
 Activity.if_new_item = function () {
-    var is_new = localStorage.getItem("actv_list") || "false";
+    var is_new = localStorage.getItem("actv_new") || "false";
     if(is_new == 'true'){
+        localStorage.setItem("actv_new", "false");
         return true;
     }
     else{
         return false;
     }
-}
+};
 
 Activity.get_item_name = function () {
     var actv_name = localStorage.getItem("actv_name") || null;
@@ -24,7 +31,17 @@ Activity.get_item_name = function () {
     else{
         return null;
     }
-}
+};
+
+Activity.check_if_null = function () {
+    var actv_num = localStorage.getItem("actv_num") || 0;
+    return actv_num;
+};
+
+Activity.add_new_item = function(new_item_name) {
+    localStorage.setItem('actv_new', 'true');
+    localStorage.setItem('actv_name', new_item_name);
+};
 
 // Activity.prototype.process_order = function () {
 //     var orders = Activity.get_orders();

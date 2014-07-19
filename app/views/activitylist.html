@@ -28,6 +28,8 @@
   <div class="list-group">
     <a ng-click="actv_show()" class="list-group-item" ng-repeat="activity in activities | orderBy:'-createdAt'"><span class="badge">{{activity.createdAt}}</span>{{activity.name}}</a>
   </div>
+  <p></p>
+  <label>{{warn_info}}</label>
 </div>
 
 <!-- <div class="row marketing">

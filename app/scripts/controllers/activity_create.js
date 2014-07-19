@@ -16,26 +16,29 @@ angular.module('partyBidApp')
       'Trotyl'
     ];
 
-    $scope.actvCreated = function() {
+    $scope.back_to_home = function() {
+      $location.path('/');
+    }
+
+    $scope.actv_succ = function() {
       //window.alert('hihi');
-      localStorage.setItem('actvNew', 'true');
-      localStorage.setItem('actvName', $scope.inputActvName);
+      Activity.add_new_item($scope.input_actv_name);
+      // localStorage.setItem('actvNew', 'true');
+      // localStorage.setItem('actvName', $scope.inputActvName);
       $location.path('/');
     };
 
-    function checkIfEmpty(newValue, oldValue, scope) {
+    function check_if_empty(newValue, oldValue, scope) {
       //window.alert($scope.inputActvName);
       
-      if($scope.inputActvName){
-        $scope.ifEmpty = 'false';
-        $scope.ifNotEmpty = 'true';
-        $scope.warnInfo = $scope.inputActvName;
+      if($scope.input_actv_name){
+        $scope.btn_disb = false;
+        $scope.warnInfo = $scope.input_actv_name;
       }
       else{
-        $scope.ifEmpty = 'true';
-        $scope.ifNotEmpty = 'false';
+        $scope.btn_disb = true;
         $scope.warnInfo = ' ';
       }
     }
-    $scope.$watch('inputActvName', checkIfEmpty, true);
+    $scope.$watch('input_actv_name', check_if_empty, true);
   });
