@@ -13,7 +13,8 @@ angular.module('partyBidApp')
         $scope.warn_info = "名称与已有活动重复！";
       }
       else {
-        Activity.add_new_item($scope.input_activity_name);
+        var nowDate = new Date();
+        Activity.add_new_item($scope.input_activity_name, nowDate);
         $location.path('/detail');
       }
     };
@@ -30,5 +31,10 @@ angular.module('partyBidApp')
       $scope.name_is_empty = !$scope.input_activity_name;
     };
 
+    function check_if_receive(newValue, oldValue, scope) {
+      console.log("success");
+    };
+
     $scope.$watch('input_activity_name', check_if_empty, true);
+    //$scope.$watch('native_accessor', check_if_empty, true);
   });
