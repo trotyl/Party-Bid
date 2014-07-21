@@ -45,9 +45,26 @@ Activity.is_running = function (activity_name) {
 };
 
 Activity.start_activity = function (activity_name) {
-
+    console.log("check_1");
+    activity_list = Activity.get_all_items();
+    for (var i = activity_list.length - 1; i >= 0; i--) {
+        if(activity_list[i].name == activity_name) {
+            activity_list[i].status = "run";
+            console.log("check_2" + activity_list[i].status);
+            Activity.save_all_items(activity_list);
+            console.log("check_3");
+            return 0;
+        }
+    };
 };
 
 Activity.stop_activity = function (activity_name) {
-
+    activity_list = Activity.get_all_items();
+    for (var i = activity_list.length - 1; i >= 0; i--) {
+        if(activity_list[i].name == activity_name) {
+            activity_list[i].status = "over";
+            Activity.save_all_items(activity_list);
+            return 0;
+        }
+    };
 };
