@@ -3,13 +3,12 @@
     <li class=""><a class="btn btn-warning" ng-click="back_to_home()">返回</a></li>
   </ul>
   <ul class="nav nav-pills pull-right">
-    <li class=""><a class="btn btn-success" ng-click="start_activity()">{{start_or_stop}}</a></li>
+    <li class=""><a class="btn btn-success" ng-click="alter_activity_status()" ng-disabled="can_not_start">{{start_or_stop}}</a></li>
 
   </ul>
   <h3 class="text-muted" align="center">活动报名</h3>
 </div>
 
-<div height="400"></div>
 
 <div class="container row">
   <button class="btn btn-primary col-md-6">报名</button>  

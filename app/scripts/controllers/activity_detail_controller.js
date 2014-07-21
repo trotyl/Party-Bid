@@ -9,6 +9,13 @@ angular.module('partyBidApp')
   		$scope.activity_name = $routeParams.name;
   		$scope.start_or_stop = Activity.is_running($scope.activity_name)? "结束": "开始";
   		$scope.status_to_watch = $scope.start_or_stop;
+
+  		if($scope.start_or_stop == "开始") {
+  			if(Activity.one_in_progress()) {
+  				console.log("check_1");
+  				$scope.can_not_start = true;
+  			}
+  		}
   	};
 
   	$scope.initiate_data();
@@ -17,7 +24,7 @@ angular.module('partyBidApp')
     	$location.path('/');
     };
 
-    $scope.start_activity = function () {
+    $scope.alter_activity_status = function () {
 		if ($scope.start_or_stop == "开始") {
 			$scope.status_to_watch = "结束";
 	    	Activity.start_activity($scope.activity_name);

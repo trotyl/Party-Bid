@@ -11,6 +11,15 @@ angular.module('partyBidApp')
     	$location.path('/detail/' + activity_name);
     };
 
+    $scope.check_in_progress = function (status) {
+    	if (status == "run") {
+    		return "btn btn-block btn-lg btn-warning";
+    	}
+    	else {
+    		return "btn btn-block btn-lg btn-info";
+    	}
+    };
+
     $scope.initiate_data = function() {
     	$scope.activities = Activity.get_all_items();
     };

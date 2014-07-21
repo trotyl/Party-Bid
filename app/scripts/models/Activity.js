@@ -45,14 +45,11 @@ Activity.is_running = function (activity_name) {
 };
 
 Activity.start_activity = function (activity_name) {
-    console.log("check_1");
     activity_list = Activity.get_all_items();
     for (var i = activity_list.length - 1; i >= 0; i--) {
         if(activity_list[i].name == activity_name) {
             activity_list[i].status = "run";
-            console.log("check_2" + activity_list[i].status);
             Activity.save_all_items(activity_list);
-            console.log("check_3");
             return 0;
         }
     };
@@ -67,4 +64,16 @@ Activity.stop_activity = function (activity_name) {
             return 0;
         }
     };
+};
+
+Activity.one_in_progress = function () {
+    var progress = false;
+    var whole_activity_list = JSON.parse(localStorage.getItem('activity_list')) || [];
+    for (var i = whole_activity_list.length - 1; i >= 0; i--) {
+        if(whole_activity_list[i].status == "run") {
+            progress = true;
+            break;
+        }
+    };
+    return progress;
 };
