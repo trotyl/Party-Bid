@@ -7,7 +7,7 @@ angular.module('partyBidApp')
     	$location.path('/create');
     };
 
-    $scope.show_activity_detail = function() {
+    $scope.show_activity_detail = function(target) {
     	$location.path('/detail');
     };
 
