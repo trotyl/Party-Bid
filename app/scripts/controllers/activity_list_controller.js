@@ -3,21 +3,21 @@
 angular.module('partyBidApp')
   .controller('ActivityListController', function ($scope, $location) {
 
-    $scope.activity_create = function() {
+    $scope.activity_create = function () {
     	$location.path('/create');
     };
 
-    $scope.show_activity_detail = function(activity_name) {
+    $scope.show_activity_detail = function (activity_name) {
     	$location.path('/detail/' + activity_name);
     };
 
-    $scope.initital_data = function() {
+    $scope.initiate_data = function() {
     	$scope.activities = Activity.get_all_items();
     };
 
-    $scope.initital_data();
+    $scope.initiate_data();
 
-    $scope.check_when_load = function() {
+    $scope.check_when_load = function () {
     	$scope.warn_info = native_accessor.is_unread;
     	if($scope.activities.length == 0){
     		$location.path('/create');

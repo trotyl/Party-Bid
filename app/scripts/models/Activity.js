@@ -34,7 +34,20 @@ Activity.check_if_repeat = function (name_to_check) {
     return repeat;
 };
 
-Activity.update_activity_status = function () {
+Activity.is_running = function (activity_name) {
+    activity_list = Activity.get_all_items();
+    for (var i = activity_list.length - 1; i >= 0; i--) {
+        if(activity_list[i].name == activity_name) {
+            return (activity_list[i].status == "run");
+        }
+    };
+    return false;
+};
+
+Activity.start_activity = function (activity_name) {
 
 };
 
+Activity.stop_activity = function (activity_name) {
+
+};
