@@ -4,7 +4,6 @@ function Message() {
 
 Message.received_new_item = function(message_json) {
   	
-	var local_messages = JSON.parse(localStorage.getItem('message_list')) || [];
 	var new_message = JSON.parse(message_json).messages[0];
 	var message_text = new_message.message;
 	var message_phone = new_message.phone;
@@ -14,20 +13,21 @@ Message.received_new_item = function(message_json) {
 	    var message_name = message_text.substring(2).replace(' ', '');
 	}
 	else {
-		return -1;
+		return 0;
 	}
 
 	var activity_status = localStorage.getItem("message_status") || "prepare";
 	if(activity_status == "prepare") {
 		Message.sendback_info_early(message_phone);
-		return -1;
+		return 0;
 	}
 	if(activity_status == "over") {
 		Message.sendback_info_late(message_phone);
-		return -1;
+		return 0;
 	}
 
-    if(Message.check_if_repeat(message_phone, local_messages)) {
+    if(!Message.check_if_repeat(message_phone, local_messages)) {
+    	var local_messages = JSON.parse(localStorage.getItem('message_list')) || [];
 		local_messages.splice(0,0,{name:message_name, phone:message_phone});
 		localStorage.setItem('message_list', JSON.stringify(local_messages));
 		Message.sendback_info_success(message_phone);

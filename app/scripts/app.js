@@ -19,7 +19,7 @@ angular
         templateUrl: 'views/create_activity.html',
         controller: 'CreateActivityController'
       })
-      .when('/detail', {
+      .when('/detail/:name', {
         templateUrl: 'views/activity_detail.html',
         controller: 'ActivityDetailController'
       })

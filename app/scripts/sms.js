@@ -15,7 +15,6 @@ var native_accessor = {
 
     process_received_message: function (json_message) {
         Message.received_new_item(json_message);
-        console.log("Hello world!");
 }}
 
 

@@ -14,7 +14,7 @@
     {{activity.name}} 
     </a> -->
     <div ng-repeat="activity in activities | orderBy:'-createdAt'">
-      <button ng-click="show_activity_detail()" class="btn btn-block btn-warning btn-lg" >
+      <button ng-click="show_activity_detail(activity.name)" class="btn btn-block btn-warning btn-lg" >
         {{activity.name}} 
       </button>
       <p></p>
