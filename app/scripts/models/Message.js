@@ -36,25 +36,27 @@ Message.received_new_item = function(message_json) {
 };
 
 Message.read_all_items = function(activity_name) {
-	var local_messages = JSON.parse(localStorage.getItem('message_list')) || [];
-	var result = [];
-	for (var i = local_messages.length - 1; i >= 0; i--) {
-		if(local_messages[i].activity == activity_name) {
-			result.splice(0,0,local_messages[i]);
-		}
-	};
+	var message_list = JSON.parse(localStorage.getItem('message_list')) || [];
+	// var result = [];
+	// for (var i = message_list.length - 1; i >= 0; i--) {
+	// 	if(message_list[i].activity == activity_name) {
+	// 		result.splice(0,0,message_list[i]);
+	// 	}
+	// };
+	var result = _.where(message_list, {activity: activity_name});
 	return result;
 };
 
-Message.check_if_repeat = function (phone_to_check, whole_message_list) {
-    var repeat = false;
+Message.check_if_repeat = function (phone_to_check, message_list) {
     var activity_name = localStorage.getItem("activity_name") || "Null";
-    for (var i = whole_message_list.length - 1; i >= 0; i--) {
-        if(whole_message_list[i].phone == phone_to_check && whole_message_list[i].activity == activity_name) {
-            repeat = true;
-            break;
-        }
-    };
+    // var repeat = false;
+    // for (var i = whole_message_list.length - 1; i >= 0; i--) {
+    //     if(whole_message_list[i].phone == phone_to_check && whole_message_list[i].activity == activity_name) {
+    //         repeat = true;
+    //         break;
+    //     }
+    // };
+    var repeat = _.where(message_list, {phone: phone_to_check, activity: activity_name}).length > 0;
     return repeat;
 };
 

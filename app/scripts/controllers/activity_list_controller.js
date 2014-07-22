@@ -27,6 +27,7 @@ angular.module('partyBidApp')
     $scope.initiate_data();
 
     $scope.check_when_load = function () {
+    	$scope.warn_info = _.reduce([1, 2, 3], function(memo, num){ return memo + num; }, 6);
     	if($scope.activities.length == 0){
     		$location.path('/create');
     	}	
