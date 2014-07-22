@@ -20,8 +20,7 @@ angular.module('partyBidApp')
     };
 
     $scope.check_activity_null = function () {
-        var activity_not_null = Activity.check_if_null();
-        $scope.back_show = activity_not_null;
+        $scope.back_show = Activity.check_ifnot_null();
     };
 
     $scope.check_activity_null();

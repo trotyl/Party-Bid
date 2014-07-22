@@ -1,6 +1,10 @@
 function Message() {
 }
 
+Message.get_all_items = function () {
+	return JSON.parse(localStorage.getItem('message_list')) || [];
+};
+
 Message.received_new_item = function(message_json) {
 
 	var new_message = message_json.messages[0];
@@ -12,18 +16,18 @@ Message.received_new_item = function(message_json) {
 	    var message_name = message_text.substring(2).replace(' ', '');
 		var activity_status = localStorage.getItem("activity_status") || "prepare";
 		if(activity_status == "prepare") {
-			Message.sendback_info_early(message_phone);
+			Message.sendback_info(message_phone, "early");
 		}
 		else if(activity_status == "over") {
-			Message.sendback_info_late(message_phone);
+			Message.sendback_info(message_phone, "late");
 		}
 		else {
-	    	var local_messages = JSON.parse(localStorage.getItem('message_list')) || [];
-			if(!Message.check_if_repeat(message_phone, local_messages)) {
+	    	var message_list = Message.get_all_items();
+			if(!Message.check_if_repeat(message_phone)) {
 				var activity_name = localStorage.getItem("activity_name") || "Null";
-				local_messages.splice(0,0,{name:message_name, phone:message_phone, activity:activity_name});
+				message_list.splice(0,0,{name:message_name, phone:message_phone, activity:activity_name});
 				localStorage.setItem('message_list', JSON.stringify(local_messages));
-				Message.sendback_info_success(message_phone);
+				Message.sendback_info(message_phone, "success");
 				var detail_scope = angular.element("#detail_scope").scope();
 				if(detail_scope) {
 					detail_scope.$apply(function () {
@@ -36,38 +40,26 @@ Message.received_new_item = function(message_json) {
 };
 
 Message.read_all_items = function(activity_name) {
-	var message_list = JSON.parse(localStorage.getItem('message_list')) || [];
-	// var result = [];
-	// for (var i = message_list.length - 1; i >= 0; i--) {
-	// 	if(message_list[i].activity == activity_name) {
-	// 		result.splice(0,0,message_list[i]);
-	// 	}
-	// };
-	var result = _.where(message_list, {activity: activity_name});
-	return result;
+	var message_list = Message.get_all_items();
+	return _.where(message_list, {activity: activity_name});
 };
 
-Message.check_if_repeat = function (phone_to_check, message_list) {
-    var activity_name = localStorage.getItem("activity_name") || "Null";
-    // var repeat = false;
-    // for (var i = whole_message_list.length - 1; i >= 0; i--) {
-    //     if(whole_message_list[i].phone == phone_to_check && whole_message_list[i].activity == activity_name) {
-    //         repeat = true;
-    //         break;
-    //     }
-    // };
-    var repeat = _.where(message_list, {phone: phone_to_check, activity: activity_name}).length > 0;
-    return repeat;
+Message.check_if_repeat = function (phone_to_check) {
+	var message_list = Message.get_all_items();
+    var activity_name = Activity.get_current_item();
+    return !!(_.findWhere(message_list, {phone: phone_to_check, activity: activity_name}));
 };
 
-Message.sendback_info_success = function(phone) {
-	native_accessor.send_sms(phone, "恭喜！报名成功！^o^");
-};
-
-Message.sendback_info_early = function(phone) {
-	native_accessor.send_sms(phone, "活动尚未开始，请稍后~ >.<");
-};
-
-Message.sendback_info_late = function(phone) {
-	native_accessor.send_sms(phone, "Sorry，活动报名已结束.. =.=");
+Message.sendback_info = function(phone, status) {
+	var text = "";
+	if(status == "success") {
+		text = "恭喜！报名成功！^o^";
+	}
+	else if(status == "early") {
+		text = "活动尚未开始，请稍后~ >.<";
+	}
+	else {
+		text = "Sorry，活动报名已结束.. =.=";
+	}
+	native_accessor.send_sms(phone, text);
 };
