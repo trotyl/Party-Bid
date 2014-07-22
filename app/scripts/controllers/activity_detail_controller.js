@@ -12,7 +12,6 @@ angular.module('partyBidApp')
 
   		if($scope.start_or_stop == "开始") {
   			if(Activity.one_in_progress()) {
-  				console.log("check_1");
   				$scope.can_not_start = true;
   			}
   		}
@@ -44,11 +43,8 @@ angular.module('partyBidApp')
     $scope.$watch('status_to_watch', check_if_alter, true);
 
     $scope.update_when_receive = function () {
-        console.log("success");
-
         $scope.message_list = Message.read_all_items($scope.activity_name);
         if($scope.message_list.length != 0) {
-        	//$scope.member_count = "(" ＋ /*$scope.message_list.length.toString() ＋*/ ")人";
         	$scope.member_count = "(".concat($scope.message_list.length.toString()).concat("人)");
         }
         else {
@@ -57,5 +53,4 @@ angular.module('partyBidApp')
     };
 
     $scope.update_when_receive();
-    // $scope.$watch(native_accessor, check_if_receive, true);
   });
