@@ -24,17 +24,6 @@ angular.module('partyBidApp')
     	$location.path('/');
     };
 
-    $scope.blank_space = function (message_name) {
-    	var space_length = 10 - message_name.length;
-    	var result = "";
-    	for (var i = space_length - 1; i >= 0; i--) {
-    		result += " ";
-    	};
-    	console.log(message_name);
-    	console.log(result);
-    	return result;
-    };
-
     $scope.alter_activity_status = function () {
 		if ($scope.start_or_stop == "开始") {
 			$scope.status_to_watch = "结束";
@@ -54,11 +43,19 @@ angular.module('partyBidApp')
 
     $scope.$watch('status_to_watch', check_if_alter, true);
 
-    function check_if_receive(newValue, oldValue, scope) {
+    $scope.update_when_receive = function () {
         console.log("success");
 
         $scope.message_list = Message.read_all_items($scope.activity_name);
+        if($scope.message_list.length != 0) {
+        	//$scope.member_count = "(" ＋ /*$scope.message_list.length.toString() ＋*/ ")人";
+        	$scope.member_count = "(".concat($scope.message_list.length.toString()).concat("人)");
+        }
+        else {
+        	$scope.member_count = "";
+        }
     };
 
-    $scope.$watch(native_accessor.is_unread, check_if_receive);
+    $scope.update_when_receive();
+    // $scope.$watch(native_accessor, check_if_receive, true);
   });

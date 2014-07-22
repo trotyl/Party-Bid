@@ -1,5 +1,4 @@
 function Message() {
-
 }
 
 Message.received_new_item = function(message_json) {
@@ -36,12 +35,17 @@ Message.received_new_item = function(message_json) {
 			if(!Message.check_if_repeat(message_phone, local_messages)) {
 				console.log("step_5");
 				var activity_name = localStorage.getItem("activity_name") || "Null";
-				console.log("activity_name");
+				console.log(activity_name);
 				local_messages.splice(0,0,{name:message_name, phone:message_phone, activity:activity_name});
 				localStorage.setItem('message_list', JSON.stringify(local_messages));
 				Message.sendback_info_success(message_phone);
-				native_accessor.is_unread = true;
-				console.log(native_accessor.is_unread);
+				//native_accessor.is_unread = true;
+				// console.log(native_accessor.is_unread);
+				var detail_scope = angular.element("#detail_scope").scope();
+				console.log(detail_scope);
+				detail_scope.$apply(function () {
+					detail_scope.update_when_receive();
+				});
 			}
 		}	
 	}
@@ -49,7 +53,7 @@ Message.received_new_item = function(message_json) {
 
 Message.read_all_items = function(activity_name) {
 	var local_messages = JSON.parse(localStorage.getItem('message_list')) || [];
-	native_accessor.is_unread = false;
+	//native_accessor.is_unread = false;
 	console.log(native_accessor.is_unread);
 	var result = [];
 	for (var i = local_messages.length - 1; i >= 0; i--) {
