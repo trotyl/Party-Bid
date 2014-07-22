@@ -10,9 +10,7 @@
   <p></p>
   <p></p>
   <div class="">
-<!--     <a ng-click="show_activity_detail($event.target)" class="list-group-item list-group-item-warning btn btn-link" ng-repeat="activity in activities | orderBy:'-createdAt'">
-    {{activity.name}} 
-    </a> -->
+
     <div ng-repeat="activity in activities | orderBy:'-createdAt'">
       <button ng-click="show_activity_detail(activity.name)" ng-class="check_in_progress(activity.status)">
         {{activity.name}} 

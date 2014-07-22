@@ -10,7 +10,7 @@
 <p></p>
 <div>
 	<ul class="list-group">
-		<li class="list-group-item" ng-repeat="message in message_list">
+		<li class="list-group-item" ng-repeat="message in message_list | orderBy:'-name'">
 			{{message.name}}
 			<span class="pull-right">{{message.phone}}</span>
 		</li>

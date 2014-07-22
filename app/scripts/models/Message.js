@@ -5,11 +5,13 @@ Message.get_all_items = function () {
 	return JSON.parse(localStorage.getItem('message_list')) || [];
 };
 
-Message.received_new_item = function(message_json) {
+Message.save_all_items = function (message_list) {
+	return localStorage.setItem('message_list', JSON.stringify(message_list));
+};
 
-	var new_message = message_json.messages[0];
-	var message_text = new_message.message;
-	var message_phone = new_message.phone;
+Message.received_new_item = function(message_json) {
+	var message_text = message_json.messages[0].message;
+	var message_phone = message_json.messages[0].phone;
 	var header_is_right = message_text.substring(0,2).toUpperCase() == 'BM';
 
 	if(header_is_right) {
@@ -24,18 +26,22 @@ Message.received_new_item = function(message_json) {
 		else {
 	    	var message_list = Message.get_all_items();
 			if(!Message.check_if_repeat(message_phone)) {
-				var activity_name = localStorage.getItem("activity_name") || "Null";
+				var activity_name = Activity.get_current_item();
 				message_list.splice(0,0,{name:message_name, phone:message_phone, activity:activity_name});
-				localStorage.setItem('message_list', JSON.stringify(local_messages));
+				Message.save_all_items(message_list);
+				Message.refresh_ui_list();
 				Message.sendback_info(message_phone, "success");
-				var detail_scope = angular.element("#detail_scope").scope();
-				if(detail_scope) {
-					detail_scope.$apply(function () {
-						detail_scope.update_when_receive();
-					});
-				}
 			}
 		}	
+	}
+};
+
+Message.refresh_ui_list = function () {
+	var detail_scope = angular.element("#detail_scope").scope();
+	if(detail_scope) {
+		detail_scope.$apply(function () {
+			detail_scope.update_when_receive();
+		});
 	}
 };
 
