@@ -32,24 +32,32 @@ Message.received_new_item = function(message_json) {
 
 	    	var local_messages = JSON.parse(localStorage.getItem('message_list')) || [];
 	    	console.log(local_messages);
-	    	
+
 			if(!Message.check_if_repeat(message_phone, local_messages)) {
 				console.log("step_5");
-
-
-				local_messages.splice(0,0,{name:message_name, phone:message_phone});
+				var activity_name = localStorage.getItem("activity_name") || "Null";
+				console.log("activity_name");
+				local_messages.splice(0,0,{name:message_name, phone:message_phone, activity:activity_name});
 				localStorage.setItem('message_list', JSON.stringify(local_messages));
 				Message.sendback_info_success(message_phone);
 				native_accessor.is_unread = true;
+				console.log(native_accessor.is_unread);
 			}
 		}	
 	}
 };
 
-Message.read_new_item = function() {
+Message.read_all_items = function(activity_name) {
 	var local_messages = JSON.parse(localStorage.getItem('message_list')) || [];
 	native_accessor.is_unread = false;
-	return local_messages;
+	console.log(native_accessor.is_unread);
+	var result = [];
+	for (var i = local_messages.length - 1; i >= 0; i--) {
+		if(local_messages[i].activity == activity_name) {
+			result.splice(0,0,local_messages[i]);
+		}
+	};
+	return result;
 };
 
 Message.check_if_repeat = function (phone_to_check, whole_message_list) {

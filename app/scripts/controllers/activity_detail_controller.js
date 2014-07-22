@@ -57,8 +57,8 @@ angular.module('partyBidApp')
     function check_if_receive(newValue, oldValue, scope) {
         console.log("success");
 
-        $scope.message_list = Message.read_new_item();
+        $scope.message_list = Message.read_all_items($scope.activity_name);
     };
 
-    $scope.$watch(native_accessor, check_if_receive, true);
+    $scope.$watch(native_accessor.is_unread, check_if_receive);
   });
