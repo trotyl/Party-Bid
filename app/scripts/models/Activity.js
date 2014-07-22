@@ -15,6 +15,8 @@ Activity.add_new_item = function(new_item_name, new_item_time) {
     activity_list = Activity.get_all_items();
     activity_list.splice(0,0,{name:new_item_name, createdAt:new_item_time.toString(), status:"prepare"});
     Activity.save_all_items(activity_list);
+
+    Activity.update_global_status("prepare");
 };
 
 Activity.check_if_null = function () {
@@ -50,9 +52,11 @@ Activity.start_activity = function (activity_name) {
         if(activity_list[i].name == activity_name) {
             activity_list[i].status = "run";
             Activity.save_all_items(activity_list);
-            return 0;
+            break;
         }
     };
+
+    Activity.update_global_status("run");   
 };
 
 Activity.stop_activity = function (activity_name) {
@@ -61,9 +65,11 @@ Activity.stop_activity = function (activity_name) {
         if(activity_list[i].name == activity_name) {
             activity_list[i].status = "over";
             Activity.save_all_items(activity_list);
-            return 0;
+            break;
         }
     };
+
+    Activity.update_global_status("over");
 };
 
 Activity.one_in_progress = function () {
@@ -76,4 +82,11 @@ Activity.one_in_progress = function () {
         }
     };
     return progress;
+};
+
+Activity.update_global_status = function (status) {
+    if(Activity.one_in_progress()) {
+        status = "run";
+    }
+    localStorage.setItem("activity_status", status);
 };

@@ -3,37 +3,47 @@ function Message() {
 }
 
 Message.received_new_item = function(message_json) {
-  	
-	var new_message = JSON.parse(message_json).messages[0];
+  	console.log(message_json);
+
+	var new_message = message_json.messages[0];
 	var message_text = new_message.message;
 	var message_phone = new_message.phone;
 	var header_is_right = message_text.substring(0,2).toUpperCase() == 'BM';
 	
+	console.log("step_2");
+
 	if(header_is_right) {
+		console.log("step_3");
+
 	    var message_name = message_text.substring(2).replace(' ', '');
-	}
-	else {
-		return 0;
-	}
+	    console.log(message_name);
 
-	var activity_status = localStorage.getItem("message_status") || "prepare";
-	if(activity_status == "prepare") {
-		Message.sendback_info_early(message_phone);
-		return 0;
-	}
-	if(activity_status == "over") {
-		Message.sendback_info_late(message_phone);
-		return 0;
-	}
+		var activity_status = localStorage.getItem("activity_status") || "prepare";
+		console.log(activity_status);
 
-    if(!Message.check_if_repeat(message_phone, local_messages)) {
-    	var local_messages = JSON.parse(localStorage.getItem('message_list')) || [];
-		local_messages.splice(0,0,{name:message_name, phone:message_phone});
-		localStorage.setItem('message_list', JSON.stringify(local_messages));
-		Message.sendback_info_success(message_phone);
-		native_accessor.is_unread = true;
-	}
+		if(activity_status == "prepare") {
+			Message.sendback_info_early(message_phone);
+		}
+		else if(activity_status == "over") {
+			Message.sendback_info_late(message_phone);
+		}
+		else {
+			console.log("step_4");
 
+	    	var local_messages = JSON.parse(localStorage.getItem('message_list')) || [];
+	    	console.log(local_messages);
+	    	
+			if(!Message.check_if_repeat(message_phone, local_messages)) {
+				console.log("step_5");
+
+
+				local_messages.splice(0,0,{name:message_name, phone:message_phone});
+				localStorage.setItem('message_list', JSON.stringify(local_messages));
+				Message.sendback_info_success(message_phone);
+				native_accessor.is_unread = true;
+			}
+		}	
+	}
 };
 
 Message.read_new_item = function() {

@@ -9,8 +9,16 @@
   <h3 class="text-muted" align="center">活动报名</h3>
 </div>
 
+<div>
+	<ul class="list-group">
+		<li class="list-group-item" ng-repeat="message in message_list">{{message.name}}
+		<span>{{blank_space(message.name)}}</span>
+		{{message.phone}}</li>
+	</ul>
+	
+</div>
 
-<div class="container row">
-  <button class="btn btn-primary col-md-6">报名</button>  
-  <button class="btn btn-primary col-md-6">竞价</button>
+<div class="container">
+  <button class="btn btn-primary btn-block">报名</button>  
+  <button class="btn btn-primary btn-block">竞价</button>
 </div>

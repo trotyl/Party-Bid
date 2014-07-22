@@ -31,10 +31,5 @@ angular.module('partyBidApp')
         $scope.name_is_empty = !$scope.input_activity_name;
     };
 
-    function check_if_receive(newValue, oldValue, scope) {
-        console.log("success");
-    };
-
     $scope.$watch('input_activity_name', check_if_empty, true);
-    //$scope.$watch('native_accessor', check_if_empty, true);
   });

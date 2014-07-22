@@ -24,6 +24,17 @@ angular.module('partyBidApp')
     	$location.path('/');
     };
 
+    $scope.blank_space = function (message_name) {
+    	var space_length = 10 - message_name.length;
+    	var result = "";
+    	for (var i = space_length - 1; i >= 0; i--) {
+    		result += " ";
+    	};
+    	console.log(message_name);
+    	console.log(result);
+    	return result;
+    };
+
     $scope.alter_activity_status = function () {
 		if ($scope.start_or_stop == "开始") {
 			$scope.status_to_watch = "结束";
@@ -43,4 +54,11 @@ angular.module('partyBidApp')
 
     $scope.$watch('status_to_watch', check_if_alter, true);
 
+    function check_if_receive(newValue, oldValue, scope) {
+        console.log("success");
+
+        $scope.message_list = Message.read_new_item();
+    };
+
+    $scope.$watch(native_accessor, check_if_receive, true);
   });
