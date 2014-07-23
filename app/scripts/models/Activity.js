@@ -29,7 +29,7 @@ Activity.add_new_item = function(activity_name, activity_time) {
 
 Activity.check_ifnot_null = function () {
     var activity_list = Activity.get_all_items();
-    return !!(activity_list.length);
+    return !!(activity_list);
 };
 
 Activity.check_if_repeat = function (activity_name) {

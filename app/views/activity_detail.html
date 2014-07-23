@@ -1,14 +1,12 @@
-<div class="header" id="detail_scope">
-  <ul class="nav nav-pills pull-left">
-    <li class=""><a class="btn btn-warning" ng-click="back_to_home()">返回</a></li>
-  </ul>
-  <ul class="nav nav-pills pull-right">
-    <li class=""><a class="btn btn-success" ng-click="alter_activity_status()" ng-disabled="can_not_start">{{start_or_stop}}</a></li>
-  </ul>
-  <h3 class="text-muted" align="center">活动报名<span>{{member_count}}</span></h3>
-</div>
+<header class="header">
+    <label>活动报名<span>{{member_count}}</span></label>
+    <button class="btn btn-warning header-left" ng-click="back_to_home()">返回</button>
+    <button class="btn btn-success header-right" ng-click="alter_activity_status()" ng-disabled="can_not_start">{{start_or_stop}}</button>
+</header>
+
 <p></p>
-<div>
+
+<div class="container" id="detail_scope">
 	<ul class="list-group">
 		<li class="list-group-item" ng-repeat="message in message_list | orderBy:'-name'">
 			{{message.name}}
