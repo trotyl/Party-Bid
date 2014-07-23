@@ -11,14 +11,14 @@ angular.module('partyBidApp')
   		$scope.status_to_watch = $scope.start_or_stop;
 
   		if($scope.start_or_stop == "开始") {
-  			$scope.activity_status = "button-action"; 
+  			$scope.red_or_green = "button-action"; 
   			if(Activity.one_in_progress()) {
   				
 				$scope.can_not_start = true;
   			}
   		}
   		else {
-  			$scope.activity_status = "button-caution"; 
+  			$scope.red_or_green = "button-caution"; 
   		}
   	};
 

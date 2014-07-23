@@ -4,14 +4,11 @@
 </header>
 
 <div class="container content">
-  <form role="form">
     <div class="form-group">
-      <label for="exampleInputEmail1">活动名称：</label>
+      <label>活动名称：</label>
       <input type="text" class="form-control" ng-model="input_activity_name" placeholder="如：活动一">
     </div>
 
-  <button class="button btn-block button-rounded button-primary button-large" ng-disabled='name_is_empty' ng-click="activity_create()">创建</button>
-  </form>
-  <label class="pull-center"><font color="#FF0000">{{warn_info}}</font></label>
+    <button class="button btn-block button-rounded button-primary button-large" ng-disabled='name_is_empty' ng-click="activity_create()">创建</button>
+    <label class="pull-center"><font color="#FF0000">{{warn_info}}</font></label>
 </div>
-

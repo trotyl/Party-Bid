@@ -28,14 +28,14 @@ body {
 }
 
 .header-left {
-    margin-top: 5px;
+    /*margin-top: 5px;*/
     position: absolute;
     left: 8px;
     top: 5px;
 }
 
 .header-right {
-    margin-top: 5px;
+    /*margin-top: 5px;*/
     position: absolute;
     z-index: 10;
     right: 8px;
