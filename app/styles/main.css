@@ -41,6 +41,23 @@ body {
     right: 8px;
     top: 0px;
 }
+
+.content {
+    padding-top: 20px;
+}
+
+.bg-huise {
+    background: #eeeeee;
+}
+
+.list-button {
+    padding-bottom: 10px;
+}
+
+.nav-title {
+    font-size:24px;
+}
+
 /* Make the masthead heading the same height as the navigation */
 /*.header h3 {
   margin-top: 0;

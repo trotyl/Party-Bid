@@ -13,10 +13,10 @@ angular.module('partyBidApp')
 
     $scope.check_in_progress = function (status) {
     	if (status == "run") {
-    		return "btn btn-block btn-lg btn-warning";
+    		return "button-flat-highlight";
     	}
     	else {
-    		return "btn btn-block btn-lg btn-info";
+    		return "button-flat";
     	}
     };
 

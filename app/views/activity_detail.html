@@ -1,13 +1,12 @@
 <header class="header">
-    <label>活动报名<span>{{member_count}}</span></label>
-    <button class="btn btn-warning header-left" ng-click="back_to_home()">返回</button>
-    <button class="btn btn-success header-right" ng-click="alter_activity_status()" ng-disabled="can_not_start">{{start_or_stop}}</button>
+    <label class="nav-title">活动报名<span>{{member_count}}</span></label>
+    <button class="button button-rounded button-highlight header-left" ng-click="back_to_home()">返回</button>
+    <button class="button button-rounded {{activity_status}} header-right" ng-click="alter_activity_status()" ng-disabled="can_not_start">{{start_or_stop}}</button>
 </header>
 
-<p></p>
 
-<div class="container" id="detail_scope">
-	<ul class="list-group">
+<div class="container content" id="detail_scope">
+	<ul class="list-group bg-huise">
 		<li class="list-group-item" ng-repeat="message in message_list | orderBy:'-name'">
 			{{message.name}}
 			<span class="pull-right">{{message.phone}}</span>

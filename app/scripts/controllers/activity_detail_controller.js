@@ -11,9 +11,14 @@ angular.module('partyBidApp')
   		$scope.status_to_watch = $scope.start_or_stop;
 
   		if($scope.start_or_stop == "开始") {
+  			$scope.activity_status = "button-action"; 
   			if(Activity.one_in_progress()) {
-  				$scope.can_not_start = true;
+  				
+				$scope.can_not_start = true;
   			}
+  		}
+  		else {
+  			$scope.activity_status = "button-caution"; 
   		}
   	};
 
@@ -26,11 +31,13 @@ angular.module('partyBidApp')
     $scope.alter_activity_status = function () {
 		if ($scope.start_or_stop == "开始") {
 			$scope.status_to_watch = "结束";
+			$scope.activity_status = "button-caution"; 
 	    	Activity.start_activity($scope.activity_name);
 		}
     	else {
     		if (window.confirm("确认要结束本次报名吗？！")) {
     			$scope.status_to_watch = "开始";
+    			$scope.activity_status = "button-action"; 
     			Activity.stop_activity($scope.activity_name);
     		}
     	}

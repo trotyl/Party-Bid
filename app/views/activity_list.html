@@ -1,21 +1,12 @@
 <header class="header">
-    <label>活动列表</label>
-    <button class="btn btn-warning header-right" ng-click="activity_create()">创建活动</button>
+    <label class="nav-title">活动列表</label>
+    <button class="button button-rounded button-highlight header-right" ng-click="activity_create()">创建活动</button>
 </header>
 
-<div class="container">
-
-  <p></p>
-  <p></p>
-  <div class="">
-
-    <div ng-repeat="activity in activities | orderBy:'-createdAt'">
-      <button ng-click="show_activity_detail(activity.name)" ng-class="check_in_progress(activity.status)">
-        {{activity.name}} 
-      </button>
-      <p></p>
-    </div>
+<div class="container content">
+  <div ng-repeat="activity in activities | orderBy:'-createdAt'" class="list-button">
+    <button ng-click="show_activity_detail(activity.name)" class="button glow button-rounded btn-block button-large {{check_in_progress(activity.status)}}">{{activity.name}}</button>
   </div>
-  <p></p>
+
   <label>{{warn_info}}</label>
 </div>
