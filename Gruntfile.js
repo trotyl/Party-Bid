@@ -29,6 +29,10 @@ module.exports = function (grunt) {
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
+      jade: {  
+        files: ['<%= yeoman.app %>/views/jade/*.jade'],  
+        tasks: ['jade']  
+        }, 
       bower: {
         files: ['bower.json'],
         tasks: ['wiredep']
@@ -64,6 +68,37 @@ module.exports = function (grunt) {
     },
 
     // The actual grunt server settings
+
+    jade: {
+      compile: {
+        options: {
+          data: {
+            debug: false
+          }
+        },
+        files: {
+          "<%= yeoman.app %>/views/activity_list.html": ["<%= yeoman.app %>/views/jade/activity_list.jade"],
+          "<%= yeoman.app %>/views/activity_detail.html": ["<%= yeoman.app %>/views/jade/activity_detail.jade"],
+          "<%= yeoman.app %>/views/create_activity.html": ["<%= yeoman.app %>/views/jade/create_activity.jade"]
+        }
+      }
+    },
+
+    // jade: {
+    //   compile: {
+    //     options: {
+    //       data: {}
+    //     },
+    //     files: [{
+    //       expand: true,
+    //       cwd: 'source',
+    //       src: [ '<%= yeoman.app %>/views/jade/*.jade' ],
+    //       dest: '<%= yeoman.app %>/views/jade/build',
+    //       ext: '.html'
+    //     }]
+    //   }
+    // },
+
     connect: {
       options: {
         port: 9000,
@@ -142,6 +177,17 @@ module.exports = function (grunt) {
           ]
         }]
       },
+
+      jade: 
+      {
+        files: [{
+          dot: true,
+          src: [
+            '<%= yeoman.app %>/views/jade/build/*',
+          ]
+        }]
+      },
+
       server: '.tmp'
     },
 
@@ -358,6 +404,7 @@ module.exports = function (grunt) {
     }
   });
 
+  // grunt.loadNpmTasks('grunt-contrib-jade');
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
@@ -365,6 +412,7 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
+      'jade',
       'clean:server',
       'wiredep',
       'concurrent:server',
@@ -388,6 +436,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', [
+    'jade',
     'clean:dist',
     'wiredep',
     'useminPrepare',

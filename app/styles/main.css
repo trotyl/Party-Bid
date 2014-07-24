@@ -44,10 +44,11 @@ body {
 
 .content {
     padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .bg-huise {
-    background: #eeeeee;
+    background: #CCCCCC;
 }
 
 .list-button {
