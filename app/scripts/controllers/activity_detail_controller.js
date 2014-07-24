@@ -18,7 +18,7 @@ angular.module('partyBidApp')
   			}
   		}
   		else {
-  			$scope.red_or_green = "button-caution"; 
+  			$scope.red_or_green = "button-caution";
   		}
   	};
 
@@ -31,13 +31,13 @@ angular.module('partyBidApp')
     $scope.alter_activity_status = function () {
 		if ($scope.start_or_stop == "开始") {
 			$scope.status_to_watch = "结束";
-			$scope.activity_status = "button-caution"; 
+			$scope.red_or_green = "button-caution";
 	    	Activity.start_activity($scope.activity_name);
 		}
     	else {
     		if (window.confirm("确认要结束本次报名吗？！")) {
     			$scope.status_to_watch = "开始";
-    			$scope.activity_status = "button-action"; 
+    			$scope.red_or_green = "button-action"; 
     			Activity.stop_activity($scope.activity_name);
     		}
     	}

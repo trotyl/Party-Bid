@@ -14,7 +14,7 @@ angular.module('partyBidApp')
         }
         else {
             var nowDate = new Date();
-            Activity.add_new_item($scope.input_activity_name, nowDate);
+            Activity.add_new_item($scope.input_activity_name, Date.parse(nowDate));
             $location.path('/detail/' + $scope.input_activity_name);
         }
     };

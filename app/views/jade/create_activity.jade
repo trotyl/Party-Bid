@@ -4,9 +4,9 @@ header.header
 
 div.container.content
   div.form-group
-    label 活动名称：
-    input(type="text",ng-model="input_activity_name",placeholder="如：活动一").form-control
-
-  	button(ng-disabled='name_is_empty',ng-click="activity_create()").button.btn-block.button-rounded.button-primary.button-large 创建
+  	form
+	    label 活动名称：
+	    input(type="text",ng-model="input_activity_name",placeholder="如：活动一").form-control
+	  	input(type="submit",ng-disabled='name_is_empty',ng-click="activity_create()").button.btn-block.button-rounded.button-primary.button-large 创建
   label.pull-center
     font(color="#FF0000") {{warn_info}}
