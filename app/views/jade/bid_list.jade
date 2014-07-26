@@ -1,7 +1,7 @@
 header.header
   label.nav-title 竞价列表
   button(ng-click="bid_start()").button.button-rounded.button-action.header-right 开始
-  button(ng-click="back_to_activity()").button.button-rounded.button-highlight.header-left 返回
+  button(ng-click="back_to_home()").button.button-rounded.button-highlight.header-left 返回
 
 div.container.content
   div(ng-repeat="bid in bid_list | orderBy:'-name'").list-button

@@ -20,14 +20,14 @@ angular.module('partyBidApp')
     	}
     };
 
-    $scope.initiate_data = function() {
-    	$scope.activities = Activity.get_all_items();
-    };
+    // $scope.initiate_data = function() {
+    $scope.activity_list = activity_list;
+    // };
 
-    $scope.initiate_data();
+    // $scope.initiate_data();
 
     $scope.check_when_load = function () {
-    	if($scope.activities.length == 0){
+    	if($scope.activity_list.length == 0){
     		$location.path('/create');
     	}	
     };
