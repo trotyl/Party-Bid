@@ -4,4 +4,4 @@ header.header
 
 div.container.content
   div(ng-repeat="activity in activities | orderBy:'-createdAt'").list-button
-    button(ng-click="show_activity_detail(activity.name)",class="button glow button-rounded btn-block button-large {{check_in_progress(activity.status)}}") {{activity.name}}
+    button(ng-click="show_activity_detail(activity.name)",class="button glow button-rounded btn-block button-large {{check_in_progress(activity.register ,activity.bid)}}") {{activity.name}}

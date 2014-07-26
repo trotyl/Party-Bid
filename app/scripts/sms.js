@@ -4,7 +4,7 @@ var native_accessor = {
     is_unread: false,
     
     send_sms: function (phone, message) {
-        native_access.send_sms({"receivers":[{"name":'name', "phone":phone}]}, {"message_content":message});
+        //native_access.send_sms({"receivers":[{"name":'name', "phone":phone}]}, {"message_content":message});
         console.log(phone, message);
     },
 

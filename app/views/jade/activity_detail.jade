@@ -4,7 +4,7 @@ header.header
   button(ng-click="back_to_home()").button.button-rounded.button-highlight.header-left 返回
   button(class="button button-rounded {{red_or_green}} header-right",ng-click="alter_activity_status()",ng-disabled="can_not_start") {{start_or_stop}}
 
-div#detail_scope.content
+div#register.content
   div.container
     ul.list-group.bg-huise
       li(ng-repeat="message in message_list | orderBy:'-name'").list-group-item {{message.name}}
