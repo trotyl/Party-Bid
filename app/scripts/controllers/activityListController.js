@@ -11,8 +11,8 @@ angular.module('partyBidApp')
     	$location.path('/detail/' + activity_name);
     };
 
-    $scope.check_in_progress = function (register_status, bid_count) {
-    	if (register_status == "run" || bid_count > 0) {
+    $scope.check_in_progress = function (register_status, bid_status) {
+    	if (register_status == "run" || bid_status == "run") {
     		return "button-flat-highlight";
     	}
     	else {

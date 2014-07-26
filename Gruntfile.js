@@ -79,7 +79,9 @@ module.exports = function (grunt) {
         files: {
           "<%= yeoman.app %>/views/activity_list.html": ["<%= yeoman.app %>/views/jade/activity_list.jade"],
           "<%= yeoman.app %>/views/activity_detail.html": ["<%= yeoman.app %>/views/jade/activity_detail.jade"],
-          "<%= yeoman.app %>/views/create_activity.html": ["<%= yeoman.app %>/views/jade/create_activity.jade"]
+          "<%= yeoman.app %>/views/create_activity.html": ["<%= yeoman.app %>/views/jade/create_activity.jade"],
+          "<%= yeoman.app %>/views/bid_list.html": ["<%= yeoman.app %>/views/jade/bid_list.jade"],
+          "<%= yeoman.app %>/views/bid_detail.html": ["<%= yeoman.app %>/views/jade/bid_detail.jade"]
         }
       }
     },

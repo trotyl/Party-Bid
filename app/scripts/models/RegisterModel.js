@@ -12,7 +12,7 @@ Register.save_all_items = function (register_list) {
 Register.add_new_item = function (member_name, member_phone) {
 	var register_list = Register.get_all_items();
 	var activity_name = Activity.get_current_item().name;
-	register_list.push({name:member_name, phone:member_phone, activity:activity_name, bid:{}});
+	register_list.push({name:member_name, phone:member_phone, activity:activity_name});
 	Register.save_all_items(register_list);
 }
 

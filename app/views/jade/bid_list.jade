@@ -1,0 +1,8 @@
+header.header
+  label.nav-title 竞价列表
+  button(ng-click="bid_start()").button.button-rounded.button-action.header-right 开始
+  button(ng-click="back_to_activity()").button.button-rounded.button-highlight.header-left 返回
+
+div.container.content
+  div(ng-repeat="bid in bid_list | orderBy:'-name'").list-button
+    button(ng-click="show_bid_detail(bid.name)",class="button glow button-rounded btn-block button-large {{check_in_progress(bid.status)}}") {{bid.name}}
