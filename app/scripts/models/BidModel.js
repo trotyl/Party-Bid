@@ -1,19 +1,25 @@
-function Bid() {
+function Bid(bid_price, member_phone) {
+	this.activity = Activity.get_current_item().name;
+	this.number = Activity.get_current_item().number;
+	this.phone = member_phone;
+	this.price = bid_price;
 }
 
 Bid.get_all_items = function () {
 	return JSON.parse(localStorage.getItem("bid_list")) || [];
 };
 
-Bid.save_all_items = function (bid_list) {
+var bid_list = Bid.get_all_items();
+
+Bid.save_all_items = function () {
 	return localStorage.setItem("bid_list", JSON.stringify(bid_list));
 };
 
-Bid.add_new_item = function (bid_price, member_phone) {
-	var bid_list = Bid.get_all_items();
-	var activity_name = Activity.get_current_item().name;
-	var bid_number = Activity.get_current_item().number;
-	bid_list.push({activity:activity_name, number:bid_number, phone:member_phone, price:bid_price});
+Bid.add_new_item = function (new_bid) {
+	// var bid_list = Bid.get_all_items();
+	// var activity_name = Activity.get_current_item().name;
+	// var bid_number = Activity.get_current_item().number;
+	bid_list.push(new_bid);
 	Bid.save_all_items(bid_list);
 };
 
@@ -36,7 +42,8 @@ Bid.cope_new_message = function (message_text, message_phone) {
 	else {
 		if(Bid.check_if_register(message_phone)) {
 			if(!Bid.check_if_repeat(message_phone)) {
-				Bid.add_new_item(bid_price, message_phone);
+				var new_bid = new Bid(bid_price, message_phone)
+				Bid.add_new_item(new_bid);
 				Bid.refresh_ui_list();
 				Message.sendback_info(message_phone, "bid", "run");
 			}

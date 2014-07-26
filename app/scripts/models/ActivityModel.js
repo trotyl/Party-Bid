@@ -26,6 +26,8 @@ Activity.get_all_items = function () {
     return JSON.parse(localStorage.getItem("activity_list")) || [];
 };
 
+var activity_list = Activity.get_all_items();
+
 Activity.save_all_items = function () {
     localStorage.setItem("activity_list", JSON.stringify(activity_list));
 };
@@ -79,5 +81,3 @@ Activity.check_if_repeat = function (activity_name) {
 Activity.one_on_register = function () {
     return !!(_.findWhere(activity_list, {register: "run"}));
 };
-
-var activity_list = Activity.get_all_items();
