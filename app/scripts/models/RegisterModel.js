@@ -1,7 +1,7 @@
 function Register(member_name, member_phone) {
 	this.name = member_name;
 	this.phone = member_phone;
-	this.activity = Activity.get_current_item().name;
+	this.activity = current_activity.name;
 }
 
 Register.get_all_items = function () {
@@ -27,7 +27,7 @@ Register.read_activity_members = function (activity_name) {
 
 Register.cope_new_message = function (message_text, message_phone) {
     var member_name = message_text.substring(2).replace(' ', '');
-	var register_status = Activity.get_current_item().register || "prepare";
+	var register_status = current_activity.register || "prepare";
 	if(register_status != "run") {
 		Message.sendback_info(message_phone, "register", register_status);
 	}
@@ -46,7 +46,7 @@ Register.cope_new_message = function (message_text, message_phone) {
 
 Register.check_if_repeat = function (phone_to_check) {
 	// var register_list = Register.get_all_items();
-    var activity_name = Activity.get_current_item().name;
+    var activity_name = current_activity.name;
     return !!(_.findWhere(register_list, {phone: phone_to_check, activity: activity_name}));
 };
 
