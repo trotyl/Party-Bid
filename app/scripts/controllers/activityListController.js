@@ -22,7 +22,6 @@ angular.module('partyBidApp')
 
     // $scope.initiate_data = function() {
     $scope.activity_list = Activity.get_activities_refer();
-    console.log($scope.activity_list === activity_list);
     // };
 
     // $scope.initiate_data();

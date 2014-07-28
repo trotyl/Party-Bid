@@ -11,21 +11,21 @@ angular.module('partyBidApp')
         else {
             $scope.cannot_start = false;
         }
-        console.log(Activity.get_status_refer());
-        console.log($scope.cannot_start);
     };
 
     $scope.initiate_data();
 
     $scope.check_in_progress = function ($index) {
-        console.log($index);
-        console.log($scope.this_activity.count - 1);
         if ($scope.cannot_start && $index == 0) {
             return "button-flat-highlight";
         }
         else {
             return "button-flat";
         }
+    };
+
+    $scope.show_bid_detail = function ($index) {
+        $location.path(Url.get_bid($scope.this_activity, $scope.this_activity.count - $index - 1));
     };
 
 
