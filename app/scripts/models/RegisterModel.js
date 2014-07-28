@@ -15,14 +15,12 @@ Register.save_all_items = function () {
 };
 
 Register.add_new_item = function (new_register) {
-	// var activity_name = Activity.get_current_item().name;
 	register_list.push(new_register);
 	Register.save_all_items(register_list);
 }
 
-Register.read_activity_members = function (activity_name) {
-	// var register_list = Register.get_all_items();
-	return _.where(register_list, {activity: activity_name});
+Register.read_activity_members = function (the_activity) {
+	return _.where(register_list, {activity: the_activity.name});
 };
 
 Register.cope_new_message = function (message_text, message_phone) {
@@ -45,7 +43,6 @@ Register.cope_new_message = function (message_text, message_phone) {
 };
 
 Register.check_if_repeat = function (phone_to_check) {
-	// var register_list = Register.get_all_items();
     var activity_name = current_activity.name;
     return !!(_.findWhere(register_list, {phone: phone_to_check, activity: activity_name}));
 };

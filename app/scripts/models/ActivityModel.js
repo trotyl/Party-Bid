@@ -12,6 +12,10 @@ Activity.get_all_items = function () {
 
 var activity_list = Activity.get_all_items();
 
+Activity.get_activities_refer = function () {
+    return activity_list;
+};
+
 Activity.save_all_items = function () {
     localStorage.setItem("activity_list", JSON.stringify(activity_list));
 };
@@ -28,11 +32,15 @@ Activity.update_global_config = function (activity_name, type_of_operation, stat
     localStorage.setItem("current_activity", JSON.stringify(current_activity));
 };
 
-Activity.get_current_item = function () {
+Activity.get_current_status = function () {
     return JSON.parse(localStorage.getItem("current_activity")) || {name: "", register: "prepare", bid: "", number: 0};
 };
 
-var current_activity = Activity.get_current_item();
+var current_activity = Activity.get_current_status();
+
+Activity.get_status_refer = function () {
+    return current_activity;
+};
 
 Activity.find_by_name = function (name_to_find) {
     return _.findWhere(activity_list, {name: name_to_find});
@@ -63,7 +71,7 @@ Activity.start_bid = function (the_activity) {
     the_activity.count += 1;
     Activity.save_all_items();
     Activity.update_global_config(the_activity.name, "bid", "run"); 
-    return '/detail/' + the_activity.name + '/bid/' + the_activity.count;
+    return the_activity.count;
 };
 Activity.stop_bid = function (the_activity) {
     the_activity.bid = "over";

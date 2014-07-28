@@ -6,8 +6,7 @@ angular.module('partyBidApp')
 	$scope.status_to_watch;
 
 	$scope.initiate_data = function () {
-		$scope.activity_name = $routeParams.name;
-		$scope.this_activity = Activity.find_by_name($scope.activity_name);
+		$scope.this_activity = Activity.find_by_name($routeParams.name);
 		$scope.start_or_stop = $scope.this_activity.register == "run"? "结束": "开始";
 		$scope.status_to_watch = $scope.start_or_stop;
 
@@ -26,7 +25,7 @@ angular.module('partyBidApp')
 	$scope.initiate_data();
 
 	$scope.back_to_home = function () {
-		$location.path('/');
+		$location.path(Url.get_home());
 	};
 
 	$scope.alter_activity_status = function () {
@@ -48,11 +47,11 @@ angular.module('partyBidApp')
 	};
 
 	$scope.navigate_to_bid = function () {
-		$location.path('/detail/' + $scope.activity_name + '/bid');
+		$location.path(Url.get_activity_bids($scope.this_activity));
 	};
 
 	$scope.update_when_receive = function () {
-		$scope.message_list = Register.read_activity_members($scope.activity_name);
+		$scope.message_list = Register.read_activity_members($scope.this_activity);
 		if($scope.message_list.length != 0) {
 			$scope.member_count = "(".concat($scope.message_list.length.toString()).concat("人)");
 		}

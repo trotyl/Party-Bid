@@ -20,18 +20,21 @@ Bid.add_new_item = function (new_bid) {
 	Bid.save_all_items(bid_list);
 };
 
-Bid.read_activity_bids = function (activity_name) {
-	var bid_list = Bid.get_all_items();
-	return _.where(bid_list, {activity: activity_name});
+Bid.read_activity_bids = function (the_activity) {
+	var result = [];
+	for (var i = 0; i < the_activity.count; i++) {
+		result.push({name:"竞价 ".concat(i + 1)});
+	};
+	return result;
 };
 
-Bid.read_bid_members = function (activity_name, bid_number) {
+Bid.read_bid_members = function (the_activity, bid_number) {
 	var bid_list = Bid.get_all_items();
-	return _.where(bid_list, {activity: activity_name, number: bid_number});
+	return _.where(bid_list, {activity: the_activity.name, number: bid_number});
 };
 
 Bid.cope_new_message = function (message_text, message_phone) {
-    var member_name = message_text.substring(2).replace(' ', '');
+    var bid_price = message_text.substring(2).replace(' ', '');
 	var bid_status = current_activity.bid || "null";
 	if(bid_status != "run") {
 		Message.sendback_info(message_phone, "bid", bid_status);
@@ -62,5 +65,9 @@ Bid.check_if_repeat = function (phone_to_check) {
 	var bid_list = Bid.get_all_items();
     var activity_name = current_activity.name;
     var bid_number = current_activity.number;
-    return !!(_.findWhere(member_list, {activity: activity_name, number: bid_number, phone:phone_to_check}));
+    return !!(_.findWhere(bid_list, {activity: activity_name, number: bid_number, phone:phone_to_check}));
+};
+
+Bid.refresh_ui_list = function () {
+	//写竞价页面的时候再来写
 };
