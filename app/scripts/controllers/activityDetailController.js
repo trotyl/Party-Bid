@@ -33,14 +33,14 @@ angular.module('partyBidApp')
 		if ($scope.start_or_stop == "开始") {
 			$scope.status_to_watch = "结束";
 			$scope.red_or_green = "button-caution";
-			$scope.this_activity.start_register();
+			start_register($scope.this_activity);
 			// Register.begin_register($scope.activity_name);
 		}
 		else {
 			if (window.confirm("确认要结束本次报名吗？！")) {
 				$scope.status_to_watch = "开始";
 				$scope.red_or_green = "button-action";
-				$scope.this_activity.stop_register();
+				Activity.stop_register($scope.this_activity);
 				// Register.stop_register($scope.activity_name);
 				$scope.navigate_to_bid();
 			}

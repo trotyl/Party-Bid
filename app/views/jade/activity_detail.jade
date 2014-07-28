@@ -11,6 +11,9 @@ div#register.content
         span.pull-right {{message.phone}}
 
   div.container
-    button.btn.btn-primary.pull-center 报名
-    span
-    button(ng-click="navigate_to_bid()").btn.btn-primary.pull-center 竞价
+    table(align="center")
+      tr
+        td
+          button.btn.btn-primary 报名
+        td
+          button(ng-click="navigate_to_bid()").btn.btn-primary 竞价

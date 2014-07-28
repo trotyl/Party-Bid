@@ -4,26 +4,6 @@ function Activity(activity_name) {
     this.register = "prepare";
     this.bid = "prepare";
     this.count = 0;
-    this.start_register = function () {
-        this.register = "run";
-        Activity.save_all_items();
-        Activity.update_global_config(activity_name, "register", "run"); 
-    };
-    this.stop_register = function () {
-        this.register = "over";
-        Activity.save_all_items();
-        Activity.update_global_config(activity_name, "register", "over"); 
-    };
-    this.start_bid = function () {
-        this.bid = "run";
-        Activity.save_all_items();
-        Activity.update_global_config(activity_name, "bid", "run"); 
-    };
-    this.stop_bid = function () {
-        this.bid = "over";
-        Activity.save_all_items();
-        Activity.update_global_config(activity_name, "bid", "over"); 
-    };
 }
 
 Activity.get_all_items = function () {
@@ -65,15 +45,28 @@ Activity.add_new_item = function (new_activity) {
     Activity.update_global_config(new_activity.name, "bid", "prepare");
 };
 
-// Activity.prototype.start_register = function () {
-//     this.register = "run";
-//     Activity.save_all_items();
-// };
+Activity.start_register = function (the_activity) {
+    the_activity.register = "run";
+    Activity.save_all_items();
+    Activity.update_global_config(activity_name, "register", "run"); 
+};
 
-// Activity.prototype.stop_register = function () {
-//     this.register = "over";
-//     Activity.save_all_items();
-// };
+Activity.stop_register = function (the_activity) {
+    the_activity.register = "over";
+    Activity.save_all_items();
+    Activity.update_global_config(activity_name, "register", "over"); 
+};
+
+Activity.start_bid = function (the_activity) {
+    the_activity.bid = "run";
+    Activity.save_all_items();
+    Activity.update_global_config(activity_name, "bid", "run"); 
+};
+Activity.stop_bid = function (the_activity) {
+    the_activity.bid = "over";
+    Activity.save_all_items();
+    Activity.update_global_config(activity_name, "bid", "over"); 
+};
 
 Activity.check_ifnot_null = function () {
     return !_.isEmpty(activity_list);
