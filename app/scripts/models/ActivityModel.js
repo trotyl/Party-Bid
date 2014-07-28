@@ -23,6 +23,7 @@ Activity.update_global_config = function (activity_name, type_of_operation, stat
     }
     else {
         current_activity.bid = status_to_change;
+        current_activity.number = current_activity.count;
     }
     localStorage.setItem("current_activity", JSON.stringify(current_activity));
 };
@@ -48,24 +49,26 @@ Activity.add_new_item = function (new_activity) {
 Activity.start_register = function (the_activity) {
     the_activity.register = "run";
     Activity.save_all_items();
-    Activity.update_global_config(activity_name, "register", "run"); 
+    Activity.update_global_config(the_activity.name, "register", "run"); 
 };
 
 Activity.stop_register = function (the_activity) {
     the_activity.register = "over";
     Activity.save_all_items();
-    Activity.update_global_config(activity_name, "register", "over"); 
+    Activity.update_global_config(the_activity.name, "register", "over"); 
 };
 
 Activity.start_bid = function (the_activity) {
     the_activity.bid = "run";
+    the_activity.count += 1;
     Activity.save_all_items();
-    Activity.update_global_config(activity_name, "bid", "run"); 
+    Activity.update_global_config(the_activity.name, "bid", "run"); 
+    return '/detail/' + the_activity.name + '/bid/' + the_activity.count;
 };
 Activity.stop_bid = function (the_activity) {
     the_activity.bid = "over";
     Activity.save_all_items();
-    Activity.update_global_config(activity_name, "bid", "over"); 
+    Activity.update_global_config(the_activity.name, "bid", "over"); 
 };
 
 Activity.check_ifnot_null = function () {

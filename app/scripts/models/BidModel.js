@@ -16,9 +16,6 @@ Bid.save_all_items = function () {
 };
 
 Bid.add_new_item = function (new_bid) {
-	// var bid_list = Bid.get_all_items();
-	// var activity_name = Activity.get_current_item().name;
-	// var bid_number = Activity.get_current_item().number;
 	bid_list.push(new_bid);
 	Bid.save_all_items(bid_list);
 };

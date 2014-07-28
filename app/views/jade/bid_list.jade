@@ -6,3 +6,11 @@ header.header
 div.container.content
   div(ng-repeat="bid in bid_list | orderBy:'-name'").list-button
     button(ng-click="show_bid_detail(bid.name)",class="button glow button-rounded btn-block button-large {{check_in_progress(bid.status)}}") {{bid.name}}
+
+  div
+    table(align="center")
+      tr
+        td
+          button(ng-click="navigate_to_register()").btn.btn-primary 报名
+        td
+          button(ng-click="navigate_to_bid()").btn.btn-primary 竞价

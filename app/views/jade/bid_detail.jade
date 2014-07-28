@@ -1,0 +1,19 @@
+header.header
+  label.nav-title 竞价
+    span {{member_count}} 
+  button(ng-click="back_to_bid()").button.button-rounded.button-highlight.header-left 返回
+  button(ng-click="end_bid()",ng-disabled="can_not_start").button.button-rounded.button-action.header-right 结束
+
+div#register.content
+  div.container
+    ul.list-group.bg-huise
+      li(ng-repeat="message in message_list | orderBy:'-name'").list-group-item {{message.name}}
+        span.pull-right {{message.phone}}
+
+  div.container
+    table(align="center")
+      tr
+        td
+          button(ng-click="navigate_to_register()").btn.btn-primary 报名
+        td
+          button(ng-click="navigate_to_bid()").btn.btn-primary 竞价

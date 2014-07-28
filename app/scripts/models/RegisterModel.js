@@ -58,22 +58,3 @@ Register.refresh_ui_list = function () {
 		});
 	}
 };
-
-// Register.begin_register = function (activity_name) {
-//     var activity_list = Activity.get_all_items();
-
-//     _.findWhere(activity_list, {name: activity_name}).register = "run";
-//     Activity.save_all_items(activity_list);
-
-//     Activity.update_global_config(activity_name, "register", "run");   
-// };
-
-// Register.stop_register = function (activity_name) {
-//     var activity_list = Activity.get_all_items();
-
-//     _.findWhere(activity_list, {name: activity_name}).register = "over";
-//     Activity.save_all_items(activity_list);
-
-//     Activity.update_global_config(activity_name, "register", "over");
-// };
-
