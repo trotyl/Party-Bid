@@ -33,6 +33,10 @@ angular.module('partyBidApp')
         $location.path(Url.get_home());
     };
 
+    $scope.navigate_to_register = function () {
+        $location.path(Url.get_activity($scope.this_activity));
+    };
+
     $scope.bid_start = function () {
         var bid_number = Activity.start_bid($scope.this_activity);
         $location.path(Url.get_bid($scope.this_activity, bid_number));

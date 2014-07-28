@@ -1,6 +1,6 @@
 header.header
   label.nav-title 活动列表
-  button(ng-click="activity_create()").button.button-rounded.button-highlight.header-right 创建活动
+  button(ng-click="activity_create()",ng-disabled="cannot_create").button.button-rounded.button-highlight.header-right 创建活动
 
 div.container.content
   div(ng-repeat="activity in activity_list | orderBy:'-createdAt'").list-button
