@@ -6,21 +6,25 @@ angular.module('partyBidApp')
 	$scope.initiate_data = function () {
 		$scope.activity_of_this_page = Activity.find_by_name($routeParams.name);
 		$scope.number_of_bid = parseInt($routeParams.number);
-		$scope.can_not_stop = ($scope.this_activity.bid != "run") || ($scope.number_of_bid != $scope.this_activity.count);
-		$scope.record_list = Bid.read_records_of_bid($scope.this_activity, $scope.number_of_bid);
+		$scope.can_not_stop = ($scope.activity_of_this_page.bid != "run") || ($scope.number_of_bid != $scope.activity_of_this_page.count);
+		$scope.record_list = Bid.read_records_of_bid($scope.activity_of_this_page, $scope.number_of_bid);
 	};
 
 	$scope.back_to_bid = function () {
-		$location.path(Url.go_to_activity_bids($scope.this_activity));
+		$location.path(Url.go_to_bid_list_page($scope.activity_of_this_page));
 	};
 
 	$scope.end_bid = function () {
-        Activity.stop_bid($scope.this_activity);
-        $scope.can_not_stop = ($scope.this_activity.bid != "run") || ($scope.number_of_bid != $scope.this_activity.count);
+        Activity.stop_bid($scope.activity_of_this_page);
+        $scope.can_not_stop = ($scope.activity_of_this_page.bid != "run") || ($scope.number_of_bid != $scope.activity_of_this_page.count);
+	};
+
+	$scope.navigate_to_register = function () {
+		$location.path(Url.go_to_activity_detail_page($scope.activity_of_this_page));
 	};
 
 	$scope.update_when_receive = function () {
-		$scope.record_list = Bid.read_records_of_bid($scope.this_activity, $scope.number_of_bid);
+		$scope.record_list = Bid.read_records_of_bid($scope.activity_of_this_page, $scope.number_of_bid);
 		$scope.count_of_records = !_.isEmpty($scope.member_list)? "(" + $scope.member_list.length.toString() + "人)": "";
 	};
 

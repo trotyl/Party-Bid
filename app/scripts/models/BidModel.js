@@ -1,6 +1,6 @@
 function Bid(price_of_bid, phone_of_member) {
-	this.activity = current_activity.name;
-	this.number = current_activity.count;
+	this.activity = Activity.get_current_item().name;
+	this.number = Activity.get_current_item().count;
 	this.phone = phone_of_member;
 	this.price = price_of_bid;
 	this.name = Register.find_member_name_by_phone(this.phone);
@@ -8,7 +8,8 @@ function Bid(price_of_bid, phone_of_member) {
 }
 
 Bid.prototype.compute_index = function () {
-	this.index = _(bid_list).findWhere({activity:this.activity, number:this.number}).length + 1;
+	var bid_list = Bid.get_all_items();
+	this.index = (_(bid_list).findWhere({activity:this.activity, number:this.number}) || []).length + 1;
 }
 
 Bid.get_all_items = function () {
@@ -45,10 +46,10 @@ Bid.get_price_of_message = function (text_of_message) {
 
 Bid.cope_new_message = function (price_of_bid, phone_of_message) {
 	var status_of_bid = Activity.get_current_item().bid || "prepare";
-	if(bid_status == "run") {
+	if(status_of_bid == "run") {
 		if(Bid.check_if_register(phone_of_message)) {
 			if(!Bid.check_if_repeat(phone_of_message)) {
-				Bid.add_new_item(new Bid(bid_price, phone_of_message));
+				Bid.add_new_item(new Bid(price_of_bid, phone_of_message));
 			}
 			else {
 				status_of_bid = "run_but_repeat";
@@ -67,8 +68,8 @@ Bid.check_if_register = function (phone_to_check) {
 
 Bid.check_if_repeat = function (phone_to_check) {
 	var bid_list = Bid.get_all_items();
-    var activity_name = current_activity.name;
-    var bid_number = current_activity.number;
+    var activity_name = Activity.get_current_item().name;
+    var bid_number = Activity.get_current_item().count;
     return !!(_.findWhere(bid_list, {activity: activity_name, number: bid_number, phone:phone_to_check}));
 };
 
