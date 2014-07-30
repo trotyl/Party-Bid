@@ -25,7 +25,8 @@ angular.module('partyBidApp')
     };
 
     $scope.show_bid_detail = function ($index) {
-        $location.path(Url.get_bid($scope.this_activity, $scope.this_activity.count - $index - 1));
+        console.log($index);
+        $location.path(Url.get_bid($scope.this_activity, $scope.this_activity.count - $index));
     };
 
 
@@ -38,8 +39,9 @@ angular.module('partyBidApp')
     };
 
     $scope.start_bid = function () {
-        var bid_number = Activity.start_bid($scope.this_activity);
-        $location.path(Url.get_bid($scope.this_activity, bid_number));
+        Activity.start_bid($scope.this_activity);
+        console.log($scope.this_activity.count);
+        $location.path(Url.get_bid($scope.this_activity, $scope.this_activity.count));
     };
 
   });

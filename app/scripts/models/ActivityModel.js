@@ -4,6 +4,7 @@ function Activity(activity_name) {
     this.register = "prepare";
     this.bid = "prepare";
     this.count = 0;
+
 }
 
 Activity.get_all_items = function () {
@@ -17,6 +18,7 @@ Activity.get_activities_refer = function () {
 };
 
 Activity.save_all_items = function () {
+    // console.log(activity_list);
     localStorage.setItem("activity_list", JSON.stringify(activity_list));
 };
 
@@ -47,8 +49,8 @@ Activity.find_by_name = function (name_to_find) {
 };
 
 Activity.add_new_item = function (new_activity) {
-    var activity_list = Activity.get_all_items();
     activity_list.push(new_activity);
+    // console.log(activity_list);
     Activity.save_all_items();
 
     Activity.update_global_config(new_activity.name, "register", "prepare");
@@ -72,7 +74,6 @@ Activity.start_bid = function (the_activity) {
     the_activity.count += 1;
     Activity.save_all_items();
     Activity.update_global_config(the_activity.name, "bid", "run"); 
-    return the_activity.count;
 };
 Activity.stop_bid = function (the_activity) {
     the_activity.bid = "over";

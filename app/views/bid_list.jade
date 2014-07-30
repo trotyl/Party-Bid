@@ -5,7 +5,7 @@ header.header
 
 div.container.content
   div(ng-repeat="bid in bid_list | orderBy:'-name'").list-button
-    button(ng-click="show_bid_detail(bid)",class="button glow button-rounded btn-block button-large {{check_in_progress($index)}}") {{bid.name}}
+    button(ng-click="show_bid_detail($index)",class="button glow button-rounded btn-block button-large {{check_in_progress($index)}}") {{bid.name}}
 
   div.content
     table(align="center")

@@ -30,7 +30,7 @@ module.exports = function (grunt) {
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       jade: {  
-        files: ['<%= yeoman.app %>/views/jade/*.jade'],  
+        files: ['<%= yeoman.app %>/views/*.jade'],  
         tasks: ['jade']  
         }, 
       bower: {
@@ -77,11 +77,11 @@ module.exports = function (grunt) {
           }
         },
         files: {
-          ".tmp/views/activity_list.html": ["<%= yeoman.app %>/views/jade/activity_list.jade"],
-          ".tmp/views/activity_detail.html": ["<%= yeoman.app %>/views/jade/activity_detail.jade"],
-          ".tmp/views/create_activity.html": ["<%= yeoman.app %>/views/jade/create_activity.jade"],
-          ".tmp/views/bid_list.html": ["<%= yeoman.app %>/views/jade/bid_list.jade"],
-          ".tmp/views/bid_detail.html": ["<%= yeoman.app %>/views/jade/bid_detail.jade"]
+          ".tmp/views/activity_list.html": ["<%= yeoman.app %>/views/activity_list.jade"],
+          ".tmp/views/activity_detail.html": ["<%= yeoman.app %>/views/activity_detail.jade"],
+          ".tmp/views/create_activity.html": ["<%= yeoman.app %>/views/create_activity.jade"],
+          ".tmp/views/bid_list.html": ["<%= yeoman.app %>/views/bid_list.jade"],
+          ".tmp/views/bid_detail.html": ["<%= yeoman.app %>/views/bid_detail.jade"]
         }
       }
     },

@@ -8,7 +8,7 @@ angular.module('partyBidApp')
 	$scope.initiate_data = function () {
 		$scope.this_activity = Activity.find_by_name($routeParams.name);
 		$scope.bid_number = $routeParams.number;
-
+		$scope.can_not_stop = ($scope.this_activity.bid != "run") || ($scope.bid_number != $scope.this_activity.count)
 	};
 
 	$scope.back_to_bid = function () {

@@ -14,6 +14,7 @@ angular.module('partyBidApp')
         }
         else {
             var new_activity = new Activity($scope.input_activity_name);
+            console.log(new_activity);
             Activity.add_new_item(new_activity);
             $location.path('/detail/' + $scope.input_activity_name);
         }
