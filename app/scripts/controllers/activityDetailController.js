@@ -12,7 +12,7 @@ angular.module('partyBidApp')
 
 		if($scope.start_or_stop == "开始") {
 			$scope.red_or_green = "button-action"; 
-			if(Activity.one_on_progress()) {
+			if(Activity.check_if_one_on_progress()) {
 				$scope.can_not_start = true;
 			}
 		}

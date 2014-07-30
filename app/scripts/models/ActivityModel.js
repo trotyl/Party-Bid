@@ -77,7 +77,7 @@ Activity.check_if_repeat = function (activity_name_to_check) {
     return !!(_(activity_list).findWhere({name: activity_name_to_check}));
 };
 
-Activity.one_on_progress = function () {
+Activity.check_if_one_on_progress = function () {
     var activity_list = Activity.get_all_items();
     return _(activity_list).some(function (activity_on_iterator) {
         return activity_on_iterator.register == "run" || activity_on_iterator.bid == "run";

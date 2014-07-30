@@ -4,7 +4,7 @@ angular.module('partyBidApp')
   .controller('BidListController', function ($scope, $location, $routeParams) {
     $scope.initiate_data = function () {
         $scope.this_activity = Activity.find_by_name($routeParams.name);
-        $scope.bid_list = Bid.read_activity_bids($scope.this_activity);
+        $scope.bid_list = Bid.read_bids_of_activity($scope.this_activity);
         if($scope.this_activity.bid == "run") {
             $scope.cannot_start = true;
         }

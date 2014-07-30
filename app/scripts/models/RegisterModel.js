@@ -16,6 +16,7 @@ Register.add_new_item = function (new_register) {
 	var register_list = Register.get_all_items();
 	register_list.push(new_register);
 	Register.save_all_items(register_list);
+	Register.refresh_ui_list();
 }
 
 Register.read_members_of_activity = function (activity_to_search) {
@@ -28,23 +29,21 @@ Register.find_member_name_by_phone = function(phone_to_search) {
 	return _(register_list).findWhere({phone: phone_to_search}).name;
 };
 
-Register.cope_new_message = function (text_of_message, phone_of_message) {
-    var name_of_member = text_of_message.substring(2).replace(' ', '');
+Register.get_name_of_message = function (text_of_message) {
+	return text_of_message.substring(2).replace(' ', '');
+};
+
+Register.cope_new_message = function (name_of_member, phone_of_message) {
 	var status_of_register = Activity.get_current_item().register || "prepare";
-	if(status_of_register != "run") {
-		Message.sendback_info(phone_of_message, "register", status_of_register);
-	}
-	else {
+	if(status_of_register == "run") {
 		if(!Register.check_if_repeat(phone_of_message)) {
-			var new_register = new Register(name_of_member, phone_of_message);
-			Register.add_new_item(new_register);
-			Register.refresh_ui_list();
-			Message.sendback_info(phone_of_message, "register", "run");
+			Register.add_new_item(new Register(name_of_member, phone_of_message));
 		}
 		else {
-			Message.sendback_info(phone_of_message, "register", "run_but_repeat");
+			status_of_register = "run_but_repeat";
 		}
 	}	
+	Message.sendback_info(phone_of_message, "register", status_of_register);
 };
 
 Register.check_if_repeat = function (phone_to_check) {
@@ -54,10 +53,10 @@ Register.check_if_repeat = function (phone_to_check) {
 };
 
 Register.refresh_ui_list = function () {
-	var detail_scope = angular.element("#register").scope();
-	if(typeof(detail_scope.update_when_receive) == "function")  {
-		detail_scope.$apply(function () {
-			detail_scope.update_when_receive();
+	var register_ui_scope = angular.element("#register").scope();
+	if(typeof(register_ui_scope.update_when_receive) == "function")  {
+		register_ui_scope.$apply(function () {
+			register_ui_scope.update_when_receive();
 		});
 	}
 };

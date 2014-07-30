@@ -6,10 +6,10 @@ Message.received_new_item = function (message_json) {
 	var message_phone = message_json.messages[0].phone;
 	var message_header = message_text.substring(0,2).toUpperCase();
 	if(message_header == "BM") {
-		Register.cope_new_message(message_text, message_phone);
+		Register.cope_new_message(Register.get_name_of_message(message_text), message_phone);
 	}
 	else if(message_header == "JJ") {
-		Bid.cope_new_message(message_text, message_phone);
+		Bid.cope_new_message(Bid.get_price_of_message(message_text), message_phone);
 	}
 	else {
 		//目前应该没有对其他短信的返回提示要求
@@ -38,7 +38,6 @@ Message.sendback_info = function (phone, type, status) {
 			case "run": 
 				text = "恭喜！您已出价成功！^o^";
 				break;
-			case "null":
 			case "prepare":
 				text = "活动尚未开始，请稍后~ >.<";
 				break;

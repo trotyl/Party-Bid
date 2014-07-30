@@ -8,7 +8,7 @@ angular.module('partyBidApp')
         if($scope.activity_list.length == 0){
             $location.path(Url.get_create());
         }
-        if(Activity.one_on_progress()) {
+        if(Activity.check_if_one_on_progress()) {
             $scope.cannot_create = true;
         }
         else {
