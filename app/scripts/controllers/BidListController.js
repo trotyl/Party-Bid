@@ -25,7 +25,6 @@ angular.module('partyBidApp')
     };
 
     $scope.show_bid_detail = function ($index) {
-        console.log($index);
         $location.path(Url.get_bid($scope.this_activity, $scope.this_activity.count - $index));
     };
 

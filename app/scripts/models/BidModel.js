@@ -3,7 +3,7 @@ function Bid(bid_price, member_phone) {
 	this.number = current_activity.count;
 	this.phone = member_phone;
 	this.price = bid_price;
-	this.name = Register.find_register_name(member_phone);
+	this.name = Register.find_member_name_by_phone(member_phone);
 	this.compute_index();
 }
 

@@ -1,6 +1,6 @@
-function Register(member_name, member_phone) {
-	this.name = member_name;
-	this.phone = member_phone;
+function Register(name_of_member, phone_of_member) {
+	this.name = name_of_member;
+	this.phone = phone_of_member;
 	this.activity = current_activity.name;
 }
 
@@ -8,50 +8,49 @@ Register.get_all_items = function () {
 	return JSON.parse(localStorage.getItem("register_list")) || [];
 };
 
-var register_list = Register.get_all_items();
-
-Register.get_list_length = function () {
-	return register_list.length;
-}
-Register.save_all_items = function () {
+Register.save_all_items = function (register_list) {
 	return localStorage.setItem("register_list", JSON.stringify(register_list));
 };
 
 Register.add_new_item = function (new_register) {
+	var register_list = Register.get_all_items();
 	register_list.push(new_register);
 	Register.save_all_items(register_list);
 }
 
-Register.read_activity_members = function (the_activity) {
-	return _.where(register_list, {activity: the_activity.name});
+Register.read_members_of_activity = function (activity_to_search) {
+	var register_list = Register.get_all_items();
+	return _.where(register_list, {activity: activity_to_search.name});
 };
 
-Register.find_register_name = function(the_phone) {
-	return _(register_list).findWhere({phone: the_phone}).name;
+Register.find_member_name_by_phone = function(phone_to_search) {
+	var register_list = Register.get_all_items();
+	return _(register_list).findWhere({phone: phone_to_search}).name;
 };
 
-Register.cope_new_message = function (message_text, message_phone) {
-    var member_name = message_text.substring(2).replace(' ', '');
-	var register_status = current_activity.register || "prepare";
-	if(register_status != "run") {
-		Message.sendback_info(message_phone, "register", register_status);
+Register.cope_new_message = function (text_of_message, phone_of_message) {
+    var name_of_member = text_of_message.substring(2).replace(' ', '');
+	var status_of_register = Activity.get_current_item().register || "prepare";
+	if(status_of_register != "run") {
+		Message.sendback_info(phone_of_message, "register", status_of_register);
 	}
 	else {
-		if(!Register.check_if_repeat(message_phone)) {
-			var new_register = new Register(member_name, message_phone);
+		if(!Register.check_if_repeat(phone_of_message)) {
+			var new_register = new Register(name_of_member, phone_of_message);
 			Register.add_new_item(new_register);
 			Register.refresh_ui_list();
-			Message.sendback_info(message_phone, "register", "run");
+			Message.sendback_info(phone_of_message, "register", "run");
 		}
 		else {
-			Message.sendback_info(message_phone, "register", "run_but_repeat");
+			Message.sendback_info(phone_of_message, "register", "run_but_repeat");
 		}
 	}	
 };
 
 Register.check_if_repeat = function (phone_to_check) {
-    var activity_name = current_activity.name;
-    return !!(_.findWhere(register_list, {phone: phone_to_check, activity: activity_name}));
+	var register_list = Register.get_all_items();
+    var name_of_activity = current_activity.name;
+    return !!(_(register_list).findWhere({phone: phone_to_check, activity: name_of_activity}));
 };
 
 Register.refresh_ui_list = function () {

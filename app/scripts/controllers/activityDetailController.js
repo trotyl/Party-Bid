@@ -49,7 +49,7 @@ angular.module('partyBidApp')
 	};
 
 	$scope.update_when_receive = function () {
-		$scope.message_list = Register.read_activity_members($scope.this_activity);
+		$scope.message_list = Register.read_members_of_activity($scope.this_activity);
 		if($scope.message_list.length != 0) {
 			$scope.member_count = "(".concat($scope.message_list.length.toString()).concat("人)");
 		}

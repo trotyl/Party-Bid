@@ -1,5 +1,5 @@
-function Activity(activity_name) {
-    this.name = activity_name;
+function Activity(name_of_activity) {
+    this.name = name_of_activity;
     this.createdAt = Date.parse(new Date()).toString();
     this.register = "prepare";
     this.bid = "prepare";
