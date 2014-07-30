@@ -6,7 +6,7 @@ Url.get_home = function () {
 	return '/';
 };
 
-Url.get_create_activity = function () {
+Url.get_create = function () {
 	return '/create';
 };
 
