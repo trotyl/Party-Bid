@@ -13,9 +13,7 @@ angular.module('partyBidApp')
             $scope.warn_info = "名称与已有活动重复！";
         }
         else {
-            var new_activity = new Activity($scope.input_activity_name);
-            console.log(new_activity);
-            Activity.add_new_item(new_activity);
+            Activity.add_new_item(new Activity($scope.input_activity_name));
             $location.path('/detail/' + $scope.input_activity_name);
         }
     };

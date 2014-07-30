@@ -4,11 +4,11 @@ angular.module('partyBidApp')
   .controller('ActivityListController', function ($scope, $location) {
 
     $scope.initiate_data = function () {
-        $scope.activity_list = Activity.get_activities_refer();
+        $scope.activity_list = Activity.get_all_items();
         if($scope.activity_list.length == 0){
             $location.path(Url.get_create());
         }
-        if(Activity.get_status_refer().bid == "run") {
+        if(Activity.one_on_progress()) {
             $scope.cannot_create = true;
         }
         else {
