@@ -10,6 +10,9 @@ Register.get_all_items = function () {
 
 var register_list = Register.get_all_items();
 
+Register.get_list_length = function () {
+	return register_list.length;
+}
 Register.save_all_items = function () {
 	return localStorage.setItem("register_list", JSON.stringify(register_list));
 };
@@ -21,6 +24,10 @@ Register.add_new_item = function (new_register) {
 
 Register.read_activity_members = function (the_activity) {
 	return _.where(register_list, {activity: the_activity.name});
+};
+
+Register.find_register_name = function(the_phone) {
+	return _(register_list).findWhere({phone: the_phone}).name;
 };
 
 Register.cope_new_message = function (message_text, message_phone) {
@@ -49,7 +56,7 @@ Register.check_if_repeat = function (phone_to_check) {
 
 Register.refresh_ui_list = function () {
 	var detail_scope = angular.element("#register").scope();
-	if(detail_scope) {
+	if(typeof(detail_scope.update_when_receive) == "function")  {
 		detail_scope.$apply(function () {
 			detail_scope.update_when_receive();
 		});

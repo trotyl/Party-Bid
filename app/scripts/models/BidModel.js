@@ -1,8 +1,10 @@
 function Bid(bid_price, member_phone) {
 	this.activity = current_activity.name;
-	this.number = current_activity.number;
+	this.number = current_activity.count;
 	this.phone = member_phone;
 	this.price = bid_price;
+	this.name = Register.find_register_name(member_phone);
+	this.compute_index();
 }
 
 Bid.get_all_items = function () {
@@ -28,9 +30,12 @@ Bid.read_activity_bids = function (the_activity) {
 	return result;
 };
 
-Bid.read_bid_members = function (the_activity, bid_number) {
-	var bid_list = Bid.get_all_items();
-	return _.where(bid_list, {activity: the_activity.name, number: bid_number});
+Bid.prototype.compute_index = function () {
+	this.index = _(bid_list).findWhere({activity:this.activity, number:this.number}).length + 1;
+}
+
+Bid.read_bid_records = function (the_activity, bid_number) {
+	return _(bid_list).where({activity: the_activity.name, number: bid_number});
 };
 
 Bid.cope_new_message = function (message_text, message_phone) {
@@ -62,7 +67,6 @@ Bid.check_if_register = function (phone_to_check) {
 };
 
 Bid.check_if_repeat = function (phone_to_check) {
-	var bid_list = Bid.get_all_items();
     var activity_name = current_activity.name;
     var bid_number = current_activity.number;
     return !!(_.findWhere(bid_list, {activity: activity_name, number: bid_number, phone:phone_to_check}));

@@ -7,9 +7,12 @@ angular.module('partyBidApp')
 
 	$scope.initiate_data = function () {
 		$scope.this_activity = Activity.find_by_name($routeParams.name);
-		$scope.bid_number = $routeParams.number;
+		$scope.bid_number = parseInt($routeParams.number);
 		$scope.can_not_stop = ($scope.this_activity.bid != "run") || ($scope.bid_number != $scope.this_activity.count)
+		$scope.record_list = Bid.read_bid_records($scope.this_activity, $scope.bid_number);
 	};
+
+	$scope.initiate_data();
 
 	$scope.back_to_bid = function () {
 		$location.path(Url.get_activity_bids($scope.this_activity));
@@ -19,5 +22,4 @@ angular.module('partyBidApp')
         Activity.stop_bid($scope.this_activity);
 	};
 
-	$scope.initiate_data();
 });

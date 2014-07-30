@@ -22,20 +22,13 @@ Activity.save_all_items = function () {
     localStorage.setItem("activity_list", JSON.stringify(activity_list));
 };
 
-Activity.update_global_config = function (activity_name, type_of_operation, status_to_change) {
-    current_activity.name = activity_name;
-    if(type_of_operation == "register") {
-        current_activity.register = status_to_change;
-    }
-    else {
-        current_activity.bid = status_to_change;
-        current_activity.number = current_activity.count;
-    }
+Activity.update_global_config = function (the_activity) {
+    current_activity = the_activity;
     localStorage.setItem("current_activity", JSON.stringify(current_activity));
 };
 
 Activity.get_current_status = function () {
-    return JSON.parse(localStorage.getItem("current_activity")) || {name: "", register: "prepare", bid: "", number: 0};
+    return JSON.parse(localStorage.getItem("current_activity")) || new Activity("");
 };
 
 var current_activity = Activity.get_current_status();
@@ -50,35 +43,32 @@ Activity.find_by_name = function (name_to_find) {
 
 Activity.add_new_item = function (new_activity) {
     activity_list.push(new_activity);
-    // console.log(activity_list);
     Activity.save_all_items();
-
-    Activity.update_global_config(new_activity.name, "register", "prepare");
-    Activity.update_global_config(new_activity.name, "bid", "prepare");
+    Activity.update_global_config(new_activity);
 };
 
 Activity.start_register = function (the_activity) {
     the_activity.register = "run";
     Activity.save_all_items();
-    Activity.update_global_config(the_activity.name, "register", "run"); 
+    Activity.update_global_config(the_activity); 
 };
 
 Activity.stop_register = function (the_activity) {
     the_activity.register = "over";
     Activity.save_all_items();
-    Activity.update_global_config(the_activity.name, "register", "over"); 
+    Activity.update_global_config(the_activity); 
 };
 
 Activity.start_bid = function (the_activity) {
     the_activity.bid = "run";
     the_activity.count += 1;
     Activity.save_all_items();
-    Activity.update_global_config(the_activity.name, "bid", "run"); 
+    Activity.update_global_config(the_activity); 
 };
 Activity.stop_bid = function (the_activity) {
     the_activity.bid = "over";
     Activity.save_all_items();
-    Activity.update_global_config(the_activity.name, "bid", "over"); 
+    Activity.update_global_config(the_activity); 
 };
 
 Activity.check_ifnot_null = function () {
