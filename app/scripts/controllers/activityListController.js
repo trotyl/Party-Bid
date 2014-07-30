@@ -5,25 +5,16 @@ angular.module('partyBidApp')
 
     $scope.initiate_data = function () {
         $scope.activity_list = Activity.get_all_items();
-        if($scope.activity_list.length == 0){
-            $location.path(Url.get_create());
-        }
-        if(Activity.check_if_one_on_progress()) {
-            $scope.cannot_create = true;
-        }
-        else {
-            $scope.cannot_create = false;
-        }
+        _.isEmpty($scope.activity_list) && $location.path(Url.get_create_activity_page());
+        $scope.cannot_create = Activity.check_if_one_on_progress();
     };
 
-    $scope.initiate_data();
-
     $scope.activity_create = function () {
-    	$location.path(Url.get_create());
+    	$location.path(Url.go_to_create_activity_page());
     };
 
     $scope.show_activity_detail = function (the_activity) {
-    	$location.path(Url.get_activity(the_activity));
+    	$location.path(Url.go_to_activity_detail_page(the_activity));
     };
 
     $scope.check_in_progress = function (the_activity) {
@@ -34,5 +25,7 @@ angular.module('partyBidApp')
     		return "button-flat";
     	}
     };
+
+    $scope.initiate_data();
 
   });

@@ -1,7 +1,7 @@
 function Register(name_of_member, phone_of_member) {
 	this.name = name_of_member;
 	this.phone = phone_of_member;
-	this.activity = current_activity.name;
+	this.activity = Activity.get_current_item().name;
 }
 
 Register.get_all_items = function () {
@@ -48,7 +48,7 @@ Register.cope_new_message = function (name_of_member, phone_of_message) {
 
 Register.check_if_repeat = function (phone_to_check) {
 	var register_list = Register.get_all_items();
-    var name_of_activity = current_activity.name;
+    var name_of_activity = Activity.get_current_item().name;
     return !!(_(register_list).findWhere({phone: phone_to_check, activity: name_of_activity}));
 };
 

@@ -3,66 +3,45 @@
 angular.module('partyBidApp')
   .controller('ActivityDetailController', function ($scope, $location, $routeParams) {
 
-	$scope.status_to_watch;
-
 	$scope.initiate_data = function () {
-		$scope.this_activity = Activity.find_by_name($routeParams.name);
-		$scope.start_or_stop = $scope.this_activity.register == "run"? "结束": "开始";
-		$scope.status_to_watch = $scope.start_or_stop;
-
-		if($scope.start_or_stop == "开始") {
-			$scope.red_or_green = "button-action"; 
-			if(Activity.check_if_one_on_progress()) {
-				$scope.can_not_start = true;
-			}
-		}
-		else {
-			$scope.red_or_green = "button-caution";
-		}
-
+		$scope.activity_of_this_page = Activity.find_by_name($routeParams.name);
+		$scope.display_of_button = $scope.activity_of_this_page.register == "run"? "结束": "开始";
+		$scope.status_to_watch = $scope.display_of_button;
+		$scope.style_of_button = $scope.display_of_button == "开始"? "button-action": "button-caution";
+		$scope.can_not_start = $scope.display_of_button == "开始"? Activity.check_if_one_on_progress(): false;
+		$scope.update_when_receive();
 	};
 
-	$scope.initiate_data();
-
 	$scope.back_to_home = function () {
-		$location.path(Url.get_home());
+		$location.path(Url.go_to_home_page());
 	};
 
 	$scope.alter_activity_status = function () {
-		if ($scope.start_or_stop == "开始") {
-			$scope.status_to_watch = "结束";
-			$scope.red_or_green = "button-caution";
-			Activity.start_register($scope.this_activity);
-		}
-		else {
-			if (window.confirm("确认要结束本次报名吗？！")) {
-				$scope.status_to_watch = "开始";
-				$scope.red_or_green = "button-action";
-				Activity.stop_register($scope.this_activity);
-				$scope.navigate_to_bid();
-			}
-		}
+		var is_to_start = $scope.display_of_button == "开始";
+		(is_to_start || window.confirm("确认要结束本次报名吗？！")) && $scope.start_alter_status(is_to_start);
+	};
+
+	$scope.start_alter_status = function(is_to_start) {
+		$scope.status_to_watch = is_to_start? "结束": "开始";
+		$scope.style_of_button = is_to_start? "button-caution": "button-action";
+		is_to_start && Activity.start_register($scope.activity_of_this_page);
+		!is_to_start && (Activity.stop_register($scope.activity_of_this_page) || $scope.navigate_to_bid());
 	};
 
 	$scope.navigate_to_bid = function () {
-		$location.path(Url.get_activity_bids($scope.this_activity));
+		$location.path(Url.go_to_bid_list_page($scope.activity_of_this_page));
 	};
 
 	$scope.update_when_receive = function () {
-		$scope.message_list = Register.read_members_of_activity($scope.this_activity);
-		if($scope.message_list.length != 0) {
-			$scope.member_count = "(".concat($scope.message_list.length.toString()).concat("人)");
-		}
-		else {
-			$scope.member_count = "";
-		}
+		$scope.member_list = Register.read_members_of_activity($scope.activity_of_this_page);
+		$scope.count_of_members = !_.isEmpty($scope.member_list)? "(" + $scope.member_list.length.toString() + "人)": "";
 	};
-
-	$scope.update_when_receive();
 
 	function check_if_alter(newValue, oldValue, scope) {
-		$scope.start_or_stop = $scope.status_to_watch;
+		$scope.display_of_button = $scope.status_to_watch;
 	};
+
+	$scope.initiate_data();
 
 	$scope.$watch('status_to_watch', check_if_alter, true);
 

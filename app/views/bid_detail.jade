@@ -1,10 +1,11 @@
 header.header
   label.nav-title 竞价
-    span {{member_count}} 
+    span {{number_of_bid}}
+    span {{count_of_records}} 
   button(ng-click="back_to_bid()").button.button-rounded.button-highlight.header-left 返回
   button(ng-click="end_bid()",ng-disabled="can_not_stop").button.button-rounded.button-action.header-right 结束
 
-div#register.content
+div#bid.content
   div.container
     ul.list-group.bg-huise
       li(ng-repeat="record in record_list | orderBy:'+index'").list-group-item {{record.index + ". " + record.name}}

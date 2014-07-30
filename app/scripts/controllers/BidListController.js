@@ -2,45 +2,34 @@
 
 angular.module('partyBidApp')
   .controller('BidListController', function ($scope, $location, $routeParams) {
+
     $scope.initiate_data = function () {
-        $scope.this_activity = Activity.find_by_name($routeParams.name);
-        $scope.bid_list = Bid.read_bids_of_activity($scope.this_activity);
-        if($scope.this_activity.bid == "run") {
-            $scope.cannot_start = true;
-        }
-        else {
-            $scope.cannot_start = false;
-        }
+        $scope.activity_of_this_page = Activity.find_by_name($routeParams.name);
+        $scope.bid_list = Bid.read_bids_of_activity($scope.activity_of_this_page);
+        $scope.cannot_start = Activity.check_if_one_on_progress();
     };
 
-    $scope.initiate_data();
-
     $scope.check_in_progress = function ($index) {
-        if ($scope.cannot_start && $index == 0) {
-            return "button-flat-highlight";
-        }
-        else {
-            return "button-flat";
-        }
+        return ($scope.activity_of_this_page.bid == "run" && $index == 0)? "button-flat-highlight": "button-flat";
     };
 
     $scope.show_bid_detail = function ($index) {
-        $location.path(Url.get_bid($scope.this_activity, $scope.this_activity.count - $index));
+        $location.path(Url.go_to_bid_detail_page($scope.activity_of_this_page, $scope.activity_of_this_page.count - $index));
     };
 
-
     $scope.back_to_home = function () {
-        $location.path(Url.get_home());
+        $location.path(Url.go_to_home_page());
     };
 
     $scope.navigate_to_register = function () {
-        $location.path(Url.get_activity($scope.this_activity));
+        $location.path(Url.go_to_activity_detail_page($scope.activity_of_this_page));
     };
 
     $scope.start_bid = function () {
-        Activity.start_bid($scope.this_activity);
-        console.log($scope.this_activity.count);
-        $location.path(Url.get_bid($scope.this_activity, $scope.this_activity.count + 1));
+        Activity.start_bid($scope.activity_of_this_page);
+        $location.path(Url.go_to_bid_detail_page($scope.activity_of_this_page, $scope.activity_of_this_page.count + 1));
     };
+
+    $scope.initiate_data();
 
   });

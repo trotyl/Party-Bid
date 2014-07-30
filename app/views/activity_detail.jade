@@ -1,14 +1,14 @@
 header.header
   label.nav-title 活动报名
-    span {{member_count}}	
+    span {{count_of_members}}	
   button(ng-click="back_to_home()").button.button-rounded.button-highlight.header-left 返回
-  button(class="button button-rounded {{red_or_green}} header-right",ng-click="alter_activity_status()",ng-disabled="can_not_start") {{start_or_stop}}
+  button(class="button button-rounded {{style_of_button}} header-right",ng-click="alter_activity_status()",ng-disabled="can_not_start") {{display_of_button}}
 
 div#register.content
   div.container
     ul.list-group.bg-huise
-      li(ng-repeat="message in message_list | orderBy:'-name'").list-group-item {{message.name}}
-        span.pull-right {{message.phone}}
+      li(ng-repeat="member in member_list | orderBy:'-name'").list-group-item {{member.name}}
+        span.pull-right {{member.phone}}
 
   div.container
     table(align="center")
