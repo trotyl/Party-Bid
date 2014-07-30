@@ -15,5 +15,9 @@ angular.module('partyBidApp')
 		$location.path(Url.get_activity_bids($scope.this_activity));
 	};
 
+	$scope.end_bid = function () {
+        Activity.stop_bid($scope.this_activity);
+	};
+
 	$scope.initiate_data();
 });

@@ -47,6 +47,7 @@ Activity.find_by_name = function (name_to_find) {
 };
 
 Activity.add_new_item = function (new_activity) {
+    var activity_list = Activity.get_all_items();
     activity_list.push(new_activity);
     Activity.save_all_items();
 
@@ -84,7 +85,7 @@ Activity.check_ifnot_null = function () {
 };
 
 Activity.check_if_repeat = function (activity_name) {
-    return !!(_.findWhere(activity_list, {name: activity_name}));
+    return !!(_(activity_list).findWhere({name: activity_name}));
 };
 
 Activity.one_on_register = function () {

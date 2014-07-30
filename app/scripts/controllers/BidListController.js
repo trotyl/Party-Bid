@@ -37,7 +37,7 @@ angular.module('partyBidApp')
         $location.path(Url.get_activity($scope.this_activity));
     };
 
-    $scope.bid_start = function () {
+    $scope.start_bid = function () {
         var bid_number = Activity.start_bid($scope.this_activity);
         $location.path(Url.get_bid($scope.this_activity, bid_number));
     };
