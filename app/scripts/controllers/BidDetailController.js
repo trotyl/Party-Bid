@@ -16,7 +16,7 @@ angular.module('partyBidApp')
 
 	$scope.end_bid = function () {
         Activity.stop_bid($scope.activity_of_this_page);
-        $scope.can_not_stop = ($scope.activity_of_this_page.bid != "run") || ($scope.number_of_bid != $scope.activity_of_this_page.count);
+        $scope.initiate_data();
 	};
 
 	$scope.navigate_to_register = function () {

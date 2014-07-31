@@ -82,6 +82,11 @@ module.exports = function (grunt) {
           ".tmp/views/create_activity.html": ["<%= yeoman.app %>/views/create_activity.jade"],
           ".tmp/views/bid_list.html": ["<%= yeoman.app %>/views/bid_list.jade"],
           ".tmp/views/bid_detail.html": ["<%= yeoman.app %>/views/bid_detail.jade"]
+          "<%= yeoman.app %>/views/activity_list.html": ["<%= yeoman.app %>/views/activity_list.jade"],
+          "<%= yeoman.app %>/views/activity_detail.html": ["<%= yeoman.app %>/views/activity_detail.jade"],
+          "<%= yeoman.app %>/views/create_activity.html": ["<%= yeoman.app %>/views/create_activity.jade"],
+          "<%= yeoman.app %>/views/bid_list.html": ["<%= yeoman.app %>/views/bid_list.jade"],
+          "<%= yeoman.app %>/views/bid_detail.html": ["<%= yeoman.app %>/views/bid_detail.jade"]
         }
       }
     },
@@ -185,7 +190,7 @@ module.exports = function (grunt) {
         files: [{
           dot: true,
           src: [
-            '<%= yeoman.app %>.tmp/views/*',
+            '<%= yeoman.app %>/views/*.html',
           ]
         }]
       },
@@ -252,7 +257,7 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/{,*/}*.html'],
+      html: ['<%= yeoman.dist %>/{,*/}*.html', '.tmp/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
         assetsDirs: ['<%= yeoman.dist %>','<%= yeoman.dist %>/images']
@@ -359,6 +364,7 @@ module.exports = function (grunt) {
             '.htaccess',
             '*.html',
             'views/{,*/}*.html',
+            '../.tmp/views/{,*/}*.html',
             'images/{,*/}*.{webp}',
             'fonts/*'
           ]
@@ -417,6 +423,7 @@ module.exports = function (grunt) {
       'clean:server',
       'wiredep',
       'jade',
+      'clean:jade',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
@@ -438,8 +445,8 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'jade',
     'clean:dist',
+    'jade',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
@@ -452,7 +459,8 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'clean:jade'
   ]);
 
   grunt.registerTask('default', [

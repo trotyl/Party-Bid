@@ -24,8 +24,7 @@ angular.module('partyBidApp')
 	$scope.start_alter_status = function(is_to_start) {
 		$scope.status_to_watch = is_to_start? "结束": "开始";
 		$scope.style_of_button = is_to_start? "button-caution": "button-action";
-		is_to_start && Activity.start_register($scope.activity_of_this_page);
-		!is_to_start && (Activity.stop_register($scope.activity_of_this_page) || $scope.navigate_to_bid());
+		is_to_start? Activity.start_register($scope.activity_of_this_page): (Activity.stop_register($scope.activity_of_this_page) || $scope.navigate_to_bid());
 	};
 
 	$scope.navigate_to_bid = function () {

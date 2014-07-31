@@ -9,7 +9,8 @@ function Bid(price_of_bid, phone_of_member) {
 
 Bid.prototype.compute_index = function () {
 	var bid_list = Bid.get_all_items();
-	this.index = (_(bid_list).findWhere({activity:this.activity, number:this.number}) || []).length + 1;
+	this.index = (_(bid_list).where({activity:this.activity, number:this.number}) || []).length + 1;
+	console.log(this.index);
 }
 
 Bid.get_all_items = function () {
