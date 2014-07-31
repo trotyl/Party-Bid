@@ -39,10 +39,10 @@ Message.sendback_info = function (phone, type, status) {
 				text = "恭喜！您已出价成功！^o^";
 				break;
 			case "prepare":
-				text = "活动尚未开始，请稍后~ >.<";
+				text = "竞价尚未开始，请稍后~ >.<";
 				break;
 			case "over": 
-				text = "Sorry，活动报名已结束.. =.=";
+				text = "Sorry，活动竞价已结束.. =.=";
 				break;
 			case "undefined":
 				text = "对不起，您没有报名此次活动.. T.T"

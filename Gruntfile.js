@@ -81,7 +81,7 @@ module.exports = function (grunt) {
           ".tmp/views/activity_detail.html": ["<%= yeoman.app %>/views/activity_detail.jade"],
           ".tmp/views/create_activity.html": ["<%= yeoman.app %>/views/create_activity.jade"],
           ".tmp/views/bid_list.html": ["<%= yeoman.app %>/views/bid_list.jade"],
-          ".tmp/views/bid_detail.html": ["<%= yeoman.app %>/views/bid_detail.jade"]
+          ".tmp/views/bid_detail.html": ["<%= yeoman.app %>/views/bid_detail.jade"],
           "<%= yeoman.app %>/views/activity_list.html": ["<%= yeoman.app %>/views/activity_list.jade"],
           "<%= yeoman.app %>/views/activity_detail.html": ["<%= yeoman.app %>/views/activity_detail.jade"],
           "<%= yeoman.app %>/views/create_activity.html": ["<%= yeoman.app %>/views/create_activity.jade"],
