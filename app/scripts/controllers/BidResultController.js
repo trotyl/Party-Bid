@@ -15,7 +15,7 @@ angular.module('partyBidApp')
 	};
 
 	$scope.navigate_to_stats = function () {
-        $location.path(Url.go_to_bid_result_page($scope.activity_of_this_page, $scope.number_of_bid))
+        $location.path(Url.go_to_bid_stats_page($scope.activity_of_this_page, $scope.number_of_bid));
 	};
 
 	$scope.initiate_data();

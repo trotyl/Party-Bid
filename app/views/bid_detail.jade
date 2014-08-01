@@ -2,15 +2,13 @@ header.header
   label.nav-title 竞价
     span {{number_of_bid}}
     span {{count_of_records}} 
-  button(ng-click="back_to_bid()").button.button-rounded.button-highlight.header-left-trotyl 返回
-  button(ng-click="end_bid()",ng-disabled="can_not_stop").button.button-rounded.button-action.header-right-trotyl 结束
+  button.button.button-rounded.button-highlight.header-left-trotyl(ng-click="back_to_bid()") 返回
+  button.button.button-rounded.button-action.header-right-trotyl(ng-click="end_bid()",ng-disabled="can_not_stop") 结束
 
-div#bid.content
-  div.container
+#bid.content
+  .container
     ul.list-group.bg-huise
-      li(ng-repeat="record in record_list | orderBy:'+index'").list-group-item 
-        //- {{record.index + ". " + record.name}}
-        //- span.pull-right {{record.phone}}
+      li.list-group-item(ng-repeat="record in record_list | orderBy:'+index'") 
         table(cellspacing="10",cellpadding="10")
           tr
             td(rowspan="2") {{record.index + ".&nbsp;&nbsp;&nbsp;&nbsp;"}}

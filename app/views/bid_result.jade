@@ -2,15 +2,14 @@ header.header
   label.nav-title 竞价
     span {{number_of_bid}}
     span {{count_of_records}} 
-  button(ng-click="back_to_bid()").button.button-rounded.button-highlight.header-left-trotyl 返回
-  button(ng-click="navigate_to_stats()").button.button-rounded.button-action.header-right-trotyl 统计
+  button.button.button-rounded.button-highlight.header-left-trotyl(ng-click="back_to_bid()") 返回
+  button.button.button-rounded.button-action.header-right-trotyl(ng-click="navigate_to_stats()") 统计
 
-div.content
-  div.container
+.content
+  .container
     ul.list-group
-      li(ng-repeat="record in record_list | orderBy:'+price'").list-group-item 
-        //- {{record.index + ". " + record.name}}
-        span.pull-right {{record.price | currency}}
+      li.list-group-item(ng-repeat="record in record_list | orderBy:'+price'") 
+        span.pull-right {{record.price | currency:"¥"}}
         table(cellspacing="10",cellpadding="10")
           tr
             td(rowspan="2") {{($index + 1).toString() + ".&nbsp;&nbsp;&nbsp;&nbsp;"}}
@@ -18,3 +17,6 @@ div.content
           tr
             td {{record.phone}}
 
+footer
+  .footer-nav.footer-nav-2tabs 竞价结果占位符
+    
