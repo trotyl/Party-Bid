@@ -79,7 +79,7 @@ Bid.compute_result = function (activity_to_search, number_of_bid) {
 		return bid_record.price;
 	};
 	var record_list = Bid.read_records_of_bid(activity_to_search, number_of_bid);
-	var no_repeat_list = _.difference(record_list, _(record_list).uniq(get_price_of_record);
+	var no_repeat_list = _.difference(record_list, _(record_list).uniq(get_price_of_record));
 	return _.first(_(no_repeat_list).sortBy(get_price_of_record));
 };
 
