@@ -1,8 +1,8 @@
 header.header
   label.nav-title 活动报名
     span {{count_of_members}}	
-  button(ng-click="back_to_home()").button.button-rounded.button-highlight.header-left 返回
-  button(class="button button-rounded {{style_of_button}} header-right",ng-click="alter_activity_status()",ng-disabled="can_not_start") {{display_of_button}}
+  button(ng-click="back_to_home()").button.button-rounded.button-highlight.header-left-trotyl 返回
+  button(class="button button-rounded {{style_of_button}} header-right-trotyl",ng-click="alter_activity_status()",ng-disabled="can_not_start") {{display_of_button}}
 
 div#register.content
   div.container
@@ -10,10 +10,17 @@ div#register.content
       li(ng-repeat="member in member_list | orderBy:'-name'").list-group-item {{member.name}}
         span.pull-right {{member.phone}}
 
-  div.container
-    table(align="center")
-      tr
-        td
-          button(ng-click="navigate_to_register()").btn.btn-primary 报名
-        td
-          button(ng-click="navigate_to_bid()").btn.btn-primary 竞价
+  //- div.container
+  //-   table(align="center")
+  //-     tr
+  //-       td
+  //-         button(ng-click="navigate_to_register()").btn.btn-primary 报名
+  //-       td
+  //-         button(ng-click="navigate_to_bid()").btn.btn-primary 竞价
+
+footer
+  ul.footer-nav.footer-nav-2tabs
+    li.active
+      a(ng-click="navigate_to_register()") 报名
+    li
+      a(ng-click="navigate_to_bid()") 竞价

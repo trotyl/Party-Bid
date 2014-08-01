@@ -2,8 +2,8 @@ header.header
   label.nav-title 竞价
     span {{number_of_bid}}
     span {{count_of_records}} 
-  button(ng-click="back_to_bid()").button.button-rounded.button-highlight.header-left 返回
-  button(ng-click="end_bid()",ng-disabled="can_not_stop").button.button-rounded.button-action.header-right 结束
+  button(ng-click="back_to_bid()").button.button-rounded.button-highlight.header-left-trotyl 返回
+  button(ng-click="end_bid()",ng-disabled="can_not_stop").button.button-rounded.button-action.header-right-trotyl 结束
 
 div#bid.content
   div.container
@@ -11,10 +11,3 @@ div#bid.content
       li(ng-repeat="record in record_list | orderBy:'+index'").list-group-item {{record.index + ". " + record.name}}
         span.pull-right {{record.phone}}
 
-  div.container
-    table(align="center")
-      tr
-        td
-          button(ng-click="navigate_to_register()").btn.btn-primary 报名
-        td
-          button(ng-click="navigate_to_bid()").btn.btn-primary 竞价

@@ -28,14 +28,14 @@ body {
     text-align:center;
 }
 
-.header-left {
+.header-left-trotyl {
     /*margin-top: 5px;*/
     position: absolute;
     left: 8px;
     top: 5px;
 }
 
-.header-right {
+.header-right-trotyl {
     /*margin-top: 5px;*/
     position: absolute;
     z-index: 10;
@@ -44,7 +44,7 @@ body {
 }
 
 .content {
-    padding-top: 20px;
+    padding-top: 80px;
     padding-bottom: 20px;
 }
 
