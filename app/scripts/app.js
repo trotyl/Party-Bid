@@ -31,6 +31,14 @@ angular
         templateUrl: 'views/bid_detail.html',
         controller: 'BidDetailController'
       })
+      .when('/detail/:name/bid/:number/result', {
+        templateUrl: 'views/bid_result.html',
+        controller: 'BidResultController'
+      })
+      .when('/detail/:name/bid/:number/stats', {
+        templateUrl: 'views/bid_stats.html',
+        controller: 'BidStatsController'
+      })
       .otherwise({
         redirectTo: '/'
       });

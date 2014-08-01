@@ -3,17 +3,17 @@ header.header
     span {{number_of_bid}}
     span {{count_of_records}} 
   button(ng-click="back_to_bid()").button.button-rounded.button-highlight.header-left-trotyl 返回
-  button(ng-click="end_bid()",ng-disabled="can_not_stop").button.button-rounded.button-action.header-right-trotyl 结束
+  button(ng-click="navigate_to_stats()").button.button-rounded.button-action.header-right-trotyl 统计
 
-div#bid.content
+div.content
   div.container
-    ul.list-group.bg-huise
-      li(ng-repeat="record in record_list | orderBy:'+index'").list-group-item 
+    ul.list-group
+      li(ng-repeat="record in record_list | orderBy:'+price'").list-group-item 
         //- {{record.index + ". " + record.name}}
-        //- span.pull-right {{record.phone}}
+        span.pull-right {{record.price | currency}}
         table(cellspacing="10",cellpadding="10")
           tr
-            td(rowspan="2") {{record.index + ".&nbsp;&nbsp;&nbsp;&nbsp;"}}
+            td(rowspan="2") {{($index + 1).toString() + ".&nbsp;&nbsp;&nbsp;&nbsp;"}}
             td {{record.name}}
           tr
             td {{record.phone}}

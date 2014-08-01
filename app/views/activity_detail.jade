@@ -10,14 +10,6 @@ div#register.content
       li(ng-repeat="member in member_list | orderBy:'-name'").list-group-item {{member.name}}
         span.pull-right {{member.phone}}
 
-  //- div.container
-  //-   table(align="center")
-  //-     tr
-  //-       td
-  //-         button(ng-click="navigate_to_register()").btn.btn-primary 报名
-  //-       td
-  //-         button(ng-click="navigate_to_bid()").btn.btn-primary 竞价
-
 footer
   ul.footer-nav.footer-nav-2tabs
     li.active
