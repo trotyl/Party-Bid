@@ -71,7 +71,16 @@ Bid.check_if_repeat = function (phone_to_check) {
 	var bid_list = Bid.get_all_items();
     var activity_name = Activity.get_current_item().name;
     var bid_number = Activity.get_current_item().count;
-    return !!(_.findWhere(bid_list, {activity: activity_name, number: bid_number, phone:phone_to_check}));
+    return !!(_(bid_list).findWhere({activity: activity_name, number: bid_number, phone:phone_to_check}));
+};
+
+Bid.compute_result = function (activity_to_search, number_of_bid) {
+	var get_price_of_record = function (bid_record) {
+		return bid_record.price;
+	};
+	var record_list = Bid.read_records_of_bid(activity_to_search, number_of_bid);
+	var no_repeat_list = _.difference(record_list, _(record_list).uniq(get_price_of_record);
+	return _.first(_(no_repeat_list).sortBy(get_price_of_record));
 };
 
 Bid.refresh_ui_list = function () {
