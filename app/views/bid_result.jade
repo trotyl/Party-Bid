@@ -9,7 +9,7 @@ header.header
   .container
     ul.list-group
       li.list-group-item(ng-repeat="record in record_list | orderBy:'+price'") 
-        span.pull-right {{record.price | currency:"¥"}}
+        span.pull-right.vertical-middle {{record.price | currency:"¥"}}
         table(cellspacing="10",cellpadding="10")
           tr
             td(rowspan="2") {{($index + 1).toString() + ".&nbsp;&nbsp;&nbsp;&nbsp;"}}
@@ -18,5 +18,5 @@ header.header
             td {{record.phone}}
 
 footer
-  .footer-nav.footer-nav-2tabs 竞价结果占位符
+  .footer-nav.footer-nav-2tabs {{result}}
     

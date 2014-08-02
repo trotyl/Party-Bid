@@ -43,6 +43,12 @@ body {
     top: 5px;
 }
 
+.vertical-middle {
+    height: 3em;
+    line-height: 3em;
+/*    overflow: hidden;
+*/}
+
 .content {
     padding-top: 80px;
     padding-bottom: 20px;

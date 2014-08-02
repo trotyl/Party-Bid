@@ -82,12 +82,14 @@ Bid.check_if_repeat = function (phone_to_check) {
 };
 
 Bid.compute_result = function (activity_to_search, number_of_bid) {
-	var get_price_of_record = function (bid_record) {
-		return bid_record.price;
-	};
 	var record_list = Bid.read_records_of_bid(activity_to_search, number_of_bid);
-	var no_repeat_list = _.difference(record_list, _(record_list).uniq(get_price_of_record));
-	return _.first(_(no_repeat_list).sortBy(get_price_of_record));
+	var ordered_list = _(record_list).sortBy(function (bid) {
+		return bid.price;
+	});
+	var check_set = {};
+	return _(ordered_list).find(function (bid) {
+		return !check_set[bid.price] || !(check_set[bid.price] = true)
+	});
 };
 
 Bid.refresh_ui_list = function () {

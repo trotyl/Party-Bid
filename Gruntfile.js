@@ -61,6 +61,7 @@ module.exports = function (grunt) {
         },
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
+          '.tmp/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
@@ -438,7 +439,6 @@ module.exports = function (grunt) {
       'clean:server',
       'wiredep',
       'jade',
-      'clean:jade',
       'concurrent:server',
       // 'autoprefixer',
       'connect:livereload',
@@ -474,8 +474,7 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin',
-    'clean:jade'
+    'htmlmin'
   ]);
 
   grunt.registerTask('default', [
