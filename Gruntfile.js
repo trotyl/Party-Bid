@@ -375,7 +375,6 @@ module.exports = function (grunt) {
             '.htaccess',
             '*.html',
             'views/{,*/}*.html',
-            '../.tmp/views/{,*/}*.html',
             'images/{,*/}*.{webp}',
             'fonts/*'
           ]
@@ -384,6 +383,11 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
+        }, {
+          expand: true,
+          cwd: '.tmp/views',
+          dest: '<%= yeoman.dist %>/views',
+          src: ['*.html']
         }, {
           expand: true,
           cwd: 'bower_components/bootstrap/dist',
