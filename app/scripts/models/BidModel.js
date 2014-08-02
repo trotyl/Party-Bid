@@ -17,14 +17,14 @@ Bid.get_all_items = function () {
 	return JSON.parse(localStorage.getItem("bid_list")) || [];
 };
 
-Bid.save_all_items = function (bid_list) {
+Bid.save_all = function (bid_list) {
 	return localStorage.setItem("bid_list", JSON.stringify(bid_list));
 };
 
 Bid.add_new_item = function (new_bid) {
 	var bid_list = Bid.get_all_items();
 	bid_list.push(new_bid);
-	Bid.save_all_items(bid_list);
+	Bid.save_all(bid_list);
 	Bid.refresh_ui_list();			
 };
 
@@ -87,9 +87,16 @@ Bid.compute_result = function (activity_to_search, number_of_bid) {
 		return bid.price;
 	});
 	var check_set = {};
-	return _(ordered_list).find(function (bid) {
-		return !check_set[bid.price] || !(check_set[bid.price] = true)
-	});
+	for (var i = 0; i < ordered_list.length; i++) {
+		check_set[ordered_list[i].price] = true;
+		if (ordered_list[i - 1] && ordered_list[i - 1].price == ordered_list[i].price) {
+			continue;
+		}
+		if (ordered_list[i + 1] && ordered_list[i + 1].price == ordered_list[i].price) {
+			continue;
+		}
+		return ordered_list[i];
+	};
 };
 
 Bid.refresh_ui_list = function () {
