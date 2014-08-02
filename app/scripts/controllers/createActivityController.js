@@ -13,24 +13,24 @@ angular.module('partyBidApp')
     };
 
     $scope.activity_create = function () {
-        var is_name_repeat = Activity.check_if_repeat($scope.input_activity_name);
+        var is_name_repeat = Activity.check_if_repeat($scope.name_to_create);
         if(is_name_repeat) {
             $scope.is_warning_show = true;
         }
         else {
-            var new_activity = new Activity($scope.input_activity_name);
-            Activity.add_new_item(new_activity);
+            var new_activity = new Activity($scope.name_to_create, Date.parse(new Date()), "prepare", "prepare", 0);
+            new_activity.save();
             $location.path(Url.go_to_activity_detail_page(new_activity));
         }
     };
 
     function check_if_empty(newValue, oldValue, scope) {
         $scope.is_warning_show = false;
-        $scope.is_name_empty = !$scope.input_activity_name;
+        $scope.is_name_empty = !$scope.name_to_create;
     };
 
     $scope.initiate_data();
 
-    $scope.$watch('input_activity_name', check_if_empty, true);
+    $scope.$watch('name_to_create', check_if_empty, true);
 
   });

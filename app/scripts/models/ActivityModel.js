@@ -1,17 +1,23 @@
-function Activity(name_of_activity) {
-    this.name = name_of_activity;
-    this.createdAt = Date.parse(new Date()).toString();
-    this.register = "prepare";
-    this.bid = "prepare";
-    this.count = 0;
-
+function Activity(name, createdAt, register, bid, count) {
+    this.name = name;
+    this.createdAt = createdAt;
+    this.register = register;
+    this.bid = bid;
+    this.count = count;
 }
 
 Activity.get_all_items = function () {
     return JSON.parse(localStorage.getItem("activity_list")) || [];
 };
 
-Activity.save_all_items = function (activity_list) {
+Activity.prototype.save = function () {
+    var activity_list = Activity.get_all_items();
+    var activity_found = _(activity_list).findWhere({name: this.name})
+    activity_found? activity_found = this: activity_list.push(this);
+    localStorage.setItem("activity_list", JSON.stringify(activity_list));
+};
+
+Activity.save_all = function(activity_list) {
     localStorage.setItem("activity_list", JSON.stringify(activity_list));
 };
 
@@ -25,46 +31,32 @@ Activity.get_current_item = function () {
 
 Activity.find_by_name = function (name_to_find) {
     var activity_list = Activity.get_all_items();
-    return _.findWhere(activity_list, {name: name_to_find});
+    var object_found = _.findWhere(activity_list, {name: name_to_find});
+    return new Activity(object_found.name, object_found.createdAt, object_found.register, object_found.bid, object_found.count);
 };
 
-Activity.add_new_item = function (new_activity) {
+Activity.alter_status = function (name_of_activity, type_to_alter, status_to_alter) {
     var activity_list = Activity.get_all_items();
-    activity_list.push(new_activity);
-    Activity.save_all_items(activity_list);
-    Activity.update_current_activity(new_activity);
+    var activity_found = _(activity_list).findWhere({name: name_of_activity})
+    type_to_alter == "register"? activity_found.register = status_to_alter: activity_found.bid = status_to_alter;
+    type_to_alter == "bid" && status_to_alter == "run"? activity_found.count += 1 : false;
+    Activity.save_all(activity_list);
+    Activity.update_current_activity(activity_found);  
 };
 
-Activity.start_register = function (activity_to_start_register) {
-    var activity_list = Activity.get_all_items();
-    var activity_found = _(activity_list).findWhere({name: activity_to_start_register.name})
-    activity_found.register = "run";
-    Activity.save_all_items(activity_list);
-    Activity.update_current_activity(activity_found); 
+Activity.prototype.start_register = function () {
+    Activity.alter_status(this.name, "register", "run");
 };
 
-Activity.stop_register = function (activity_to_stop_register) {
-    var activity_list = Activity.get_all_items();
-    var activity_found = _(activity_list).findWhere({name: activity_to_stop_register.name})
-    activity_found.register = "over";
-    Activity.save_all_items(activity_list);
-    Activity.update_current_activity(activity_found); 
+Activity.prototype.stop_register = function () {
+    Activity.alter_status(this.name, "register", "over");
 };
 
-Activity.start_bid = function (activity_to_start_bid) {
-    var activity_list = Activity.get_all_items();
-    var activity_found = _(activity_list).findWhere({name: activity_to_start_bid.name});
-    activity_found.bid = "run";
-    activity_found.count += 1;
-    Activity.save_all_items(activity_list);
-    Activity.update_current_activity(activity_found); 
+Activity.prototype.start_bid = function () {
+    Activity.alter_status(this.name, "bid", "run");
 };
-Activity.stop_bid = function (activity_to_stop_bid) {
-    var activity_list = Activity.get_all_items();
-    var activity_found = _(activity_list).findWhere({name: activity_to_stop_bid.name});
-    activity_found.bid = "over";
-    Activity.save_all_items(activity_list);
-    Activity.update_current_activity(activity_found); 
+Activity.prototype.stop_bid = function () {
+    Activity.alter_status(this.name, "bid", "over");
 };
 
 Activity.check_ifnot_null = function () {

@@ -26,7 +26,7 @@ angular.module('partyBidApp')
     };
 
     $scope.start_bid = function () {
-        Activity.start_bid($scope.activity_of_this_page);
+        $scope.activity_of_this_page.start_bid();
         $location.path(Url.go_to_bid_detail_page($scope.activity_of_this_page, $scope.activity_of_this_page.count + 1));
     };
 
