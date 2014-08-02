@@ -41,6 +41,13 @@ Bid.read_records_of_bid = function (activity_to_search, number_of_bid) {
 	return _(bid_list).where({activity: activity_to_search.name, number: number_of_bid});
 };
 
+Bid.read_stats_of_bid = function (activity_to_search, number_of_bid) {
+	var record_list = Bid.read_records_of_bid(activity_to_search, number_of_bid);
+	return _(record_list).uniq(function (bid_record) {
+		return bid_record.price;
+	});
+};
+
 Bid.get_price_of_message = function (text_of_message) {
 	return text_of_message.substring(2).replace(' ', '');
 };
