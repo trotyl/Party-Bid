@@ -21,4 +21,4 @@ angular.module('partyBidApp')
 
 	$scope.initiate_data();
 
-});
+  });

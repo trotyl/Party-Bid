@@ -15,7 +15,10 @@ angular.module('partyBidApp')
 	};
 
 	$scope.end_bid = function () {
-        window.confirm("您确定要结束竞价么？！") && $scope.activity_of_page.stop_bid();
+		if(window.confirm("您确定要结束竞价么？！")) {
+        	$scope.activity_of_page.stop_bid();
+        	$location.path(Url.go_to_bid_result_page($scope.activity_of_page, $scope.number_of_bid));
+		}
         $scope.initiate_data();
 	};
 
@@ -30,4 +33,4 @@ angular.module('partyBidApp')
 
 	$scope.initiate_data();
 
-});
+  });

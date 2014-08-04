@@ -1,6 +1,6 @@
 'use strict';
 
-var partyBidApp = angular
+angular
   .module('partyBidApp', [
     'ngAnimate',
     'ngCookies',
