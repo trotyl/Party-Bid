@@ -71,6 +71,12 @@ body {
     margin-bottom: 20px;
 }
 
+.footer-result {
+  margin-top: 10px;
+  text-align: center;
+  vertical-align: center;
+  font-size: 18px;
+}
 
 /* Make the masthead heading the same height as the navigation */
 /*.header h3 {

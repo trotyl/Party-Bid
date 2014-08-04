@@ -53,8 +53,6 @@ Register.check_if_repeat = function (phone_to_check) {
 Register.refresh_ui_list = function () {
 	var register_ui_scope = angular.element("#register").scope();
 	if(typeof(register_ui_scope.update_when_receive) == "function")  {
-		register_ui_scope.$apply(function () {
-			register_ui_scope.update_when_receive();
-		});
+		register_ui_scope.$apply(function () { register_ui_scope.update_when_receive(); });
 	}
 };

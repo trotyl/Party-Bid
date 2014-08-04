@@ -21,8 +21,8 @@ Url.go_to_bid_detail_page = function (the_activity, the_bid_number) {
   return '/detail/' + the_activity.name + '/bid/' + the_bid_number;
 };
 
-Url.go_to_bid_result_page = function (the_activity, the_bid_number) {
-  return '/detail/' + the_activity.name + '/bid/' + the_bid_number + '/result';
+Url.go_to_bid_result_page = function (the_activity, the_bid_number, is_new_access) {
+	return '/detail/' + the_activity.name + '/bid/' + the_bid_number + '/result/' + is_new_access;
 };
 
 Url.go_to_bid_stats_page = function (the_activity, the_bid_number) {
@@ -53,6 +53,10 @@ angular.module('partyBidApp')
         controller: 'BidDetailController'
       })
       .when('/detail/:name/bid/:number/result', {
+        templateUrl: 'views/bid_result.html',
+        controller: 'BidResultController'
+      })
+      .when('/detail/:name/bid/:number/result/:new', {
         templateUrl: 'views/bid_result.html',
         controller: 'BidResultController'
       })

@@ -42,20 +42,18 @@ Bid.read_records_of_bid = function (activity_to_search, number_of_bid) {
 
 Bid.get_grouped_list = function (activity_to_search, number_of_bid) {
 	var record_list = Bid.read_records_of_bid(activity_to_search, number_of_bid);
-	return _(record_list).groupBy(function (bid) {return bid.price;});
+	return _(record_list).groupBy(function (bid) { return bid.price; });
 };
 
 Bid.read_stats_of_bid = function (activity_to_search, number_of_bid) {
 	var grouped_list = Bid.get_grouped_list(activity_to_search, number_of_bid);
 	var pairs_list = _.pairs(grouped_list);
-	console.log(_(pairs_list).map(function (pair) {return {price: pair[0], count: pair[1].length}}));
-	return _(pairs_list).map(function (pair) {return {price: pair[0], count: pair[1].length}});
+	return _(pairs_list).map(function (pair) { return {price: pair[0], count: pair[1].length}; });
 };
 
 Bid.compute_result = function (activity_to_search, number_of_bid) {
 	var grouped_list = Bid.get_grouped_list(activity_to_search, number_of_bid);
-	var raw_result = _(grouped_list).find(function (value) {return value.length == 1});
-	return "竞价结果：" + raw_result[0].name + " ¥" + raw_result[0].price + " " + raw_result[0].phone;
+	return _(grouped_list).find(function (value) { return value.length == 1; })[0];
 };
 
 Bid.get_price_of_message = function (text_of_message) {
@@ -90,8 +88,6 @@ Bid.check_if_repeat = function (phone_to_check) {
 Bid.refresh_ui_list = function () {
 	var bid_ui_scope = angular.element("#bid").scope();
 	if(typeof(bid_ui_scope.update_when_receive) == "function")  {
-		bid_ui_scope.$apply(function () {
-			bid_ui_scope.update_when_receive();
-		});
+		bid_ui_scope.$apply(function () { bid_ui_scope.update_when_receive(); });
 	}
 };

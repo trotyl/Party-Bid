@@ -17,5 +17,27 @@ header.header
           tr
             td {{record.phone}}
 
-footer
-  .footer-nav {{result}}
+
+footer(ng-show="is_modal_over")
+  .footer-nav.footer-result
+    p 
+      span 竞价结果：
+      span {{result.name}}&nbsp;
+      span {{result.price | currency:"¥"}}&nbsp;
+      span {{result.phone}}
+
+#myModal.modal.fade(tabindex="-1",role="dialog",aria-labelledby="myModalLabel",aria-hidden="true")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type="button",data-dismiss="modal",ng-click="manual_close()")
+          span(aria-hidden="true") &times;
+          span.sr-only
+        //h4#myModalLabel.modal-title
+      .modal-body
+        p {{result.name}} 
+          span.pull-right {{result.price | currency:"¥"}}
+        p {{result.phone}}
+        p 竞价成功！
+
+

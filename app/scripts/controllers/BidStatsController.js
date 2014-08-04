@@ -16,7 +16,7 @@ angular.module('partyBidApp')
 	};
 
 	$scope.navigate_to_result = function () {
-        $location.path(Url.go_to_bid_result_page($scope.activity_of_page, $scope.number_of_bid));
+        $location.path(Url.go_to_bid_result_page($scope.activity_of_page, $scope.number_of_bid, false));
 	};
 
 	$scope.initiate_data();

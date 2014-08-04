@@ -12,4 +12,9 @@ header.header
         span.pull-right {{record.count}}
 
 footer
-  .footer-nav {{result}}
+  .footer-nav.footer-result
+    p 
+      span 竞价结果：
+      span {{result.name}}&nbsp;
+      span {{result.price | currency:"¥"}}&nbsp;
+      span {{result.phone}}
