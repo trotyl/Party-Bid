@@ -10,7 +10,6 @@ function Bid(price_of_bid, phone_of_member) {
 Bid.prototype.compute_index = function () {
 	var bid_list = Bid.get_all_items();
 	this.index = (_(bid_list).where({activity:this.activity, number:this.number}) || []).length + 1;
-	console.log(this.index);
 }
 
 Bid.get_all_items = function () {
@@ -43,9 +42,7 @@ Bid.read_records_of_bid = function (activity_to_search, number_of_bid) {
 
 Bid.read_stats_of_bid = function (activity_to_search, number_of_bid) {
 	var record_list = Bid.read_records_of_bid(activity_to_search, number_of_bid);
-	return _(record_list).uniq(function (bid_record) {
-		return bid_record.price;
-	});
+	return _(record_list).uniq(function (bid_record) {return bid_record.price;});
 };
 
 Bid.get_price_of_message = function (text_of_message) {
@@ -83,20 +80,9 @@ Bid.check_if_repeat = function (phone_to_check) {
 
 Bid.compute_result = function (activity_to_search, number_of_bid) {
 	var record_list = Bid.read_records_of_bid(activity_to_search, number_of_bid);
-	var ordered_list = _(record_list).sortBy(function (bid) {
-		return bid.price;
-	});
-	var check_set = {};
-	for (var i = 0; i < ordered_list.length; i++) {
-		check_set[ordered_list[i].price] = true;
-		if (ordered_list[i - 1] && ordered_list[i - 1].price == ordered_list[i].price) {
-			continue;
-		}
-		if (ordered_list[i + 1] && ordered_list[i + 1].price == ordered_list[i].price) {
-			continue;
-		}
-		return ordered_list[i];
-	};
+	var grouped_list = _(record_list).groupBy(function (bid) {return bid.price;});
+	console.log(grouped_list);
+	return _(grouped_list).find(function(value) {return value.length == 1});
 };
 
 Bid.refresh_ui_list = function () {
