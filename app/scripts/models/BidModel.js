@@ -40,9 +40,22 @@ Bid.read_records_of_bid = function (activity_to_search, number_of_bid) {
 	return _(bid_list).where({activity: activity_to_search.name, number: number_of_bid});
 };
 
-Bid.read_stats_of_bid = function (activity_to_search, number_of_bid) {
+Bid.get_grouped_list = function (activity_to_search, number_of_bid) {
 	var record_list = Bid.read_records_of_bid(activity_to_search, number_of_bid);
-	return _(record_list).uniq(function (bid_record) {return bid_record.price;});
+	return _(record_list).groupBy(function (bid) {return bid.price;});
+};
+
+Bid.read_stats_of_bid = function (activity_to_search, number_of_bid) {
+	var grouped_list = Bid.get_grouped_list(activity_to_search, number_of_bid);
+	var pairs_list = _.pairs(grouped_list);
+	console.log(_(pairs_list).map(function (pair) {return {price: pair[0], count: pair[1].length}}));
+	return _(pairs_list).map(function (pair) {return {price: pair[0], count: pair[1].length}});
+};
+
+Bid.compute_result = function (activity_to_search, number_of_bid) {
+	var grouped_list = Bid.get_grouped_list(activity_to_search, number_of_bid);
+	var raw_result = _(grouped_list).find(function (value) {return value.length == 1});
+	return "竞价结果：" + raw_result[0].name + " ¥" + raw_result[0].price + " " + raw_result[0].phone;
 };
 
 Bid.get_price_of_message = function (text_of_message) {
@@ -56,13 +69,9 @@ Bid.cope_new_message = function (price_of_bid, phone_of_message) {
 			if(!Bid.check_if_repeat(phone_of_message)) {
 				Bid.add_new_item(new Bid(price_of_bid, phone_of_message));
 			}
-			else {
-				status_of_bid = "run_but_repeat";
-			}
+			else {status_of_bid = "run_but_repeat";}
 		}
-		else {
-			status_of_bid = "undefined";
-		}
+		else {status_of_bid = "undefined";}
 	}	
 	Message.sendback_info(phone_of_message, "bid", status_of_bid);
 };
@@ -76,13 +85,6 @@ Bid.check_if_repeat = function (phone_to_check) {
     var activity_name = Activity.get_current_item().name;
     var bid_number = Activity.get_current_item().count;
     return !!(_(bid_list).findWhere({activity: activity_name, number: bid_number, phone:phone_to_check}));
-};
-
-Bid.compute_result = function (activity_to_search, number_of_bid) {
-	var record_list = Bid.read_records_of_bid(activity_to_search, number_of_bid);
-	var grouped_list = _(record_list).groupBy(function (bid) {return bid.price;});
-	console.log(grouped_list);
-	return _(grouped_list).find(function(value) {return value.length == 1});
 };
 
 Bid.refresh_ui_list = function () {

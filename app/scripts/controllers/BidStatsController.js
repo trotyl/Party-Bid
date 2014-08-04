@@ -8,6 +8,7 @@ angular.module('partyBidApp')
 		$scope.number_of_bid = parseInt($routeParams.number);
 		$scope.record_list = Bid.read_stats_of_bid($scope.activity_of_page, $scope.number_of_bid);
 		$scope.count_of_records = !_.isEmpty($scope.member_list)? "(" + $scope.member_list.length.toString() + "人)": "";
+		$scope.result = Bid.compute_result($scope.activity_of_page, $scope.number_of_bid);
 	};
 
 	$scope.back_to_bid = function () {

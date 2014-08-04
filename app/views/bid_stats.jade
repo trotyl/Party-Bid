@@ -8,15 +8,8 @@ header.header
 .content
   .container
     ul.list-group
-      li.list-group-item(ng-repeat="record in record_list | orderBy:'+price'") 
-        span.pull-right {{record.price | currency:"¥"}}
-        table(cellspacing="10",cellpadding="10")
-          tr
-            td(rowspan="2") {{($index + 1).toString() + ".&nbsp;&nbsp;&nbsp;&nbsp;"}}
-            td {{record.name}}
-          tr
-            td {{record.phone}}
+      li.list-group-item(ng-repeat="record in record_list | orderBy:'+price'") {{record.price | currency:"¥"}}
+        span.pull-right {{record.count}}
 
 footer
-  .footer-nav.footer-nav-2tabs 竞价结果占位符
-    
+  .footer-nav {{result}}

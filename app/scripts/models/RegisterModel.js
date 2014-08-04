@@ -39,9 +39,7 @@ Register.cope_new_message = function (name_of_member, phone_of_message) {
 		if(!Register.check_if_repeat(phone_of_message)) {
 			Register.add_new_item(new Register(name_of_member, phone_of_message));
 		}
-		else {
-			status_of_register = "run_but_repeat";
-		}
+		else {status_of_register = "run_but_repeat";}
 	}	
 	Message.sendback_info(phone_of_message, "register", status_of_register);
 };
