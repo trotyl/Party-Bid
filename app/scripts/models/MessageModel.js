@@ -19,22 +19,21 @@ Message.get_name_of_register = function (text_of_message) {
 	return text_of_message.substring(2).replace(' ', '');
 };
 
-Message.cope_new_register = function (name_of_member, phone_of_message) {
-	var status_of_register = Activity.get_current_item().register || "prepare";
-	if(status_of_register == "run") {
-		if(!Register.check_if_repeat(phone_of_message)) {
-			Register.add_new_item(new Register(name_of_member, phone_of_message));
-		}
-		else {status_of_register = "run_but_repeat";}
-	}	
-	Message.sendback_info(phone_of_message, "register", status_of_register);
-};
-
 Message.get_price_of_bid = function (text_of_message) {
-	return text_of_message.substring(2).replace(' ', '');
+	return Message.get_name_of_register(text_of_message);
 };
 
-Message.check_bad_request = function (status_of_bid, phone_of_message) {
+Message.bad_register_request = function (status_of_register, phone_of_message) {
+	if(status_of_bid != "run") {
+		return status_of_bid;
+	}
+	if(Register.check_if_repeat(phone_of_message)) {
+		return "run_but_repeat";
+	}
+	return false;
+};
+
+Message.bad_bid_request = function (status_of_bid, phone_of_message) {
 	if(status_of_bid != "run") {
 		return status_of_bid;
 	}
@@ -47,16 +46,26 @@ Message.check_bad_request = function (status_of_bid, phone_of_message) {
 	return false;
 };
 
+Message.cope_new_register = function (name_of_member, phone_of_message) {
+	var status_of_register = Activity.get_current_item().register || "prepare";
+	var bad_status = Message.bad_register_request(status_of_register, phone_of_message)
+	Message.sendback_info(phone_of_message, "register", bad_status || status_of_register);
+	if (!bad_status) {
+		var new_register = new Register(name_of_member, phone_of_message);
+		new_register.save();
+		Register.refresh_ui_list();
+	};
+};
+
 Message.cope_new_bid = function (price_of_bid, phone_of_message) {
 	var status_of_bid = Activity.get_current_item().bid || "prepare";
-	var bad_status = "";
-	if(bad_status = Message.check_bad_request(Message.check_bad_request)) {
-		Message.sendback_info(phone_of_message, "bid", bad_status);
-		return 0;
-	}
-	var new_bid = new Bid(price_of_bid, phone_of_message);
-	new_bid.save();
-	Bid.refresh_ui_list();
+	var bad_status = Message.bad_bid_request(status_of_bid, phone_of_message)
+	Message.sendback_info(phone_of_message, "bid", bad_status || status_of_bid);
+	if (!bad_status) {
+		var new_bid = new Bid(price_of_bid, phone_of_message);
+		new_bid.save();
+		Bid.refresh_ui_list();		
+	};
 };
 
 Message.sendback_info = function (phone, type, status) {
