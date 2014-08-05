@@ -19,12 +19,7 @@ angular.module('partyBidApp')
     };
 
     $scope.check_in_progress = function (the_activity) {
-    	if (the_activity.register == "run" || the_activity.bid == "run") {
-    		return "button-flat-highlight";
-    	}
-    	else {
-    		return "button-flat";
-    	}
+    	return (the_activity.register == "run" || the_activity.bid == "run")? "button-flat-highlight": "button-flat";
     };
 
     $scope.initiate_data();
