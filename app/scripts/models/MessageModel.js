@@ -24,6 +24,7 @@ Message.get_price_of_bid = function (text_of_message) {
 };
 
 Message.cope_new_register = function (name_of_member, phone_of_message) {
+	console.log(Activity.get_current_item());
 	var status_of_register = Activity.get_current_item().register || "prepare";
 	var right_status = (status_of_register == "run");
 	if (Register.check_if_repeat(phone_of_message)) {
