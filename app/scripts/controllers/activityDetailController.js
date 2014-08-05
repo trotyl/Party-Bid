@@ -7,12 +7,12 @@ angular.module('partyBidApp')
 		$scope.activity_of_page = Activity.find_by_name($routeParams.name);
 		$scope.display_of_button = $scope.activity_of_page.register == "run"? "结束": "开始";
 		$scope.style_of_button = $scope.display_of_button == "开始"? "button-action": "button-caution";
-		$scope.can_not_start = $scope.display_of_button == "开始"? Activity.check_if_one_on_progress(): false;
+		$scope.can_not_start = $scope.display_of_button == "开始" && Activity.on_going();
 		$scope.update_when_receive();
 	};
 
 	$scope.back_to_home = function () {
-		$location.path(Url.home_page());
+		$location.path(Url.home());
 	};
 
 	$scope.navigate_to_bid = function () {

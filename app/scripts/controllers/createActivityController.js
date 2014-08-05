@@ -9,7 +9,7 @@ angular.module('partyBidApp')
     };
 
     $scope.back_to_home = function () {
-        $location.path(Url.home_page());
+        $location.path(Url.home());
     };
 
     $scope.activity_create = function () {

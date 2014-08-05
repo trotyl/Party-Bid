@@ -50,8 +50,8 @@ Activity.all = function () {
 };
 
 Activity.now = function () {
-    var current_activity = localStorage.getItem("current_activity") || "";
-    return Data.find_if_in(Activity.all(),{name: current_activity});
+    var activity_now = localStorage.getItem("current_activity") || "";
+    return _(Activity.all()).findWhere({name: activity_now});
 };
 
 Activity.exist = function () {
@@ -62,7 +62,7 @@ Activity.check_if_repeat = function (activity_name_to_check) {
     return Data.find_if_in(Activity.all(), {name: activity_name_to_check});
 };
 
-Activity.check_if_one_on_progress = function () {
+Activity.on_going = function () {
     return _(Activity.all()).some(function (activity_on_iterator) { 
         return activity_on_iterator.register == "run" || activity_on_iterator.bid == "run";});
 };

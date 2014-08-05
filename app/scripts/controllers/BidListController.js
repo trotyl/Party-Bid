@@ -6,11 +6,11 @@ angular.module('partyBidApp')
     $scope.initiate_data = function () {
         $scope.activity_of_page = Activity.find_by_name($routeParams.name);
         $scope.bid_list = Bid.read_bids_of_activity($scope.activity_of_page);
-        $scope.cannot_start = Activity.check_if_one_on_progress();
+        $scope.cannot_start = Activity.on_going();
     };
 
     $scope.back_to_home = function () {
-        $location.path(Url.home_page());
+        $location.path(Url.home());
     };
 
     $scope.show_bid_detail = function ($index) {
