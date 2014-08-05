@@ -42,8 +42,7 @@ Bid.read_records_of_bid = function (activity_to_search, number_of_bid) {
 
 Bid.read_stats_of_bid = function (activity_to_search, number_of_bid) {
 	var grouped_list = Bid.get_grouped_list(activity_to_search, number_of_bid);
-	var pairs_list = _.pairs(grouped_list);
-	return _(pairs_list).map(function (pair) { return {price: pair[0], count: pair[1].length}; });
+	return _(_.pairs(grouped_list)).map(function (pair) { return {price: pair[0], count: pair[1].length}; });
 };
 
 Bid.compute_result = function (activity_to_search, number_of_bid) {
