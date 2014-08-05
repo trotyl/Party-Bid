@@ -1,15 +1,15 @@
 header.header
   label.nav-title 竞价列表
-  button.button.button-rounded.button-action.header-right-trotyl(ng-click="start_bid()",ng-disabled="cannot_start") 开始
+  button.button.button-rounded.button-action.header-right-trotyl(ng-click="start_bid()",ng-disabled="no_start") 开始
   button.button.button-rounded.button-highlight.header-left-trotyl(ng-click="back_to_home()") 返回
 
 .container.content
   .list-button(ng-repeat="bid in bid_list | orderBy:'-name'")
-    button(ng-click="show_bid_detail($index)",class="button glow button-rounded btn-block button-large {{check_in_progress($index)}}") {{bid.name}}
+    button(ng-click="go_to_detail($index)",class="button glow button-rounded btn-block button-large {{check_status($index)}}") {{bid.name}}
 
 footer
   ul.footer-nav.footer-nav-2tabs
     li
-      a(ng-click="navigate_to_register()") 报名
+      a(ng-click="go_to_register()") 报名
     li.active
-      a(ng-click="navigate_to_bid()") 竞价
+      a(ng-click="go_to_bid()") 竞价
