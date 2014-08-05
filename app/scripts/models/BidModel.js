@@ -24,10 +24,6 @@ Bid.get_all_items = function () {
 	return JSON.parse(localStorage.getItem("bid_list")) || [];
 };
 
-Bid.save_all = function (bid_list) {
-	return localStorage.setItem("bid_list", JSON.stringify(bid_list));
-};
-
 Bid.get_grouped_list = function (activity_to_search, number_of_bid) {
 	var record_list = Bid.read_records_of_bid(activity_to_search, number_of_bid);
 	return _(record_list).groupBy(function (bid) { return bid.price; });

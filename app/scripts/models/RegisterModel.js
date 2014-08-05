@@ -12,10 +12,6 @@ Register.get_all_items = function () {
 	return JSON.parse(localStorage.getItem("register_list")) || [];
 };
 
-Register.save_all = function (register_list) {
-	return localStorage.setItem("register_list", JSON.stringify(register_list));
-};
-
 Register.read_members_of_activity = function (activity_to_search) {
 	var register_list = Register.get_all_items();
 	return _.where(register_list, {activity: activity_to_search.name});

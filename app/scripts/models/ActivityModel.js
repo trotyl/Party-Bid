@@ -34,10 +34,6 @@ Activity.get_all_items = function () {
     return JSON.parse(localStorage.getItem("activity_list")) || [];
 };
 
-Activity.save_all = function(activity_list) {
-    localStorage.setItem("activity_list", JSON.stringify(activity_list));
-};
-
 Activity.update_current_activity = function (activity_to_update) {
     localStorage.setItem("current_activity", activity_to_update.name);
 };
@@ -47,7 +43,7 @@ Activity.alter_status = function (name_of_activity, type_to_alter, status_to_alt
     var activity_found = Data.check_if_contains(activity_list, {name: name_of_activity});
     type_to_alter == "register"? activity_found.register = status_to_alter: activity_found.bid = status_to_alter;
     type_to_alter == "bid" && status_to_alter == "run"? activity_found.count += 1 : false;
-    Activity.save_all(activity_list);
+    Data.save(activity_list, "activity_list");
     Activity.update_current_activity(activity_found);  
 };
 
