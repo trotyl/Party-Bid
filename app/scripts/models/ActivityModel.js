@@ -56,7 +56,7 @@ Activity.exist = function () {
 };
 
 Activity.check_if_repeat = function (activity_name_to_check) {
-    return Data.find_if_in(Activity.all(), {name: activity_name_to_check});
+    return _(Activity.all()).findWhere({name: activity_name_to_check});
 };
 
 Activity.on_going = function () {

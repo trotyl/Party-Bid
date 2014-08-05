@@ -4,24 +4,22 @@ angular.module('partyBidApp')
   .controller('CreateActivityController', function ($scope, $location) {
 
     $scope.initiate_data = function () {
-        $scope.is_warning_show = false;
-        $scope.back_show = Activity.exist();
+        $scope.show_warning = false;
+        $scope.show_back = Activity.exist();
     };
 
-    $scope.back_to_home = function () {
+    $scope.go_home = function () {
         $location.path(Url.home());
     };
 
-    $scope.activity_create = function () {
-        var is_name_repeat = Activity.check_if_repeat($scope.name_to_create);
-        if(is_name_repeat) {
+    $scope.create_activity = function () {
+        if(Activity.check_if_repeat($scope.name_to_create)) {
             $scope.is_warning_show = true;
+            return;
         }
-        else {
-            var new_activity = new Activity($scope.name_to_create, Date.parse(new Date()), "prepare", "prepare", 0);
-            new_activity.save();
-            $location.path(Url.activity_detail_page(new_activity));
-        }
+        var new_activity = new Activity($scope.name_to_create, Date.parse(new Date()), "prepare", "prepare", 0);
+        new_activity.save();
+        $location.path(Url.activity_detail(new_activity));
     };
 
     function check_if_empty(newValue, oldValue, scope) {
