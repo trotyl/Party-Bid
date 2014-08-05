@@ -4,20 +4,19 @@ function Register(name_of_member, phone_of_member) {
 	this.activity = Activity.get_current_item().name;
 }
 
+Register.prototype.save = function () {
+	var register_list = Register.get_all_items();
+	register_list.push(new_register);
+	Register.save_all(register_list);
+};
+
 Register.get_all_items = function () {
 	return JSON.parse(localStorage.getItem("register_list")) || [];
 };
 
-Register.save_all_items = function (register_list) {
+Register.save_all = function (register_list) {
 	return localStorage.setItem("register_list", JSON.stringify(register_list));
 };
-
-Register.add_new_item = function (new_register) {
-	var register_list = Register.get_all_items();
-	register_list.push(new_register);
-	Register.save_all_items(register_list);
-	Register.refresh_ui_list();
-}
 
 Register.read_members_of_activity = function (activity_to_search) {
 	var register_list = Register.get_all_items();
