@@ -9,9 +9,7 @@ function Activity(name, createdAt, register, bid, count) {
 //实例方法
 
 Activity.prototype.save = function () {
-    var activity_list = Activity.get_all_items();
-    activity_list.push(this);
-    Activity.save_all(activity_list);
+    Data.add(Activity.get_all_items(), this, "activity_list");
 };
 
 Activity.prototype.start_register = function () {
@@ -40,11 +38,6 @@ Activity.save_all = function(activity_list) {
     localStorage.setItem("activity_list", JSON.stringify(activity_list));
 };
 
-Activity.get_current_item = function () {
-    var current_activity = localStorage.getItem("current_activity") || "";
-    return Data.check_if_contains(Activity.get_all_items(),{name: current_activity.name});
-};
-
 Activity.update_current_activity = function (activity_to_update) {
     localStorage.setItem("current_activity", activity_to_update.name);
 };
@@ -59,6 +52,11 @@ Activity.alter_status = function (name_of_activity, type_to_alter, status_to_alt
 };
 
 //外调方法
+
+Activity.get_current_item = function () {
+    var current_activity = localStorage.getItem("current_activity") || "";
+    return Data.check_if_contains(Activity.get_all_items(),{name: current_activity.name});
+};
 
 Activity.check_ifnot_null = function () {
     return !_.isEmpty(Activity.get_all_items());
@@ -77,4 +75,3 @@ Activity.find_by_name = function (name_to_find) {
     var object_found = Data.check_if_contains(Activity.get_all_items(), {name: name_to_find});
     return new Activity(object_found.name, object_found.createdAt, object_found.register, object_found.bid, object_found.count);
 };
-

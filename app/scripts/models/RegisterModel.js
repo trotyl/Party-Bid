@@ -5,9 +5,7 @@ function Register(name_of_member, phone_of_member) {
 }
 
 Register.prototype.save = function () {
-	var register_list = Register.get_all_items();
-	register_list.push(new_register);
-	Register.save_all(register_list);
+    Data.add(Register.get_all_items(), this, "register_list");
 };
 
 Register.get_all_items = function () {

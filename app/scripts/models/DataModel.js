@@ -13,3 +13,12 @@ Data.refresh_ui_list = function (page_type) {
 		});
 	}
 };
+
+Data.add = function (list, data_to_save, type) {
+    list.push(data_to_save);
+    Data.save_all(activity_list, type);
+};
+
+Data.save = function (list, type) {
+	localStorage.setItem(type, JSON.stringify(list));
+}

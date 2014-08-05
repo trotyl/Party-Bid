@@ -3,25 +3,19 @@ function Bid(price_of_bid, phone_of_member, name_of_activity, number_of_bid) {
 	this.number = number_of_bid;
 	this.phone = phone_of_member;
 	this.price = price_of_bid;
-	this.find_name();
+	this.name = Register.find_name_by_phone(this.phone);
 	this.compute_index();
 }
 
 //实例方法
 
 Bid.prototype.save = function () {
-	var bid_list = Bid.get_all_items();
-	bid_list.push(this);
-	Bid.save_all(bid_list);
+    Data.add(Bid.get_all_items(), this, "bid_list");
 };
 
 Bid.prototype.compute_index = function () {
 	var bid_list = Bid.get_all_items();
 	this.index = (_(bid_list).where({activity:this.activity, number:this.number}) || []).length + 1;
-};
-
-Bid.prototype.find_name = function () {
-	this.name = Register.find_name_by_phone(this.phone);
 };
 
 //内调方法
@@ -71,9 +65,8 @@ Bid.check_if_register = function (phone_to_check) {
 };
 
 Bid.check_if_repeat = function (phone_to_check) {
-	var bid_list = Bid.get_all_items();
     var activity_name = Activity.get_current_item().name;
     var bid_number = Activity.get_current_item().count;
     var object_to_check = {activity: activity_name, number: bid_number, phone:phone_to_check};
-    return Data.check_if_contains(bid_list, object_to_check);
+    return Data.check_if_contains(Bid.get_all_items(), object_to_check);
 };
