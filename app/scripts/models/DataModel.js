@@ -21,4 +21,8 @@ Data.add = function (list, data_to_save, type) {
 
 Data.save = function (list, type) {
 	localStorage.setItem(type, JSON.stringify(list));
-}
+};
+
+Data.read_list = function (type) {
+	return JSON.parse(localStorage.getItem(type)) || [];
+};
