@@ -5,19 +5,16 @@ function Register(name_of_member, phone_of_member) {
 }
 
 //实例方法
-
 Register.prototype.save = function () {
     Data.add(Register.all(), this, "register_list");
 };
 
 //内调方法
-
 Register.all = function () {
     return JSON.parse(localStorage.getItem("register_list")) || [];
 };
 
 //外调方法
-
 Register.read_members_of_activity = function (activity_to_search) {
 	return _.where(Register.all(), {activity: activity_to_search.name});
 };
