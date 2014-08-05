@@ -8,18 +8,15 @@ function Bid(price_of_bid, phone_of_member, name_of_activity, number_of_bid) {
 }
 
 //实例方法
-
 Bid.prototype.save = function () {
     Data.add(Bid.all(), this, "bid_list");
 };
 
 Bid.prototype.compute_index = function () {
-	var bid_list = Bid.all();
-	this.index = (_(bid_list).where({activity:this.activity, number:this.number}) || []).length + 1;
+	this.index = (_(Bid.all()).where({activity:this.activity, number:this.number}) || []).length + 1;
 };
 
 //内调方法
-
 Bid.all = function () {
     return JSON.parse(localStorage.getItem("bid_list")) || [];
 };
@@ -30,7 +27,6 @@ Bid.get_grouped_list = function (activity_to_search, number_of_bid) {
 };
 
 //外调方法
-
 Bid.read_bids_of_activity = function (activity_to_search) {
 	var result = [];
 	for (var i = 0; i < activity_to_search.count; i++) {
@@ -40,18 +36,21 @@ Bid.read_bids_of_activity = function (activity_to_search) {
 };
 
 Bid.read_records_of_bid = function (activity_to_search, number_of_bid) {
-	var bid_list = Bid.all();
-	return _(bid_list).where({activity: activity_to_search.name, number: number_of_bid});
+	return _(Bid.all()).where({activity: activity_to_search.name, number: number_of_bid});
 };
 
 Bid.read_stats_of_bid = function (activity_to_search, number_of_bid) {
 	var grouped_list = Bid.get_grouped_list(activity_to_search, number_of_bid);
-	return _(_.pairs(grouped_list)).map(function (pair) { return {price: pair[0], count: pair[1].length}; });
+	return _(_.pairs(grouped_list)).map(function (pair) { 
+		return {price: pair[0], count: pair[1].length}; 
+	});
 };
 
 Bid.compute_result = function (activity_to_search, number_of_bid) {
 	var grouped_list = Bid.get_grouped_list(activity_to_search, number_of_bid);
-	var result_list = _(grouped_list).find(function (value) { return value.length == 1; }) || [{warn: "竞价失败！"}]
+	var result_list = _(grouped_list).find(function (value) { 
+		return value.length == 1; 
+	}) || [{warn: "竞价失败！"}];
 	return result_list[0];
 };
 
@@ -60,7 +59,5 @@ Bid.check_if_register = function (phone_to_check) {
 };
 
 Bid.check_if_repeat = function (phone_to_check) {
-    var activity_name = Activity.now().name;
-    var bid_number = Activity.now().count;
-    return _(Bid.all()).findWhere({activity: activity_name, number: bid_number, phone:phone_to_check});
+    return _(Bid.all()).findWhere({activity: Activity.now().name, number: Activity.now().count, phone:phone_to_check});
 };
