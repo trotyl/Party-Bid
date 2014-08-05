@@ -25,17 +25,17 @@ Activity.prototype.stop_bid = function () {
 };
 
 //内调方法
-Activity.update_current_activity = function (activity_to_update) {
-    localStorage.setItem("current_activity", activity_to_update.name);
+Activity.update_current_activity = function (activity) {
+    localStorage.setItem("current_activity", activity.name);
 };
 
-Activity.alter_status = function (name_of_activity, type_to_alter, status_to_alter) {
+Activity.alter_status = function (name, type, status) {
     var activity_list = Activity.all();
-    var activity_found = _(activity_list).findWhere({name: name_of_activity});
-    type_to_alter == "register"? activity_found.register = status_to_alter: activity_found.bid = status_to_alter;
-    type_to_alter == "bid" && status_to_alter == "run" && activity_found.count += 1;
+    var found = _(activity_list).findWhere({name: name});
+    type == "register"? found.register = status: found.bid = status;
+    type == "bid" && status == "run" && (found.count += 1);
     Data.save(activity_list, "activity_list");
-    Activity.update_current_activity(activity_found);  
+    Activity.update_current_activity(found);  
 };
 
 //外调方法
@@ -53,15 +53,15 @@ Activity.exist = function () {
 };
 
 Activity.on_going = function () {
-    return _(Activity.all()).some(function (activity_on_iterator) { 
-        return activity_on_iterator.register == "run" || activity_on_iterator.bid == "run";});
+    return _(Activity.all()).some(function (activity) { 
+        return activity.register == "run" || activity.bid == "run";});
 };
 
-Activity.check_if_repeat = function (activity_name_to_check) {
-    return _(Activity.all()).findWhere({name: activity_name_to_check});
+Activity.check_if_repeat = function (activity_name) {
+    return _(Activity.all()).findWhere({name: activity_name});
 };
 
-Activity.find_by_name = function (name_to_find) {
-    var object_found = _(Activity.all()).findWhere({name: name_to_find});
-    return new Activity(object_found.name, object_found.createdAt, object_found.register, object_found.bid, object_found.count);
+Activity.find_by_name = function (activity_name) {
+    var found = _(Activity.all()).findWhere({name: activity_name});
+    return new Activity(found.name, found.createdAt, found.register, found.bid, found.count);
 };
