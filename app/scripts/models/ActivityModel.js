@@ -36,21 +36,17 @@ Activity.get_all_items = function () {
     return JSON.parse(localStorage.getItem("activity_list")) || [];
 };
 
-Activity.find_in_list = function (activity_list, name_of_activity) {
-    return _(activity_list).findWhere({name: name_of_activity})
-};
-
 Activity.save_all = function(activity_list) {
     localStorage.setItem("activity_list", JSON.stringify(activity_list));
 };
 
-Activity.update_current_activity = function (activity_to_update) {
-    localStorage.setItem("current_activity", activity_to_update.name);
-};
-
 Activity.get_current_item = function () {
     var current_activity = localStorage.getItem("current_activity") || "";
-    return Activity.find_in_list(Activity.get_all_items(), current_activity);
+    return Data.check_if_contains(Activity.get_all_items(),{name: current_activity.name});
+};
+
+Activity.update_current_activity = function (activity_to_update) {
+    localStorage.setItem("current_activity", activity_to_update.name);
 };
 
 Activity.alter_status = function (name_of_activity, type_to_alter, status_to_alter) {
@@ -69,15 +65,16 @@ Activity.check_ifnot_null = function () {
 };
 
 Activity.check_if_repeat = function (activity_name_to_check) {
-    return !!(_(Activity.get_all_items()).findWhere({name: activity_name_to_check}));
+    return Data.check_if_contains(Activity.get_all_items(), {name: activity_name_to_check});
 };
 
 Activity.check_if_one_on_progress = function () {
-    return _(Activity.get_all_items()).some(function (activity_on_iterator) { return activity_on_iterator.register == "run" || activity_on_iterator.bid == "run";});
+    return _(Activity.get_all_items()).some(function (activity_on_iterator) { 
+        return activity_on_iterator.register == "run" || activity_on_iterator.bid == "run";});
 };
 
 Activity.find_by_name = function (name_to_find) {
-    var object_found = Activity.find_in_list(Activity.get_all_items(), name_to_find);
+    var object_found = Data.check_if_contains(Activity.get_all_items(), {name: name_to_find});
     return new Activity(object_found.name, object_found.createdAt, object_found.register, object_found.bid, object_found.count);
 };
 

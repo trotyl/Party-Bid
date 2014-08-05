@@ -23,7 +23,7 @@ Register.read_members_of_activity = function (activity_to_search) {
 	return _.where(register_list, {activity: activity_to_search.name});
 };
 
-Register.find_member_name_by_phone = function(phone_to_search) {
+Register.find_name_by_phone = function(phone_to_search) {
 	var register_list = Register.get_all_items();
 	return _(register_list).findWhere({phone: phone_to_search}).name;
 };

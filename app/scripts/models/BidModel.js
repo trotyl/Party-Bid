@@ -21,7 +21,7 @@ Bid.prototype.compute_index = function () {
 };
 
 Bid.prototype.find_name = function () {
-	this.name = Register.find_member_name_by_phone(this.phone);
+	this.name = Register.find_name_by_phone(this.phone);
 };
 
 //内调方法
