@@ -19,7 +19,7 @@ Message.get_body = function (text_of_message) {
 
 Message.cope_new_register = function (name, phone) {
 	var status = Activity.now().register || "prepare";
-	var bad_status = (status == "run");
+	var bad_status = (status != "run");
 	if (!bad_status && (bad_status = Register.check_if_repeat(phone))) {
 		status = "repeat";
 	}
@@ -33,7 +33,7 @@ Message.cope_new_register = function (name, phone) {
 
 Message.cope_new_bid = function (price, phone) {
 	var status = Activity.now().bid || "prepare";
-	var bad_status = (status == "run");
+	var bad_status = (status != "run");
 	if (!bad_status && (bad_status = !Bid.check_if_register(phone))) {
 		status = "undefined";
 	}
