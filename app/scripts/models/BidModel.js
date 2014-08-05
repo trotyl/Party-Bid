@@ -3,14 +3,28 @@ function Bid(price_of_bid, phone_of_member) {
 	this.number = Activity.get_current_item().count;
 	this.phone = phone_of_member;
 	this.price = price_of_bid;
-	this.name = Register.find_member_name_by_phone(this.phone);
+	this.find_name();
 	this.compute_index();
 }
+
+//实例方法
+
+Bid.prototype.save = function () {
+	var bid_list = Bid.get_all_items();
+	bid_list.push(this);
+	Bid.save_all(bid_list);
+};
 
 Bid.prototype.compute_index = function () {
 	var bid_list = Bid.get_all_items();
 	this.index = (_(bid_list).where({activity:this.activity, number:this.number}) || []).length + 1;
-}
+};
+
+Bid.prototype.find_name = function () {
+	this.name = Register.find_member_name_by_phone(this.phone);
+};
+
+//内调方法
 
 Bid.get_all_items = function () {
 	return JSON.parse(localStorage.getItem("bid_list")) || [];
@@ -18,13 +32,6 @@ Bid.get_all_items = function () {
 
 Bid.save_all = function (bid_list) {
 	return localStorage.setItem("bid_list", JSON.stringify(bid_list));
-};
-
-Bid.add_new_item = function (new_bid) {
-	var bid_list = Bid.get_all_items();
-	bid_list.push(new_bid);
-	Bid.save_all(bid_list);
-	Bid.refresh_ui_list();			
 };
 
 Bid.read_bids_of_activity = function (activity_to_search) {
@@ -66,7 +73,9 @@ Bid.cope_new_message = function (price_of_bid, phone_of_message) {
 	if(status_of_bid == "run") {
 		if(Bid.check_if_register(phone_of_message)) {
 			if(!Bid.check_if_repeat(phone_of_message)) {
-				Bid.add_new_item(new Bid(price_of_bid, phone_of_message));
+				var new_bid = new Bid(price_of_bid, phone_of_message);
+				new_bid.save();
+				Bid.refresh_ui_list();
 			}
 			else {status_of_bid = "run_but_repeat";}
 		}
