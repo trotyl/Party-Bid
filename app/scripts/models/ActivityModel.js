@@ -51,7 +51,7 @@ Activity.update_current_activity = function (activity_to_update) {
 
 Activity.alter_status = function (name_of_activity, type_to_alter, status_to_alter) {
     var activity_list = Activity.get_all_items();
-    var activity_found = Activity.find_in_list(activity_list, name_of_activity);
+    var activity_found = Data.check_if_contains(activity_list, {name: name_of_activity});
     type_to_alter == "register"? activity_found.register = status_to_alter: activity_found.bid = status_to_alter;
     type_to_alter == "bid" && status_to_alter == "run"? activity_found.count += 1 : false;
     Activity.save_all(activity_list);
