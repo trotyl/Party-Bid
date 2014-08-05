@@ -10,15 +10,19 @@ function Bid(price_of_bid, phone_of_member, name_of_activity, number_of_bid) {
 //实例方法
 
 Bid.prototype.save = function () {
-    Data.add(Data.read("bid_list"), this, "bid_list");
+    Data.add(Bid.all(), this, "bid_list");
 };
 
 Bid.prototype.compute_index = function () {
-	var bid_list = Data.read("bid_list");
+	var bid_list = Bid.all();
 	this.index = (_(bid_list).where({activity:this.activity, number:this.number}) || []).length + 1;
 };
 
 //内调方法
+
+Bid.all = function () {
+    return JSON.parse(localStorage.getItem("bid_list")) || [];
+};
 
 Bid.get_grouped_list = function (activity_to_search, number_of_bid) {
 	var record_list = Bid.read_records_of_bid(activity_to_search, number_of_bid);
@@ -36,7 +40,7 @@ Bid.read_bids_of_activity = function (activity_to_search) {
 };
 
 Bid.read_records_of_bid = function (activity_to_search, number_of_bid) {
-	var bid_list = Data.read("bid_list");
+	var bid_list = Bid.all();
 	return _(bid_list).where({activity: activity_to_search.name, number: number_of_bid});
 };
 
@@ -58,5 +62,5 @@ Bid.check_if_register = function (phone_to_check) {
 Bid.check_if_repeat = function (phone_to_check) {
     var activity_name = Activity.get_current_item().name;
     var bid_number = Activity.get_current_item().count;
-    return _(Data.read("bid_list")).findWhere({activity: activity_name, number: bid_number, phone:phone_to_check});
+    return _(Bid.all()).findWhere({activity: activity_name, number: bid_number, phone:phone_to_check});
 };

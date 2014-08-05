@@ -5,7 +5,7 @@ angular.module('partyBidApp')
 
     $scope.initiate_data = function () {
         $scope.is_warning_show = false;
-        $scope.back_show = Activity.check_ifnot_null();
+        $scope.back_show = Activity.exist();
     };
 
     $scope.back_to_home = function () {
