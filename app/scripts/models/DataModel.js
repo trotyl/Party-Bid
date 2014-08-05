@@ -1,5 +1,4 @@
-function Data () {
-}
+function Data () {}
 
 Data.refresh_ui_list = function (page_type) {
 	var ui_scope = angular.element("#" + page_type).scope();
