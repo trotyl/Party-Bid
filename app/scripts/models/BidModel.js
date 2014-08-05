@@ -34,6 +34,13 @@ Bid.save_all = function (bid_list) {
 	return localStorage.setItem("bid_list", JSON.stringify(bid_list));
 };
 
+Bid.get_grouped_list = function (activity_to_search, number_of_bid) {
+	var record_list = Bid.read_records_of_bid(activity_to_search, number_of_bid);
+	return _(record_list).groupBy(function (bid) { return bid.price; });
+};
+
+//外调方法
+
 Bid.read_bids_of_activity = function (activity_to_search) {
 	var result = [];
 	for (var i = 0; i < activity_to_search.count; i++) {
@@ -47,11 +54,6 @@ Bid.read_records_of_bid = function (activity_to_search, number_of_bid) {
 	return _(bid_list).where({activity: activity_to_search.name, number: number_of_bid});
 };
 
-Bid.get_grouped_list = function (activity_to_search, number_of_bid) {
-	var record_list = Bid.read_records_of_bid(activity_to_search, number_of_bid);
-	return _(record_list).groupBy(function (bid) { return bid.price; });
-};
-
 Bid.read_stats_of_bid = function (activity_to_search, number_of_bid) {
 	var grouped_list = Bid.get_grouped_list(activity_to_search, number_of_bid);
 	var pairs_list = _.pairs(grouped_list);
@@ -62,26 +64,6 @@ Bid.compute_result = function (activity_to_search, number_of_bid) {
 	var grouped_list = Bid.get_grouped_list(activity_to_search, number_of_bid);
 	var result_list = _(grouped_list).find(function (value) { return value.length == 1; }) || [{warn: "竞价失败！"}]
 	return result_list[0];
-};
-
-Bid.get_price_of_message = function (text_of_message) {
-	return text_of_message.substring(2).replace(' ', '');
-};
-
-Bid.cope_new_message = function (price_of_bid, phone_of_message) {
-	var status_of_bid = Activity.get_current_item().bid || "prepare";
-	if(status_of_bid == "run") {
-		if(Bid.check_if_register(phone_of_message)) {
-			if(!Bid.check_if_repeat(phone_of_message)) {
-				var new_bid = new Bid(price_of_bid, phone_of_message);
-				new_bid.save();
-				Bid.refresh_ui_list();
-			}
-			else {status_of_bid = "run_but_repeat";}
-		}
-		else {status_of_bid = "undefined";}
-	}	
-	Message.sendback_info(phone_of_message, "bid", status_of_bid);
 };
 
 Bid.check_if_register = function (phone_to_check) {

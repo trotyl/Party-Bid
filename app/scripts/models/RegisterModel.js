@@ -29,21 +29,6 @@ Register.find_member_name_by_phone = function(phone_to_search) {
 	return _(register_list).findWhere({phone: phone_to_search}).name;
 };
 
-Register.get_name_of_message = function (text_of_message) {
-	return text_of_message.substring(2).replace(' ', '');
-};
-
-Register.cope_new_message = function (name_of_member, phone_of_message) {
-	var status_of_register = Activity.get_current_item().register || "prepare";
-	if(status_of_register == "run") {
-		if(!Register.check_if_repeat(phone_of_message)) {
-			Register.add_new_item(new Register(name_of_member, phone_of_message));
-		}
-		else {status_of_register = "run_but_repeat";}
-	}	
-	Message.sendback_info(phone_of_message, "register", status_of_register);
-};
-
 Register.check_if_repeat = function (phone_to_check) {
 	var register_list = Register.get_all_items();
     var name_of_activity = Activity.get_current_item().name;
