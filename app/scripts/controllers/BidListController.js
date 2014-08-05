@@ -14,11 +14,11 @@ angular.module('partyBidApp')
     };
 
     $scope.show_bid_detail = function ($index) {
-        $location.path(Url.bid_detail_page($scope.activity_of_page, $scope.activity_of_page.count - $index));
+        $location.path(Url.bid_detail($scope.activity_of_page, $scope.activity_of_page.count - $index));
     };
 
     $scope.navigate_to_register = function () {
-        $location.path(Url.activity_detail_page($scope.activity_of_page));
+        $location.path(Url.activity_detail($scope.activity_of_page));
     };
 
     $scope.check_in_progress = function ($index) {

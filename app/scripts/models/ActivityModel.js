@@ -12,12 +12,9 @@ Activity.prototype.save = function () {
     Data.add(Activity.all(), this, "activity_list");
 };
 
-Activity.prototype.start_register = function () {
-    Activity.alter_status(this.name, "register", "run");
-};
-
-Activity.prototype.stop_register = function () {
-    Activity.alter_status(this.name, "register", "over");
+Activity.prototype.turn_register = function () {
+    var next_status = (this.register == "run"? "over": "run");
+    Activity.alter_status(this.name, "register", next_status);
 };
 
 Activity.prototype.start_bid = function () {
@@ -36,7 +33,7 @@ Activity.update_current_activity = function (activity_to_update) {
 
 Activity.alter_status = function (name_of_activity, type_to_alter, status_to_alter) {
     var activity_list = Activity.all();
-    var activity_found = Data.find_if_in(activity_list, {name: name_of_activity});
+    var activity_found = _(activity_list).findWhere({name: name_of_activity});
     type_to_alter == "register"? activity_found.register = status_to_alter: activity_found.bid = status_to_alter;
     type_to_alter == "bid" && status_to_alter == "run"? activity_found.count += 1 : false;
     Data.save(activity_list, "activity_list");
