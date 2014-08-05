@@ -1,6 +1,6 @@
-function Bid(price_of_bid, phone_of_member) {
-	this.activity = Activity.get_current_item().name;
-	this.number = Activity.get_current_item().count;
+function Bid(price_of_bid, phone_of_member, name_of_activity, number_of_bid) {
+	this.activity = name_of_activity;
+	this.number = number_of_bid;
 	this.phone = phone_of_member;
 	this.price = price_of_bid;
 	this.find_name();

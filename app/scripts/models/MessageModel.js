@@ -23,16 +23,6 @@ Message.get_price_of_bid = function (text_of_message) {
 	return Message.get_name_of_register(text_of_message);
 };
 
-Message.bad_register_request = function (status_of_register, phone_of_message) {
-	if(status_of_bid != "run") {
-		return status_of_bid;
-	}
-	if(Register.check_if_repeat(phone_of_message)) {
-		return "run_but_repeat";
-	}
-	return false;
-};
-
 Message.bad_bid_request = function (status_of_bid, phone_of_message) {
 	if(status_of_bid != "run") {
 		return status_of_bid;
@@ -48,9 +38,13 @@ Message.bad_bid_request = function (status_of_bid, phone_of_message) {
 
 Message.cope_new_register = function (name_of_member, phone_of_message) {
 	var status_of_register = Activity.get_current_item().register || "prepare";
-	var bad_status = Message.bad_register_request(status_of_register, phone_of_message)
-	Message.sendback_info(phone_of_message, "register", bad_status || status_of_register);
-	if (!bad_status) {
+	var right_status = (status_of_register == "run");
+	if(Register.check_if_repeat(phone_of_message)) {
+		status_of_register = "repeat";
+		right_status = false;
+	}
+	Message.sendback_info(phone_of_message, "register", status_of_register);
+	if (right_status) {
 		var new_register = new Register(name_of_member, phone_of_message);
 		new_register.save();
 		Register.refresh_ui_list();
@@ -62,7 +56,8 @@ Message.cope_new_bid = function (price_of_bid, phone_of_message) {
 	var bad_status = Message.bad_bid_request(status_of_bid, phone_of_message)
 	Message.sendback_info(phone_of_message, "bid", bad_status || status_of_bid);
 	if (!bad_status) {
-		var new_bid = new Bid(price_of_bid, phone_of_message);
+		var current_activity = Activity.get_current_item();
+		var new_bid = new Bid(price_of_bid, phone_of_message, current_activity.name, current_activity.count);
 		new_bid.save();
 		Bid.refresh_ui_list();		
 	};
