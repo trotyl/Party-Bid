@@ -11,18 +11,18 @@ angular.module('partyBidApp')
 	};
 
 	$scope.back_to_bid = function () {
-		$location.path(Url.go_to_bid_list_page($scope.activity_of_page));
+		$location.path(Url.bid_list_page($scope.activity_of_page));
+	};
+
+	$scope.navigate_to_register = function () {
+		$location.path(Url.activity_detail_page($scope.activity_of_page));
 	};
 
 	$scope.end_bid = function () {
 		if(window.confirm("您确定要结束竞价么？！")) {
         	$scope.activity_of_page.stop_bid();
-        	$location.path(Url.go_to_bid_result_page($scope.activity_of_page, $scope.number_of_bid, true));
+        	$location.path(Url.bid_result_page($scope.activity_of_page, $scope.number_of_bid, true));
 		}
-	};
-
-	$scope.navigate_to_register = function () {
-		$location.path(Url.go_to_activity_detail_page($scope.activity_of_page));
 	};
 
 	$scope.update_when_receive = function () {

@@ -9,7 +9,7 @@ angular.module('partyBidApp')
     };
 
     $scope.back_to_home = function () {
-        $location.path(Url.go_to_home_page());
+        $location.path(Url.home_page());
     };
 
     $scope.activity_create = function () {
@@ -20,7 +20,7 @@ angular.module('partyBidApp')
         else {
             var new_activity = new Activity($scope.name_to_create, Date.parse(new Date()), "prepare", "prepare", 0);
             new_activity.save();
-            $location.path(Url.go_to_activity_detail_page(new_activity));
+            $location.path(Url.activity_detail_page(new_activity));
         }
     };
 

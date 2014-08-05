@@ -5,17 +5,17 @@ angular.module('partyBidApp')
 
     $scope.initiate_data = function () {
         $scope.activity_list = Activity.get_all_items();
-        _.isEmpty($scope.activity_list) && $location.path(Url.go_to_create_activity_page());
-        
+        _.isEmpty($scope.activity_list) && $location.path(Url.create_activity_page());
+
         $scope.cannot_create = Activity.check_if_one_on_progress();
     };
 
     $scope.activity_create = function () {
-    	$location.path(Url.go_to_create_activity_page());
+    	$location.path(Url.create_activity_page());
     };
 
     $scope.show_activity_detail = function (the_activity) {
-    	$location.path(Url.go_to_activity_detail_page(the_activity));
+    	$location.path(Url.activity_detail_page(the_activity));
     };
 
     $scope.check_in_progress = function (the_activity) {

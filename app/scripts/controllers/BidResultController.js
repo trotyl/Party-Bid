@@ -29,11 +29,11 @@ angular.module('partyBidApp')
 	};
 
 	$scope.back_to_bid = function () {
-		$location.path(Url.go_to_bid_list_page($scope.activity_of_page));
+		$location.path(Url.bid_list_page($scope.activity_of_page));
 	};
 
 	$scope.navigate_to_stats = function () {
-        $location.path(Url.go_to_bid_stats_page($scope.activity_of_page, $scope.number_of_bid));
+        $location.path(Url.bid_stats_page($scope.activity_of_page, $scope.number_of_bid));
 	};
 
 	$scope.initiate_data();
