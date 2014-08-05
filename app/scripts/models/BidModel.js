@@ -76,10 +76,3 @@ Bid.check_if_repeat = function (phone_to_check) {
     var bid_number = Activity.get_current_item().count;
     return !!(_(bid_list).findWhere({activity: activity_name, number: bid_number, phone:phone_to_check}));
 };
-
-Bid.refresh_ui_list = function () {
-	var bid_ui_scope = angular.element("#bid").scope();
-	if(typeof(bid_ui_scope.update_when_receive) == "function")  {
-		bid_ui_scope.$apply(function () { bid_ui_scope.update_when_receive(); });
-	}
-};

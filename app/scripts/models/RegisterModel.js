@@ -34,10 +34,3 @@ Register.check_if_repeat = function (phone_to_check) {
     var name_of_activity = Activity.get_current_item().name;
     return !!(_(register_list).findWhere({phone: phone_to_check, activity: name_of_activity}));
 };
-
-Register.refresh_ui_list = function () {
-	var register_ui_scope = angular.element("#register").scope();
-	if(typeof(register_ui_scope.update_when_receive) == "function")  {
-		register_ui_scope.$apply(function () { register_ui_scope.update_when_receive(); });
-	}
-};

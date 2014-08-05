@@ -34,7 +34,7 @@ Message.cope_new_register = function (name_of_member, phone_of_message) {
 	if (right_status) {
 		var new_register = new Register(name_of_member, phone_of_message);
 		new_register.save();
-		Register.refresh_ui_list();
+		View.refresh_ui_list("register");
 	};
 };
 
@@ -54,7 +54,7 @@ Message.cope_new_bid = function (price_of_bid, phone_of_message) {
 		var current_activity = Activity.get_current_item();
 		var new_bid = new Bid(price_of_bid, phone_of_message, current_activity.name, current_activity.count);
 		new_bid.save();
-		Bid.refresh_ui_list();		
+		View.refresh_ui_list("bid");		
 	};
 };
 
