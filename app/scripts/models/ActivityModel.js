@@ -49,7 +49,7 @@ Activity.all = function () {
     return JSON.parse(localStorage.getItem("activity_list")) || [];
 };
 
-Activity.get_current_item = function () {
+Activity.now = function () {
     var current_activity = localStorage.getItem("current_activity") || "";
     return Data.find_if_in(Activity.all(),{name: current_activity});
 };

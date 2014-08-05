@@ -60,7 +60,7 @@ Bid.check_if_register = function (phone_to_check) {
 };
 
 Bid.check_if_repeat = function (phone_to_check) {
-    var activity_name = Activity.get_current_item().name;
-    var bid_number = Activity.get_current_item().count;
+    var activity_name = Activity.now().name;
+    var bid_number = Activity.now().count;
     return _(Bid.all()).findWhere({activity: activity_name, number: bid_number, phone:phone_to_check});
 };
