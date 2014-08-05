@@ -21,7 +21,7 @@ header.header
 footer(ng-show="is_modal_over")
   .footer-nav.footer-result
     p 
-      span 竞价结果：
+      span {{result.warn || "竞价结果："}}
       span {{result.name}}&nbsp;
       span {{result.price | currency:"¥"}}&nbsp;
       span {{result.phone}}
@@ -38,6 +38,6 @@ footer(ng-show="is_modal_over")
         p {{result.name}} 
           span.pull-right {{result.price | currency:"¥"}}
         p {{result.phone}}
-        p 竞价成功！
+        p {{result.warn || "竞价成功！"}}
 
 

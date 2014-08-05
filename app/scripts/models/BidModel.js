@@ -53,7 +53,8 @@ Bid.read_stats_of_bid = function (activity_to_search, number_of_bid) {
 
 Bid.compute_result = function (activity_to_search, number_of_bid) {
 	var grouped_list = Bid.get_grouped_list(activity_to_search, number_of_bid);
-	return _(grouped_list).find(function (value) { return value.length == 1; })[0];
+	var result_list = _(grouped_list).find(function (value) { return value.length == 1; }) || [{warn: "竞价失败！"}]
+	return result_list[0];
 };
 
 Bid.get_price_of_message = function (text_of_message) {
