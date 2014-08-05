@@ -12,7 +12,7 @@ angular.module('partyBidApp')
 		$scope.is_modal_over = $routeParams.new != 'true';
 		if (!$scope.is_modal_over) {
 			$('#myModal').modal('show');
-			window.setTimeout($scope.modal_close, 3000);
+			window.setTimeout(function () {$scope.$apply($scope.modal_close)}, 3000);
 		}
 	};
 
@@ -26,10 +26,6 @@ angular.module('partyBidApp')
 
 	$scope.modal_close = function () {
 		$('#myModal').modal('hide');
-		$scope.$apply(function() { $scope.is_modal_over = true; });
-	};
-
-	$scope.manual_close = function () {
 		$scope.is_modal_over = true;
 	};
 
