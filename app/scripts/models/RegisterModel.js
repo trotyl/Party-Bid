@@ -31,6 +31,6 @@ Register.find_member_name_by_phone = function(phone_to_search) {
 
 Register.check_if_repeat = function (phone_to_check) {
 	var register_list = Register.get_all_items();
-    var name_of_activity = Activity.get_current_item().name;
-    return !!(_(register_list).findWhere({phone: phone_to_check, activity: name_of_activity}));
+    var object_to_check = {activity: Activity.get_current_item().name, phone: phone_to_check};
+    return Data.check_if_contains(register_list, object_to_check);
 };

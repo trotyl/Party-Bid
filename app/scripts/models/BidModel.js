@@ -74,5 +74,6 @@ Bid.check_if_repeat = function (phone_to_check) {
 	var bid_list = Bid.get_all_items();
     var activity_name = Activity.get_current_item().name;
     var bid_number = Activity.get_current_item().count;
-    return !!(_(bid_list).findWhere({activity: activity_name, number: bid_number, phone:phone_to_check}));
+    var object_to_check = {activity: activity_name, number: bid_number, phone:phone_to_check};
+    return Data.check_if_contains(bid_list, object_to_check);
 };
