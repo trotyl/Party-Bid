@@ -2,8 +2,8 @@ header.header
   label.nav-title 竞价
     span {{number_of_bid}}
     span {{count_of_records}} 
-  button.button.button-rounded.button-highlight.header-left-trotyl(ng-click="back_to_bid()") 返回
-  button.button.button-rounded.button-action.header-right-trotyl(ng-click="end_bid()",ng-disabled="can_not_stop") 结束
+  button.button.button-rounded.button-highlight.header-left-trotyl(ng-click="go_to_list()") 返回
+  button.button.button-rounded.button-action.header-right-trotyl(ng-click="end_bid()",ng-disabled="no_stop") 结束
 
 #bid.content
   .container
