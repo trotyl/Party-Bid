@@ -7,7 +7,7 @@ angular.module('partyBidApp')
 		$scope.activity_of_page = Activity.find_by_name($routeParams.name);
 		$scope.number_of_bid = parseInt($routeParams.number);
 		$scope.can_not_stop = ($scope.activity_of_page.bid != "run") || ($scope.number_of_bid != $scope.activity_of_page.count);
-		$scope.update_when_receive();
+		$scope.update_data();
 	};
 
 	$scope.back_to_bid = function () {
@@ -25,7 +25,7 @@ angular.module('partyBidApp')
 		}
 	};
 
-	$scope.update_when_receive = function () {
+	$scope.update_data = function () {
 		$scope.record_list = Bid.read_records_of_bid($scope.activity_of_page, $scope.number_of_bid);
 		$scope.count_of_records = !_.isEmpty($scope.member_list)? "(" + $scope.member_list.length.toString() + "人)": "";
 	};
