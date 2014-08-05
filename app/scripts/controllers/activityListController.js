@@ -6,8 +6,8 @@ angular.module('partyBidApp')
     $scope.initiate_data = function () {
         $scope.activity_list = Activity.get_all_items();
         _.isEmpty($scope.activity_list) && $location.path(Url.go_to_create_activity_page());
+        
         $scope.cannot_create = Activity.check_if_one_on_progress();
-        $scope.names = ["竞价1", "竞价2", "竞价3"];
     };
 
     $scope.activity_create = function () {

@@ -15,6 +15,10 @@ angular.module('partyBidApp')
 		$location.path(Url.go_to_home_page());
 	};
 
+	$scope.navigate_to_bid = function () {
+		$location.path(Url.go_to_bid_list_page($scope.activity_of_page));
+	};
+
 	$scope.alter_activity_status = function () {
 		var is_to_start = ($scope.display_of_button == "开始");
 		(is_to_start || window.confirm("确认要结束本次报名吗？！")) && $scope.start_alter_status(is_to_start);
@@ -32,15 +36,11 @@ angular.module('partyBidApp')
 		}
 	};
 
-	$scope.navigate_to_bid = function () {
-		$location.path(Url.go_to_bid_list_page($scope.activity_of_page));
-	};
-
 	$scope.update_when_receive = function () {
 		$scope.member_list = Register.read_members_of_activity($scope.activity_of_page);
 		$scope.count_of_members = !_.isEmpty($scope.member_list)? "(" + $scope.member_list.length.toString() + "人)": "";
 	};
-	
+
 	$scope.initiate_data();
 
   });
