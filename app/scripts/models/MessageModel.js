@@ -49,18 +49,6 @@ Message.cope_new_bid = function (price, phone) {
 };
 
 Message.sendback_info = function (phone, type, status) {
-	var text;
-	switch(type + "_" + status) {
-		case "register_run": text = "恭喜！报名成功！^o^"; break;
-		case "register_prepare": text = "活动尚未开始，请稍后~ >.<"; break;
-		case "register_over": text = "Sorry，活动报名已结束.. =.="; break;
-		case "register_repeat": text = "您已经报过名了，请勿浪费短信费.. -_-||"; break;
-		case "bid_run": text = "恭喜！您已出价成功！^o^"; break;
-		case "bid_prepare": text = "竞价尚未开始，请稍后~ >.<"; break;
-		case "bid_over": text = "Sorry，活动竞价已结束.. =.="; break;
-		case "bid_undefined": text = "对不起，您没有报名此次活动.. T.T"; break;
-		case "bid_repeat": text = "您已成功出价，请勿重复出价.. -_-||"; break;
-		default: text = "如果你能收到此消息说明程序有问题！！！"; break;
-	}
+	var text = dictionary[type + '_' + status];
 	native_accessor.send_sms(phone, text);
 };

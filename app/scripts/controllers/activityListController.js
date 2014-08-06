@@ -1,13 +1,16 @@
 'use strict';
 
 angular.module('partyBidApp')
-  .controller('ActivityListController', function ($scope, $location) {
+  .controller('ActivityListController', function ($scope, $location, $http) {
 
     $scope.initiate_data = function () {
         !Activity.exist() && $scope.go_to_create();
         
         $scope.activity_list = Activity.all();
         $scope.no_create = Activity.on_going();
+        $http.get('datas/jsons/message_back.json').success(function(data) {
+            dictionary = data;
+        });
     };
 
     $scope.go_to_create = function () {

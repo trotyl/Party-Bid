@@ -1,0 +1,11 @@
+{
+	"register_run": "恭喜！报名成功！^o^",
+	"register_prepare": "活动尚未开始，请稍后~ >.<",
+	"register_over": "Sorry，活动报名已结束.. =.=",
+	"register_repeat": "您已经报过名了，请勿浪费短信费.. -_-||",
+	"bid_run": "恭喜！您已出价成功！^o^",
+	"bid_prepare": "竞价尚未开始，请稍后~ >.<",
+	"bid_over": "Sorry，活动竞价已结束.. =.=",
+	"bid_undefined": "对不起，您没有报名此次活动.. T.T",
+	"bid_repeat": "您已成功出价，请勿重复出价.. -_-||"
+}
