@@ -7,8 +7,7 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch',
-    'partyBidApp.directives'
+    'ngTouch'
   ]);
 
 var native_access;
