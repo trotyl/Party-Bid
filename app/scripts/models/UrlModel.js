@@ -52,11 +52,7 @@ angular.module('partyBidApp')
         templateUrl: 'views/bid_detail.html',
         controller: 'BidDetailController'
       })
-      .when('/detail/:name/bid/:number/result', {
-        templateUrl: 'views/bid_result.html',
-        controller: 'BidResultController'
-      })
-      .when('/detail/:name/bid/:number/result/:new', {
+      .when('/detail/:name/bid/:number/result/:new?', {
         templateUrl: 'views/bid_result.html',
         controller: 'BidResultController'
       })
