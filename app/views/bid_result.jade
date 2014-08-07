@@ -18,10 +18,9 @@ include ./components/footer_result.jade
   .modal-dialog
     .modal-content
       .modal-header
-        button.close(type="button",data-dismiss="modal",ng-click="modal_close()")
+        button.pull-right.close(type="button",data-dismiss="modal",ng-click="modal_close()")
           span(aria-hidden="true") &times;
           span.sr-only
-        //h4#myModalLabel.modal-title
       .modal-body
         p {{result.name}} 
           span.pull-right {{result.price | currency:"¥"}}

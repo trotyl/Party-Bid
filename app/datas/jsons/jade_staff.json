@@ -2,13 +2,13 @@
 	"activity_detail.html": {
 		"header":{
 			"left": {
-				"show": "true",
+				"show": true,
 				"css": "button-highlight",
 				"click": "go_home()",
 				"word": "返回"
 			},
 			"right": {
-				"show": "true",
+				"show": true,
 				"disable": "no_start",
 				"css": "{{style_of_button}}",
 				"click": "alter_status()",
@@ -20,7 +20,7 @@
 			}
 		},
 		"footer": {
-			"in_register": "true"
+			"in_register": true
 		}
 	},
 
@@ -28,7 +28,7 @@
 		"header":{
 			"left": {},
 			"right": {
-				"show": "true",
+				"show": true,
 				"disable": "no_create",
 				"css": "button-highlight",
 				"click": "go_to_create()",
@@ -43,13 +43,13 @@
 	"bid_detail.html": {
 		"header":{
 			"left": {
-				"show": "true",
+				"show": true,
 				"css": "button-highlight",
 				"click": "go_to_list()",
 				"word": "返回"
 			},
 			"right": {
-				"show": "true",
+				"show": true,
 				"disable": "no_stop",
 				"css": "button-action",
 				"click": "end_bid()",
@@ -66,13 +66,13 @@
 	"bid_list.html": {
 		"header":{
 			"left": {
-				"show": "true",
+				"show": true,
 				"css": "button-highlight",
 				"click": "go_home()",
 				"word": "返回"
 			},
 			"right": {
-				"show": "true",
+				"show": true,
 				"disable": "no_start",
 				"css": "button-action",
 				"click": "start_bid()",
@@ -88,14 +88,14 @@
 	"bid_result.html": {
 		"header":{
 			"left": {
-				"show": "true",
+				"show": true,
 				"disable": "false",
 				"css": "button-highlight",
 				"click": "go_to_list()",
 				"word": "返回"
 			},
 			"right": {
-				"show": "true",
+				"show": true,
 				"disable": "no_stop",
 				"css": "button-action",
 				"click": "go_to_stats()",
@@ -115,13 +115,13 @@
 	"bid_stats.html": {
 		"header":{
 			"left": {
-				"show": "true",
+				"show": true,
 				"css": "button-highlight",
 				"click": "go_to_list()",
 				"word": "返回"
 			},
 			"right": {
-				"show": "true",
+				"show": true,
 				"disable": "no_stop",
 				"css": "button-action",
 				"click": "go_to_result()",
@@ -134,7 +134,7 @@
 			}
 		},
 		"footer": {
-			"show": "true"
+			"show": true
 		}
 	},
 
