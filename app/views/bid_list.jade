@@ -4,9 +4,4 @@ include ./components/header.jade
   .list-button(ng-repeat="bid in bid_list | orderBy:'-name'")
     button(ng-click="go_to_detail($index)",class="button glow button-rounded btn-block button-large {{check_status($index)}}") {{bid.name}}
 
-footer
-  ul.footer-nav.footer-nav-2tabs
-    li
-      a(ng-click="go_to_register()") 报名
-    li.active
-      a(ng-click="go_to_bid()") 竞价
+include ./components/footer_tabs.jade

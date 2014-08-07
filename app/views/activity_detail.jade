@@ -6,9 +6,5 @@ include ./components/header.jade
       li.list-group-item(ng-repeat="member in member_list | orderBy:'-name'") {{member.name}}
         span.pull-right {{member.phone}}
 
-footer
-  ul.footer-nav.footer-nav-2tabs
-    li.active
-      a(ng-click="go_to_register()") 报名
-    li
-      a(ng-click="go_to_bid()") 竞价
+include ./components/footer_tabs.jade
+

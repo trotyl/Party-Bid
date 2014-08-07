@@ -18,6 +18,9 @@
 				"title": "活动报名",
 				"count": "{{count_of_members}}"
 			}
+		},
+		"footer": {
+			"in_register": "true"
 		}
 	},
 
@@ -33,29 +36,6 @@
 			},
 			"content": {
 				"title": "活动列表"
-			}
-		}
-	},
-
-	"bid_detail.html": {
-		"header":{
-			"left": {
-				"show": "true",
-				"css": "button-highlight",
-				"click": "go_to_list()",
-				"word": "返回"
-			},
-			"right": {
-				"show": "true",
-				"disable": "no_stop",
-				"css": "button-action",
-				"click": "end_bid()",
-				"word": "结束"
-			},
-			"content": {
-				"title": "竞价",
-				"sub": "{{number_of_bid}}",
-				"count": "{{count_of_records}}"
 			}
 		}
 	},
@@ -101,7 +81,8 @@
 			"content": {
 				"title": "竞价列表"
 			}
-		}
+		},
+		"footer": {}
 	},
 
 	"bid_result.html": {
