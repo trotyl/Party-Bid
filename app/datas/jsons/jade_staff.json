@@ -1,0 +1,22 @@
+{
+		"left": {
+			"show": "true",
+			"disable": "false",
+			"css": "button-highlight",
+			"click": "go_home()",
+			"word": "返回"
+		},
+		"right": {
+			"show": "true",
+			"disable": "no_start",
+			"css": "{{style_of_button}}",
+			"click": "alter_status()",
+			"word": "{{next_status}}"
+		},
+		"content": {
+			"title": "活动报名",
+			"sub": "",
+			"count": "{{count_of_members}}"
+		}
+
+}

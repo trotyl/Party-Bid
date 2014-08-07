@@ -21,6 +21,8 @@ module.exports = function (grunt) {
     dist: 'dist'
   };
 
+  grunt.loadNpmTasks('grunt-contrib-jade');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -74,7 +76,16 @@ module.exports = function (grunt) {
       compile: {
         options: {
           client: false,
-          pretty: true
+          pretty: true,
+          data: function(dest, src) {
+            // Return an object of data to pass to templates
+            var destStr = dest.toString();
+            console.log(typeof(dest));
+            var name = destStr.substring(destStr.indexOf('views') + 6);
+            console.log(name);
+            console.log(require('./app/datas/jsons/jade_staff.json').content);
+            return require('./app/datas/jsons/jade_staff.json');
+          }
         },
         files: [{
           cwd: "<%= yeoman.app %>/views",
@@ -449,5 +460,9 @@ module.exports = function (grunt) {
     'newer:jshint',
     'test',
     'build'
+  ]);
+
+  grunt.registerTask('trotyl', [
+    'jade'
   ]);
 };
