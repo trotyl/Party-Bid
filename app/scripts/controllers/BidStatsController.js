@@ -11,7 +11,7 @@ angular.module('partyBidApp')
 		$scope.result = Bid.compute_result($scope.this_activity, $scope.bid_number);
 	};
 
-	$scope.go_to_bid = function () {
+	$scope.go_to_list = function () {
 		$location.path(Url.bid_list($scope.this_activity));
 	};
 
