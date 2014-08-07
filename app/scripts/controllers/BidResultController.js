@@ -16,7 +16,7 @@ angular.module('partyBidApp')
 		}
 	};
 
-	$scope.go_to_bid = function () {
+	$scope.go_to_list = function () {
 		$location.path(Url.bid_list($scope.this_activity));
 	};
 
