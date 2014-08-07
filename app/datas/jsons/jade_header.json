@@ -151,5 +151,27 @@
 			"sub": "{{number_of_bid}}",
 			"count": "{{count_of_records}}"
 		}
+	},
+
+	"create_activity.html": {
+		"left": {
+			"show": "show_back",
+			"disable": "false",
+			"css": "button-highlight",
+			"click": "go_home()",
+			"word": "返回"
+		},
+		"right": {
+			"show": "false",
+			"disable": "",
+			"css": "",
+			"click": "",
+			"word": ""
+		},
+		"content": {
+			"title": "创建活动",
+			"sub": "",
+			"count": ""
+		}
 	}
 }
