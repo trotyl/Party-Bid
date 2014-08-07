@@ -6,10 +6,4 @@ include ./components/header.jade
       li.list-group-item(ng-repeat="record in record_list | orderBy:'+price'") {{record.price | currency:"¥"}}
         span.pull-right {{record.count}}
 
-footer
-  .footer-nav.footer-result
-    p 
-      span {{result.warn || "竞价结果："}}
-      span {{result.name}}&nbsp;
-      span {{result.price | currency:"¥"}}&nbsp;
-      span {{result.phone}}
+include ./components/footer_result.jade
