@@ -1,0 +1,168 @@
+{
+	"activity_detail.html": {
+		"header":{
+			"left": {
+				"show": "true",
+				"css": "button-highlight",
+				"click": "go_home()",
+				"word": "返回"
+			},
+			"right": {
+				"show": "true",
+				"disable": "no_start",
+				"css": "{{style_of_button}}",
+				"click": "alter_status()",
+				"word": "{{next_status}}"
+			},
+			"content": {
+				"title": "活动报名",
+				"count": "{{count_of_members}}"
+			}
+		}
+	},
+
+	"activity_list.html": {
+		"header":{
+			"left": {},
+			"right": {
+				"show": "true",
+				"disable": "no_create",
+				"css": "button-highlight",
+				"click": "go_to_create()",
+				"word": "创建活动"
+			},
+			"content": {
+				"title": "活动列表"
+			}
+		}
+	},
+
+	"bid_detail.html": {
+		"header":{
+			"left": {
+				"show": "true",
+				"css": "button-highlight",
+				"click": "go_to_list()",
+				"word": "返回"
+			},
+			"right": {
+				"show": "true",
+				"disable": "no_stop",
+				"css": "button-action",
+				"click": "end_bid()",
+				"word": "结束"
+			},
+			"content": {
+				"title": "竞价",
+				"sub": "{{number_of_bid}}",
+				"count": "{{count_of_records}}"
+			}
+		}
+	},
+
+	"bid_detail.html": {
+		"header":{
+			"left": {
+				"show": "true",
+				"css": "button-highlight",
+				"click": "go_to_list()",
+				"word": "返回"
+			},
+			"right": {
+				"show": "true",
+				"disable": "no_stop",
+				"css": "button-action",
+				"click": "end_bid()",
+				"word": "结束"
+			},
+			"content": {
+				"title": "竞价",
+				"sub": "{{number_of_bid}}",
+				"count": "{{count_of_records}}"
+			}
+		}
+	},
+
+	"bid_list.html": {
+		"header":{
+			"left": {
+				"show": "true",
+				"css": "button-highlight",
+				"click": "go_home()",
+				"word": "返回"
+			},
+			"right": {
+				"show": "true",
+				"disable": "no_start",
+				"css": "button-action",
+				"click": "start_bid()",
+				"word": "开始"
+			},
+			"content": {
+				"title": "竞价列表"
+			}
+		}
+	},
+
+	"bid_result.html": {
+		"header":{
+			"left": {
+				"show": "true",
+				"disable": "false",
+				"css": "button-highlight",
+				"click": "go_to_list()",
+				"word": "返回"
+			},
+			"right": {
+				"show": "true",
+				"disable": "no_stop",
+				"css": "button-action",
+				"click": "go_to_stats()",
+				"word": "统计"
+			},
+			"content": {
+				"title": "竞价",
+				"sub": "{{number_of_bid}}",
+				"count": "{{count_of_records}}"
+			}
+		}
+	},
+
+	"bid_stats.html": {
+		"header":{
+			"left": {
+				"show": "true",
+				"css": "button-highlight",
+				"click": "go_to_list()",
+				"word": "返回"
+			},
+			"right": {
+				"show": "true",
+				"disable": "no_stop",
+				"css": "button-action",
+				"click": "go_to_result()",
+				"word": "列表"
+			},
+			"content": {
+				"title": "竞价",
+				"sub": "{{number_of_bid}}",
+				"count": "{{count_of_records}}"
+			}
+		}
+	},
+
+	"create_activity.html": {
+		"header":{
+			"left": {
+				"show": "show_back",
+				"css": "button-highlight",
+				"click": "go_home()",
+				"word": "返回"
+			},
+			"right": {},
+			"content": {
+				"title": "创建活动"
+			}
+		}
+	}
+}

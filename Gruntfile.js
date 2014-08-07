@@ -32,7 +32,7 @@ module.exports = function (grunt) {
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       jade: {  
-        files: ['<%= yeoman.app %>/views/*.jade'],  
+        files: ['<%= yeoman.app %>/views/{,*/}*.jade'],  
         tasks: ['jade', 'clean:jade']  
         }, 
       bower: {
@@ -81,7 +81,7 @@ module.exports = function (grunt) {
             // Return an object of data to pass to templates
             var destStr = dest.toString();
             var name = destStr.substring(destStr.indexOf('views') + 6);
-            return require('./app/datas/jsons/jade_header.json')[name];
+            return require('./app/datas/jsons/jade_staff.json')[name];
           }
         },
         files: [{

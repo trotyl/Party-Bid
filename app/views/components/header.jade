@@ -1,6 +1,6 @@
 header.header
-	label.nav-title #{content.title}
-		span #{content.sub}
-		span #{content.count}
-	button(class="button button-rounded leftside #{left.css}",ng-show="#{left.show}",ng-disabled="#{left.disable}",ng-click="#{left.click}") #{left.word}
-	button(class="button button-rounded rightside #{right.css}",ng-show="#{right.show}",ng-disabled="#{right.disable}",ng-click="#{right.click}") #{right.word}
+	label.nav-title #{header.content.title}
+		span #{header.content.sub}
+		span #{header.content.count}
+	button(class="button button-rounded leftside #{header.left.css}",ng-show="#{header.left.show}",ng-disabled="#{header.left.disable}",ng-click="#{header.left.click}") #{header.left.word}
+	button(class="button button-rounded rightside #{header.right.css}",ng-show="#{header.right.show}",ng-disabled="#{header.right.disable}",ng-click="#{header.right.click}") #{header.right.word}
