@@ -85,5 +85,27 @@
 			"sub": "{{number_of_bid}}",
 			"count": "{{count_of_records}}"
 		}
+	},
+
+	"bid_list.html": {
+		"left": {
+			"show": "true",
+			"disable": "false",
+			"css": "button-highlight",
+			"click": "go_home()",
+			"word": "返回"
+		},
+		"right": {
+			"show": "true",
+			"disable": "no_start",
+			"css": "button-action",
+			"click": "start_bid()",
+			"word": "开始"
+		},
+		"content": {
+			"title": "竞价列表",
+			"sub": "",
+			"count": ""
+		}
 	}
 }

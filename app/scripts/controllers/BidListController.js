@@ -9,7 +9,7 @@ angular.module('partyBidApp')
         $scope.no_start = Activity.on_going();
     };
 
-    $scope.back_to_home = function () {
+    $scope.go_home = function () {
         $location.path(Url.home());
     };
 
