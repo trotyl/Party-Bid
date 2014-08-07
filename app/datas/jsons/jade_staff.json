@@ -106,6 +106,9 @@
 				"sub": "{{number_of_bid}}",
 				"count": "{{count_of_records}}"
 			}
+		},
+		"footer": {
+			"show": "is_modal_over"
 		}
 	},
 
@@ -129,6 +132,9 @@
 				"sub": "{{number_of_bid}}",
 				"count": "{{count_of_records}}"
 			}
+		},
+		"footer": {
+			"show": "true"
 		}
 	},
 

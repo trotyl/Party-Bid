@@ -12,14 +12,15 @@ include ./components/header.jade
           tr
             td {{record.phone}}
 
+include ./components/footer_result.jade
 
-footer(ng-show="is_modal_over")
-  .footer-nav.footer-result
-    p 
-      span {{result.warn || "竞价结果："}}
-      span {{result.name}}&nbsp;
-      span {{result.price | currency:"¥"}}&nbsp;
-      span {{result.phone}}
+//- footer(ng-show="is_modal_over")
+//-   .footer-nav.footer-result
+//-     p 
+//-       span {{result.warn || "竞价结果："}}
+//-       span {{result.name}}&nbsp;
+//-       span {{result.price | currency:"¥"}}&nbsp;
+//-       span {{result.phone}}
 
 #myModal.modal.fade(tabindex="-1",role="dialog",aria-labelledby="myModalLabel",aria-hidden="true")
   .modal-dialog
