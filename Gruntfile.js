@@ -80,11 +80,8 @@ module.exports = function (grunt) {
           data: function(dest, src) {
             // Return an object of data to pass to templates
             var destStr = dest.toString();
-            console.log(typeof(dest));
             var name = destStr.substring(destStr.indexOf('views') + 6);
-            console.log(name);
-            console.log(require('./app/datas/jsons/jade_staff.json').content);
-            return require('./app/datas/jsons/jade_staff.json');
+            return require('./app/datas/jsons/jade_staff.json')[name];
           }
         },
         files: [{

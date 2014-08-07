@@ -1,4 +1,5 @@
 {
+	"activity_detail.html": {
 		"left": {
 			"show": "true",
 			"disable": "false",
@@ -18,5 +19,27 @@
 			"sub": "",
 			"count": "{{count_of_members}}"
 		}
+	},
 
+	"activity_list.html": {
+		"left": {
+			"show": "false",
+			"disable": "",
+			"css": "",
+			"click": "",
+			"word": ""
+		},
+		"right": {
+			"show": "true",
+			"disable": "no_create",
+			"css": "button-highlight",
+			"click": "go_to_create()",
+			"word": "创建活动"
+		},
+		"content": {
+			"title": "活动列表",
+			"sub": "",
+			"count": ""
+		}
+	}
 }

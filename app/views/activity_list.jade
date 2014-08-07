@@ -1,6 +1,4 @@
-header.header
-  label.nav-title 活动列表
-  button.button.button-rounded.button-highlight.header-right-trotyl(ng-click="go_to_create()",ng-disabled="no_create") 创建活动
+include ./components/header.jade
 
 .container.content
   .list-button(ng-repeat="activity in activity_list | orderBy:'-createdAt'")
