@@ -1,18 +1,16 @@
 'use strict';
 
 describe('Model: BidModel', function () {
-  var bid_list;
+	var bidList;
 
-  // load the controller's module
-  beforeEach(module('partyBidApp'));
+	beforeEach(function () {
+		bidList = [];
+	});
 
+	describe('The Bid list should be right count.', function () {
+		it('The Bid list should be null', function () {
+			expect(bidList.length).toEqual(0);
+		})
+	});
 
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-
-  }));
-
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(Bid.compute_result("", 1)).toBe(true);
-  });
 });

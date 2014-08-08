@@ -15,7 +15,5 @@ var dictionary;
 var native_access;
 $(document).ready(function () {
     localStorage.signing_up = '';
-
     native_access = new NativeAccess();
-
 });
