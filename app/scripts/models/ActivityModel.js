@@ -9,6 +9,7 @@ function Activity(name, createdAt, register, bid, count) {
 //实例方法
 Activity.prototype.save = function () {
     Data.add(Activity.all(), this, "activity_list");
+    Activity.update_current_activity(this); 
 };
 
 Activity.prototype.turn_register = function () {
@@ -62,6 +63,6 @@ Activity.check_if_repeat = function (activity_name) {
 };
 
 Activity.find_by_name = function (activity_name) {
-    var found = _(Activity.all()).findWhere({name: activity_name});
+    var found = _(Activity.all()).findWhere({name: activity_name}) || {};
     return new Activity(found.name, found.createdAt, found.register, found.bid, found.count);
 };
