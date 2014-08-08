@@ -1,8 +1,8 @@
-function Bid(price_of_bid, phone_of_member, name_of_activity, number_of_bid) {
-	this.activity = name_of_activity;
-	this.number = number_of_bid;
-	this.phone = phone_of_member;
-	this.price = price_of_bid;
+function Bid(bid_price, phone, activity_name, bid_number) {
+	this.activity = activity_name;
+	this.number = bid_number;
+	this.phone = phone;
+	this.price = bid_price;
 	this.name = Register.find_name_by_phone(this.phone);
 	this.compute_index();
 }
@@ -21,33 +21,33 @@ Bid.all = function () {
     return JSON.parse(localStorage.getItem("bid_list")) || [];
 };
 
-Bid.get_grouped_list = function (activity_to_search, number_of_bid) {
-	var record_list = Bid.read_records_of_bid(activity_to_search, number_of_bid);
+Bid.get_grouped_list = function (the_activity, bid_number) {
+	var record_list = Bid.read_records_of_bid(the_activity, bid_number);
 	return _(record_list).groupBy(function (bid) { return bid.price; });
 };
 
 //外调方法
-Bid.read_bids_of_activity = function (activity_to_search) {
+Bid.read_bids_of_activity = function (the_activity) {
 	var result = [];
-	for (var i = 0; i < activity_to_search.count; i++) {
+	for (var i = 0; i < the_activity.count; i++) {
 		result.push({name:"竞价 ".concat(i + 1)});
 	};
 	return result;
 };
 
-Bid.read_records_of_bid = function (activity_to_search, number_of_bid) {
-	return _(Bid.all()).where({activity: activity_to_search.name, number: number_of_bid});
+Bid.read_records_of_bid = function (the_activity, bid_number) {
+	return _(Bid.all()).where({activity: the_activity.name, number: bid_number});
 };
 
-Bid.read_stats_of_bid = function (activity_to_search, number_of_bid) {
-	var grouped_list = Bid.get_grouped_list(activity_to_search, number_of_bid);
+Bid.read_stats_of_bid = function (the_activity, bid_number) {
+	var grouped_list = Bid.get_grouped_list(the_activity, bid_number);
 	return _(_.pairs(grouped_list)).map(function (pair) { 
 		return {price: pair[0], count: pair[1].length}; 
 	});
 };
 
-Bid.compute_result = function (activity_to_search, number_of_bid) {
-	var grouped_list = Bid.get_grouped_list(activity_to_search, number_of_bid);
+Bid.compute_result = function (the_activity, bid_number) {
+	var grouped_list = Bid.get_grouped_list(the_activity, bid_number);
 	var result_list = _(grouped_list).find(function (value) { 
 		return value.length == 1; 
 	}) || [{warn: "竞价失败！"}];

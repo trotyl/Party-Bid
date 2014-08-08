@@ -1,6 +1,6 @@
-function Register(name_of_member, phone_of_member) {
-	this.name = name_of_member;
-	this.phone = phone_of_member;
+function Register(name, phone) {
+	this.name = name;
+	this.phone = phone;
 	this.activity = Activity.now().name;
 }
 
@@ -15,14 +15,15 @@ Register.all = function () {
 };
 
 //外调方法
-Register.read_members_of_activity = function (activity_to_search) {
-	return _.where(Register.all(), {activity: activity_to_search.name});
+Register.read_members_of_activity = function (the_activity) {
+	return _.where(Register.all(), {activity: the_activity.name});
 };
 
-Register.find_name_by_phone = function(phone_to_search) {
-	return _(Register.all()).findWhere({phone: phone_to_search}).name;
+Register.find_name_by_phone = function(phone) {
+	var result = _(Register.all()).findWhere({phone: phone}) || {};
+	return result.name;
 };
 
-Register.check_if_repeat = function (phone_to_check) {
-    return _(Register.all()).findWhere({activity: Activity.now().name, phone: phone_to_check});
+Register.check_if_repeat = function (phone) {
+    return _(Register.all()).findWhere({activity: Activity.now().name, phone: phone});
 };
