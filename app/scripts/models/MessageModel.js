@@ -54,6 +54,6 @@ Message.cope_new_bid = function (price, phone) {
 };
 
 Message.sendback_info = function (phone, type, status) {
-	var text = dictionary[type + '_' + status];
-	native_accessor.send_sms(phone, text);
+	var text = Data.get_sendback_text()[type + '_' + status];
+	Data.get_native_accessor().send_sms(phone, text);
 };

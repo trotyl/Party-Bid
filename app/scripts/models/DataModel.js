@@ -17,3 +17,11 @@ Data.add = function (list, data_to_save, type) {
 Data.save = function (list, type) {
 	localStorage.setItem(type, JSON.stringify(list));
 };
+
+Data.get_sendback_text = function () {
+	return dictionary;
+};
+
+Data.get_native_accessor = function () {
+	return native_accessor;
+};
