@@ -5,16 +5,20 @@ Message.received_new_item = function (message_json) {
 	var phone = message_json.messages[0].phone;
 	var header = text.substring(0,2).toUpperCase();
 	if(header == "BM") {
-		Message.cope_new_register(Message.get_body(text), phone);
+		Message.cope_new_register(Message.get_name(text), phone);
 		return;
 	}
 	if(header == "JJ") {
-		Message.cope_new_bid(Message.get_body(text), phone);
+		Message.cope_new_bid(Message.get_price(text), phone);
 	}
 };
 
-Message.get_body = function (text_of_message) {
+Message.get_name = function (text_of_message) {
 	return text_of_message.substring(2).replace(' ', '');
+};
+
+Message.get_price = function (text_of_message) {
+	return parseInt(text_of_message.substring(2).replace(' ', ''));
 };
 
 Message.cope_new_register = function (name, phone) {
@@ -32,6 +36,7 @@ Message.cope_new_register = function (name, phone) {
 };
 
 Message.cope_new_bid = function (price, phone) {
+	if (price <= 0) { return; }
 	var status = Activity.now().bid || "prepare";
 	var bad_status = (status != "run");
 	if (!bad_status && (bad_status = !Bid.check_if_register(phone))) {

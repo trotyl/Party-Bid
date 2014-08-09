@@ -1,6 +1,6 @@
 'use strict';
 
-describe('BidModel:', function () {
+describe('RegisterModel:', function () {
 
 	var new_activity;
 	var new_register;
