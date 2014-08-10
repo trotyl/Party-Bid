@@ -1,12 +1,10 @@
 function Data () {}
 
 Data.refresh_ui_list = function (page_type) {
-	var ui_scope = angular.element("#" + page_type).scope();
-	if(typeof(ui_scope.update_data) == "function")  {
-		ui_scope.$apply(function () { 
-			ui_scope.update_data(); 
-		});
-	}
+	var ui_scope = angular.element("#" + page_type).scope() || { $apply: angular.noop };
+	ui_scope.$apply(function () { 
+		ui_scope.update_data(); 
+	});
 };
 
 Data.add = function (list, data_to_save, type) {

@@ -22,13 +22,13 @@ angular.module('partyBidApp')
         $location.path(Url.activity_detail(new_activity));
     };
 
-    function check_if_empty(newValue, oldValue, scope) {
-        $scope.is_warning_show = false;
-        $scope.is_name_empty = !$scope.name_to_create;
-    };
+    // function check_if_empty(newValue, oldValue, scope) {
+    //     $scope.is_warning_show = false;
+    //     $scope.is_name_empty = !$scope.name_to_create;
+    // };
 
     $scope.initiate_data();
 
-    $scope.$watch('name_to_create', check_if_empty, true);
+    // $scope.$watch('name_to_create', check_if_empty, true);
 
   });
