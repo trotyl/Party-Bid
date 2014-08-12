@@ -27,10 +27,10 @@ Bid.get_grouped_list = function (the_activity, bid_number) {
 };
 
 //外调方法
-Bid.read_bids_of_activity = function (the_activity) {
+Bid.read_bids_of_activity = function (activity) {
 	var result = [];
-	for (var i = 0; i < the_activity.count; i++) {
-		result.push({name:"竞价 ".concat(i + 1)});
+	for (var i = 0; i < activity.count; i++) {
+		result.push({name:"竞价 ".concat(i + 1), bid: i == activity.count - 1? activity.bid: ''});
 	};
 	return result;
 };
