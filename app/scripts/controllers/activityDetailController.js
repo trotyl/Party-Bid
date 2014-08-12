@@ -10,10 +10,6 @@ angular.module('partyBidApp')
 		$scope.update_data();
 	};
 
-	$scope.go_home = function () {
-		$location.path(Url.home());
-	};
-
 	$scope.go_to_bid = function () {
 		$location.path(Url.bid_list($scope.this_activity));
 	};

@@ -11,11 +11,8 @@ angular.module('partyBidApp')
     return {
       template: '返回',
       restrict: 'A',
-      scope: {
-
-      },
       link: function postLink(scope, element, attrs) {
-		var path = attrs.back? Url.bid_list({name: attrs.back}): '/';
+		var path = attrs.back? '#/detail/' + attrs.back + '/bid': '/';
         element.attr('href', path);
       }
     };

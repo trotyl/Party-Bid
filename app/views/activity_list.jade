@@ -1,5 +1,7 @@
-include ./components/header.jade
+header.header
+  label.nav-title 活动列表
+  button.button.button-rounded.button-highlight.rightside(ng-click="go_to_create()",ng-disabled="no_create") 创建活动
 
 .container.content
   .list-button(ng-repeat="activity in activity_list | orderBy:'-createdAt'")
-    button(ng-click="go_to_detail(activity)",class="button glow button-rounded btn-block button-large {{check_status(activity)}}") {{activity.name}}
+    button(ng-click="go_to_detail(activity)",ng-class='activity | yello') {{activity.name}}

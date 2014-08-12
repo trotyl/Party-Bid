@@ -11,6 +11,6 @@
 angular.module('partyBidApp')
   .filter('switchCss', function () {
     return function (input) {
-      return 'button button-rounded header-right-trotyl ' + (input == 'run'? 'button-caution': 'button-action');
+      return 'button button-rounded rightside ' + (input == 'run'? 'button-caution': 'button-action');
     };
   });
