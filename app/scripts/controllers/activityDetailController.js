@@ -11,7 +11,7 @@ angular.module('partyBidApp')
 	};
 
 	$scope.go_to_bid = function () {
-		$location.path(Url.bid_list($scope.this_activity));
+		$location.path(Url.bid_list($scope.this_activity.name));
 	};
 
 	$scope.alter_status = function () {
@@ -23,9 +23,9 @@ angular.module('partyBidApp')
 	};
 
 	$scope.update_data = function () {
-		$scope.member_list = Register.read_members_of_activity($scope.this_activity);
+		$scope.member_list = Register.read_members_of_activity($scope.this_activity.name);
 	};
 
 	$scope.initiate_data();
-
+	
   });

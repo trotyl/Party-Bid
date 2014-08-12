@@ -21,10 +21,6 @@ angular.module('partyBidApp')
     	$location.path(Url.activity_detail(the_activity));
     };
 
-    $scope.check_status = function (item) {
-    	return (item.register == "run" || item.bid == "run")? "button-flat-highlight": "button-flat";
-    };
-
     $scope.initiate_data();
 
   });

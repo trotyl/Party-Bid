@@ -13,8 +13,8 @@ Url.activity_detail = function (the_activity) {
   return '/detail/' + the_activity.name;
 };
 
-Url.bid_list = function (the_activity) {
-  return '/detail/' + the_activity.name + '/bid';
+Url.bid_list = function (name) {
+  return '/detail/' + name + '/bid';
 };
 
 Url.bid_detail = function (the_activity, the_bid_number) {

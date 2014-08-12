@@ -10,10 +10,6 @@ angular.module('partyBidApp')
 		$scope.update_data();
 	};
 
-	$scope.go_to_list = function () {
-		$location.path(Url.bid_list($scope.this_activity));
-	};
-
 	$scope.end_bid = function () {
 		if(window.confirm("您确定要结束竞价么？！")) {
         	$scope.this_activity.stop_bid();
@@ -23,7 +19,6 @@ angular.module('partyBidApp')
 
 	$scope.update_data = function () {
 		$scope.record_list = Bid.read_records_of_bid($scope.this_activity, $scope.bid_number);
-		$scope.count_of_records = !_.isEmpty($scope.record_list)? "(" + $scope.record_list.length.toString() + "人)": "";
 	};
 
 	$scope.initiate_data();

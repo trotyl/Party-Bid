@@ -15,8 +15,8 @@ Register.all = function () {
 };
 
 //外调方法
-Register.read_members_of_activity = function (the_activity) {
-	return _.where(Register.all(), {activity: the_activity.name}) || [];
+Register.read_members_of_activity = function (name) {
+	return _.where(Register.all(), {activity: name}) || [];
 };
 
 Register.find_name_by_phone = function(phone) {
