@@ -1,4 +1,9 @@
-include ./components/header.jade
+header.header
+  label.nav-title 竞价
+    span {{number_of_bid}}
+    span {{record_list.length | count}} 
+  a.button.button-rounded.button-highlight.leftside(back='{{this_activity.name}}')
+  button.button.button-rounded.button-action.rightside(ng-click="go_to_stats()") 统计
 
 .content
   .container
