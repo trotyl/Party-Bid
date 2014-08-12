@@ -1,8 +1,8 @@
 header.header
   label.nav-title 活动报名
-    span {{count_of_members}}	
+    span {{member_list.length | count}}	
   button.button.button-rounded.button-highlight.header-left-trotyl(ng-click="go_home()") 返回
-  button(ng-class='status | switchCss',ng-click="alter_status()",ng-disabled="no_start") {{status | switch}}
+  button(ng-class='status | switchCss',ng-click="alter_status()",ng-disabled='no_start') {{status | switch}}
 
 #register.content
   .container

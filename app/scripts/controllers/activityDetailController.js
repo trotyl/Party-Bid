@@ -6,7 +6,6 @@ angular.module('partyBidApp')
 	$scope.initiate_data = function () {
 		$scope.this_activity = Activity.find_by_name($routeParams.name);
 		$scope.status = $scope.this_activity.register;
-		$scope.style_of_button = $scope.status != "run"? "button-action": "button-caution";
 		$scope.no_start = $scope.status != "run" && Activity.on_going();
 		$scope.update_data();
 	};
@@ -29,7 +28,6 @@ angular.module('partyBidApp')
 
 	$scope.update_data = function () {
 		$scope.member_list = Register.read_members_of_activity($scope.this_activity);
-		$scope.count_of_members = !_.isEmpty($scope.member_list)? "(" + $scope.member_list.length.toString() + "人)": "";
 	};
 
 	$scope.initiate_data();
