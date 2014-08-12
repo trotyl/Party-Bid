@@ -1,7 +1,7 @@
 header.header
   label.nav-title 竞价列表
   button.button.button-rounded.button-action.rightside(ng-click="start_bid()",ng-disabled="no_start") 开始
-  a.button.button-rounded.button-highlight.leftside(back='') 返回
+  a.button.button-rounded.button-highlight.leftside(back='')
 
 .container.content
   .list-button(ng-repeat="bid in bid_list | orderBy:'-name'")
