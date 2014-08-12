@@ -12,8 +12,8 @@ angular.module('partyBidApp')
         $location.path(Url.home());
     };
 
-    $scope.create_activity = function () {
-        if(Activity.check_if_repeat($scope.name_to_create)) {
+    $scope.create_activity = function (name) {
+        if(Activity.check_if_repeat(name)) {
             $scope.is_warning_show = true;
             return;
         }

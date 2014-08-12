@@ -5,9 +5,9 @@ angular.module('partyBidApp')
 
 	$scope.initiate_data = function () {
 		$scope.this_activity = Activity.find_by_name($routeParams.name);
-		$scope.next_status = $scope.this_activity.register == "run"? "结束": "开始";
-		$scope.style_of_button = $scope.next_status == "开始"? "button-action": "button-caution";
-		$scope.no_start = $scope.next_status == "开始" && Activity.on_going();
+		$scope.status = $scope.this_activity.register;
+		$scope.style_of_button = $scope.status != "run"? "button-action": "button-caution";
+		$scope.no_start = $scope.status != "run" && Activity.on_going();
 		$scope.update_data();
 	};
 
@@ -20,12 +20,11 @@ angular.module('partyBidApp')
 	};
 
 	$scope.alter_status = function () {
-		var is_to_start = ($scope.next_status == "开始");
-		if(is_to_start || window.confirm("确认要结束本次报名吗？！")) {
+		if($scope.status != "run" || window.confirm("确认要结束本次报名吗？！")) {
 			$scope.this_activity.turn_register();
-			!is_to_start && $scope.go_to_bid();
-		}
-		$scope.initiate_data();
+			$scope.status == "run" && $scope.go_to_bid();
+			$scope.initiate_data();
+		}	
 	};
 
 	$scope.update_data = function () {

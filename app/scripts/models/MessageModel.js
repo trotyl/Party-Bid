@@ -14,11 +14,11 @@ Message.received_new_item = function (message_json) {
 };
 
 Message.get_name = function (text_of_message) {
-	return text_of_message.substring(2).replace(' ', '');
+	return text_of_message.substring(2).replace(/\s/g, '');
 };
 
 Message.get_price = function (text_of_message) {
-	return parseInt(text_of_message.substring(2).replace(' ', ''));
+	return parseInt(text_of_message.substring(2).replace(/\s/g, ''));
 };
 
 Message.cope_new_register = function (name, phone) {
