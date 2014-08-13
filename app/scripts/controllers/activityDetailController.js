@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('partyBidApp')
-  .controller('ActivityDetailController', function ($scope, $location, $routeParams) {
+function ActivityDetailController ($scope, $location, $routeParams) {
 
 	$scope.initiate_data = function () {
 		$scope.this_activity = Activity.find_by_name($routeParams.name);
@@ -28,4 +27,4 @@ angular.module('partyBidApp')
 
 	$scope.initiate_data();
 	
-  });
+  };

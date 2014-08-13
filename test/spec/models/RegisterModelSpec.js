@@ -47,9 +47,9 @@ describe('RegisterModel:', function () {
 		});
 
 		it('should be get by activity properly', function () {
-			expect(Register.read_members_of_activity({name: "Activity 1"}).length).toEqual(0);
-			expect(Register.read_members_of_activity({name: "Activity 2"}).length).toEqual(5);
-			expect(Register.read_members_of_activity({name: "Activity 3"}).length).toEqual(3);
+			expect(Register.read_members_of_activity("Activity 1").length).toEqual(0);
+			expect(Register.read_members_of_activity("Activity 2").length).toEqual(5);
+			expect(Register.read_members_of_activity("Activity 3").length).toEqual(3);
 		});
 
 		it('can find member name by its phone', function () {

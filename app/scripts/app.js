@@ -10,6 +10,9 @@ angular
     'ngTouch'
   ]);
 
+angular.module('partyBidApp')
+  .controller('ActivityDetailController', ActivityDetailController);
+
 var dictionary;
 
 var native_access;
