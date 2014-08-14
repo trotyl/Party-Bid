@@ -23,7 +23,6 @@ describe('The ActivityDetailController', function () {
 	});
 
 	it('should find the proper activity', function () {
-		console.log(scope);
 		expect(scope.this_activity.name).toEqual('Activity 1');
 		expect(scope.status).toEqual('prepare');
 	});
@@ -42,11 +41,20 @@ describe('The ActivityDetailController', function () {
 		expect(location.path).toHaveBeenCalledWith('/detail/Activity 1/bid');
 	});
 
-	it('should be able to start register', function () {
+	it('should be able to start and stop register', function () {
 		scope.alter_status();
 		expect(scope.status).toEqual('run');
-		scope.alter_status();
-		expect(scope.status).toEqual('over');
+		// scope.alter_status();
+		// expect(scope.status).toEqual('over');
+	});
+
+	it('can be update', function () {
+		expect(scope.member_list.length).toEqual(0);
+		scope.this_activity.turn_register();
+		var new_register = new Register("Yu Zejiang", "11111111111");
+		new_register.save();
+		scope.update_data();
+		expect(scope.member_list.length).toEqual(1);
 	});
 
 });

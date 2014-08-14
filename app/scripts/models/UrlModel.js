@@ -9,8 +9,8 @@ Url.create_activity = function () {
   return '/create';
 };
 
-Url.activity_detail = function (the_activity) {
-  return '/detail/' + the_activity.name;
+Url.activity_detail = function (name) {
+  return '/detail/' + name;
 };
 
 Url.bid_list = function (name) {

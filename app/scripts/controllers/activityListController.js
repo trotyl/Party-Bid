@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('partyBidApp')
-  .controller('ActivityListController', function ($scope, $location, $http) {
+function ActivityListController ($scope, $location, $http) {
 
     $scope.initiate_data = function () {
         !Activity.exist() && $scope.go_to_create();
@@ -17,10 +16,10 @@ angular.module('partyBidApp')
     	$location.path(Url.create_activity());
     };
 
-    $scope.go_to_detail = function (the_activity) {
-    	$location.path(Url.activity_detail(the_activity));
+    $scope.go_to_detail = function (name) {
+    	$location.path(Url.activity_detail(name));
     };
 
     $scope.initiate_data();
 
-  });
+  };
