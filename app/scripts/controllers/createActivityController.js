@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('partyBidApp')
-  .controller('CreateActivityController', function ($scope, $location) {
+function CreateActivityController ($scope, $location) {
 
     $scope.initiate_data = function () {
         $scope.show_warning = false;
@@ -13,9 +12,9 @@ angular.module('partyBidApp')
             $scope.show_warning = true;
             return;
         }
-        var new_activity = new Activity($scope.name_to_create, Date.parse(new Date()), "prepare", "prepare", 0);
+        var new_activity = new Activity(name);
         new_activity.save();
-        $location.path(Url.activity_detail(new_activity));
+        $location.path(Url.activity_detail(new_activity.name));
     };
 
     $scope.inputting = function () {
@@ -24,4 +23,4 @@ angular.module('partyBidApp')
 
     $scope.initiate_data();
 
-  });
+  };
