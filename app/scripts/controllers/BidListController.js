@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('partyBidApp')
-  .controller('BidListController', function ($scope, $location, $routeParams) {
+function BidListController ($scope, $location, $routeParams) {
 
     $scope.initiate_data = function () {
         $scope.this_activity = Activity.find_by_name($routeParams.name);
@@ -14,7 +13,7 @@ angular.module('partyBidApp')
     };
 
     $scope.go_to_register = function () {
-        $location.path(Url.activity_detail($scope.this_activity));
+        $location.path(Url.activity_detail($scope.this_activity.name));
     };
 
     $scope.start_bid = function () {
@@ -24,4 +23,4 @@ angular.module('partyBidApp')
 
     $scope.initiate_data();
 
-  });
+  };
