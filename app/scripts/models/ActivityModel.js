@@ -1,9 +1,9 @@
 function Activity(name, createdAt, register, bid, count) {
     this.name = name;
-    this.createdAt = createdAt;
-    this.register = register;
-    this.bid = bid;
-    this.count = count;
+    this.createdAt = createdAt || Date.parse(new Date());
+    this.register = register || 'prepare';
+    this.bid = bid || 'prepare';
+    this.count = count || 0;
 }
 
 //实例方法

@@ -1,7 +1,7 @@
-function Register(name, phone) {
+function Register(name, phone, activity) {
 	this.name = name;
 	this.phone = phone;
-	this.activity = Activity.now().name;
+	this.activity = activity || Activity.now().name;
 }
 
 //实例方法

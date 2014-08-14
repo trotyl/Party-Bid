@@ -1,10 +1,10 @@
-function Bid(bid_price, phone, activity_name, bid_number) {
-	this.activity = activity_name;
-	this.number = bid_number;
+function Bid(price, phone, activity, number, name, index) {
+	this.price = price;
 	this.phone = phone;
-	this.price = bid_price;
-	this.name = Register.find_name_by_phone(this.phone);
-	this.compute_index();
+	this.activity = activity || Activity.now().name;
+	this.number = number || Activity.now().count;
+	this.name = name || Register.find_name_by_phone(this.phone);
+	this.index = index || this.compute_index();
 }
 
 //实例方法
@@ -13,7 +13,7 @@ Bid.prototype.save = function () {
 };
 
 Bid.prototype.compute_index = function () {
-	this.index = (_(Bid.all()).where({activity:this.activity, number:this.number}) || []).length + 1;
+	return (_(Bid.all()).where({activity:this.activity, number:this.number}) || []).length + 1;
 };
 
 //内调方法
@@ -29,9 +29,9 @@ Bid.get_grouped_list = function (the_activity, bid_number) {
 //外调方法
 Bid.read_bids_of_activity = function (activity) {
 	var result = [];
-	for (var i = 0; i < activity.count; i++) {
-		result.push({name:"竞价 ".concat(i + 1), bid: i == activity.count - 1? activity.bid: ''});
-	};
+	_(activity.count).times(function (n) {
+		result.push({name:"竞价 ".concat(n + 1), bid: n == activity.count - 1? activity.bid: ''});
+	})
 	return result;
 };
 

@@ -46,11 +46,6 @@ angular.module('partyBidApp')
       });
     });
 
-angular.module('partyBidApp')
-  .controller('ActivityDetailController', ActivityDetailController);
-
-angular.module('partyBidApp')
-  .controller('ActivityListController', ActivityListController);
 
 var dictionary;
 
