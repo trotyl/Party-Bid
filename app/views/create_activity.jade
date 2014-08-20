@@ -8,5 +8,4 @@ header.header
 			label 活动名称：
 			input.form-control(type="text",ng-model="name_to_create",ng-change='inputting()',placeholder="如：活动一",focus)
 		button.button.btn-block.button-rounded.button-primary.button-large.margin-trotyl(type="submit",ng-disabled='!name_to_create',ng-click="create_activity(name_to_create)") 创建
-	label.pull-center(ng-show="show_warning")
-		font(color="#FF0000") 名称与现有活动重复！
+	label.pull-center(ng-show="show_warning" style="color:#FF0000") 名称与现有活动重复！
